@@ -1,0 +1,15 @@
+- goal(s) of the project:
+	- bigger goal (out of scope): functional role of the mauthner circuit in the escape response of schooling fish
+	- side effects: what are the computations that the circuit implements ? (or has to implement, can we prove this ?)
+- in this thesis, I not only want to follow current scientific practice for making citations but I want to go beyond. this means I will try to cite on a sub-article level, i.e. refer to the specific section, subsection, paragraph, figure if possible. I would also like to define subcategories among the citations that could be e.g. "supportive experiment", "related model" and so on
+- so in Medan2017 they stimulate both OT to "simulate" a visual stimulus, this is interesting. it might be important in simulations to have input from both visual sides because the one that doesn't get the looming input might actually inhibit the contralateral or even both mauthner cells. I could also check if this relates to the recent paper from christian ebbesen from brechts lab about the role of the motor circuit where they hypothesize that the motor cortex is most of the time actually inhibiting movement (as far as I remember). there is also the experiment where a flash stimulus didn't excite the mauthner cell because of the dopaminergic activation of an inhibitory interneuron. maybe this is actually the "normal" case for visual stimuli ?
+- one part in the discussion and maybe also introduction should be about similarities and differences in different species
+- maybe I could use a gaussian process to find the proper transformation function, I have to check if this is possible/applicable here though
+- maybe also look into literature about retinal image processing in fish (ideally, just a recent review)
+	- at least I can mention the models for the optic tectum by Northmore et al. and Jang et al.
+- I could make an appendix where I show colorized equations for my main model equations
+- another appendix could describe the machine-readable outcomes that I want to generate, e.g. the subcategorized citations and the literature spreadsheet
+- I should compare the direction from which looming stimuli have been presented and maybe look if that makes some noticable difference in e.g. response probability
+- about visual processing in OT: see references in the introduction of this paper: https://www.frontiersin.org/articles/10.3389/fnana.2017.00135/full?utm_source=F-AAE&utm_medium=EMLF&utm_campaign=MRK_527044_55_Neuros_20180130_arts_A#h2
+	-> especially del bene 2010 and preuss 2014
+	- also interesting: Mu 2012

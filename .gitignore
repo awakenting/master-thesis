@@ -1,0 +1,9 @@
+private/
+*_pycache_*
+*~
+*temporary*
+*.zip
+*.ibw
+*build/
+*.pkl
+*ipynb_checkpoints*

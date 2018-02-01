@@ -1,0 +1,29 @@
+mauthner cell notes:
+- some input modalities seem to be dominant, i.e. in goldfish and zebrafish, being hearing specialists, auditory is dominant but in chichlids which are not so good at hearing this can be overridden by a visual stimulus (zottoli 2000)
+- there are an estimated number of 200 000 synapses on the mauthner cell (korn: "the mauthner cell" in Comparative Neurobiology)
+- in some eel fish the axon cap is missing which leads to firing of both mauthner cells which results in a withdrawal startle response (zottoli 2000)
+
+
+presi outline:
+- rough structure:
+	- anatomy
+		- location: hindbrain, medulla oblangata, reticulospinal neurons
+		- connections
+			- two main dendritic branches for 1)auditory/lateral line and 2)visual/somatosthetic
+			- axon goes to motoneurons (apparently to a distinct set that differs from normal swimming, see Song2015)
+			- input from auditory also activates inhibitory interneurons leading to feedforward inhibition (TODO: check if this is the case for ventral dendrite as well)
+			- auditory afferent synapses are called club endings and are electrical and chemical at the same time leading to a fast and a slow component in the EPSP's
+			- visual input has much higher latency bc it is "preprocessed" in the optical tectum first
+			- there is also input from excitatory spiral fiber neurons which when removed by ablation lead to no more short-latency c-starts (TODO: reference)
+			- cross-inhibition to the other mauthner cell
+	- physiology
+		- very specialized
+		- huge volume leads to very low input resistance which means a high input is needed for firing
+		- huge axons lead to fast conductance speed enabling 2.2 ms latency in response to an auditory stimulus (TODO: reference)
+		- there is a field effect inhibition after it fires which (also) prevents it from repetitive firing (see Nakayam2004 for details)
+		- synapses are plastic (TODO: look up more details on this and try to summarize)
+	- experiments
+		- which species? : recent studies: zebrafish(larvae and adults), goldfish, cichlid
+		- stimuli: mostly sound pulses (sine waves of 200Hz), some water pulses and some visual looming stimuli( mostly a black disk increasing in size)
+		- 
+		
