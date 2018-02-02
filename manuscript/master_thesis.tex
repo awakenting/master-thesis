@@ -1,0 +1,108 @@
+\documentclass[a4paper,10pt]{scrartcl}
+%\usepackage[utf8x]{inputenc}
+
+% Packages =========================================
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amsfonts}   		% Pakete für math. Formeln, Symbole, Ausdrücke
+\usepackage{amssymb}
+\usepackage[toc,page]{appendix}				% more control over appendices
+\usepackage[english]{babel} 				% Anpassung für mehrsprachige Dokumente
+\usepackage[usenames, dvipsnames]{color}					% Nutzung von Farben
+\usepackage{float}					% notw. für explizite Setzung von Grafiken
+\usepackage[T1]{fontenc} 				% Zuweisung Codierschemas für Zeichensätze
+\usepackage[paper=a4paper,left=40mm,right=30mm,top=20mm,bottom=25mm]{geometry} % Randmaße
+\usepackage{graphicx} 					% Einbindung externer Grafiken
+\usepackage{hyperref}
+%\usepackage[utf8]{inputenc}				% for german characters like "ä, ö, ü"
+\usepackage{listings}					% notwendig für Quellcode
+\usepackage{lmodern}	 				% Moderne Version von Computer Modern
+\usepackage{pdfpages}					% Einbindung einer pdf-Datei
+\usepackage{pgfplots}
+\usepackage{mdwlist}					% kompaktere Auflistungen
+\usepackage{microtype}	 				% Optischer Randausgleich
+\usepackage{natbib}
+\usepackage{subcaption}					% Subfigure/-tabellen
+\usepackage{scrpage2}
+\usepackage{tabularx}					% Textsetzung in Tabellen in p-Spalten
+\usepackage{textcomp}					% Besondere Textzeichen
+\usepackage{ulem}					% Unterstreichung
+\usepackage{url}					% Links
+\usepackage{xfrac}					% notw. für schräggestellten Bruch
+\usepackage[margin=10pt,font=scriptsize,labelfont=bf,labelsep=endash]{caption}
+
+
+
+
+\begin{document}
+	\thispagestyle{empty}
+	\begin{center}
+		\Large
+		\textbf{A Neuronal Model for Visually Evoked Startle Responses in Schooling Fish}\\
+		
+		\vspace*{1cm}
+		\normalsize
+		Master thesis\\
+		
+		\vspace{3cm}
+		by\\
+		Andrej Warkentin \\
+		Bernstein Center for Computational Neuroscience - Berlin
+		
+		\vspace{2cm}
+		Supervisors:\\
+		Dr. Pawel Romanczuk\\
+		Bernstein Center for Computational Neuroscience - Berlin\\
+		Prof. Dr. Henning Sprekeler\\
+		Technische Universit\"{a}t Berlin
+		
+	\end{center}
+	\pagebreak 
+	% Title Page
+	\title{masterthesis}
+	
+	% Inhaltsverzeichnis =====================================
+	\thispagestyle{empty}
+	\tableofcontents		% Inhaltsverzeichnis erstellen
+	\newpage
+	%\cleardoublepage	% min. eine Freiseite
+	
+	%% Für den Hauptteil normale Seitenzahlen
+	\pagestyle{useheadings}    % wieder auf normale Seitenrahmen zurück schalten
+	\pagenumbering{arabic}  % Nummerierungstyp roman | arabic
+	
+	\begin{abstract}
+		\textbf{Abstract}\\
+		Many aspects of fish school behavior can be explained qualitatively by self-propelled agent models with social interaction forces that are based on either metric or topological neighborhoods.
+		Recently, startling of fish has been analyzed in its dependence of the network structure \citep{Rosenthal2015} but a mechanistic model and its influence on the collective behavior is missing.
+		Here we couple a model for collective behavior with a neuronal model that receives looming visual stimulus input to initiate a startle response, inspired by the neurobiologically well-studied Mauthner cell system.
+		First, we analyzed the basic properties of the startle behavior of a single fish as a reaction to a looming stimulus.
+		On the group level, we looked at startling frequency as well as group cohesion and polarization depending on neuronal and collective behavior parameters via simulations of the combined model.
+		Our results indicate that the startling frequency strongly depends on the dynamics of the group structure, e.g. when the group approaches a boundary of the arena.
+		In summary, we took first steps towards a biologically plausible model for startle response initiation in the context of collective motion.
+	\end{abstract}
+	\newpage
+	
+	\section{Introduction}
+
+	\section{Methods and Materials}
+	
+	\section{Results}
+	
+	\section{Discussion}
+	
+	\newpage
+	\bibliographystyle{apalike}
+	\bibliography{masterthesisbib}
+	
+	\newpage
+	\appendix
+	%\appendixheaderon
+		% next line tells latex to not list sections in the Table of Contents, \protect is needed because \setcounter apparantly
+		% is a fragile command (see http://www.tex.ac.uk/FAQ-protect.html)
+	\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+	\section{Appendix}
+
+	
+\end{document}          
