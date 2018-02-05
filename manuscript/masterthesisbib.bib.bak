@@ -2503,23 +2503,6 @@ Animals process multimodal information for adaptive behavioural decisions. In fi
   url       = {http://www.sciencedirect.com/science/article/pii/S0370157303004228},
 }
 
-@Article{Lindner2001,
-  author    = {Lindner, Benjamin and Schimansky-Geier, Lutz},
-  title     = {Transmission of Noise Coded versus Additive Signals through a Neuronal Ensemble},
-  journal   = {Phys. Rev. Lett.},
-  year      = {2001},
-  volume    = {86},
-  pages     = {2934--2937},
-  month     = {Apr},
-  doi       = {10.1103/PhysRevLett.86.2934},
-  file      = {Lindner2001.pdf:Lindner2001.pdf:PDF},
-  issue     = {14},
-  numpages  = {0},
-  publisher = {American Physical Society},
-  timestamp = {2018-02-05},
-  url       = {https://link.aps.org/doi/10.1103/PhysRevLett.86.2934},
-}
-
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: fileDirectory:/home/warkentin/Dropbox/Master/Lab Rotations/Romanczuk/literature;}

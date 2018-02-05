@@ -2486,6 +2486,40 @@ Animals process multimodal information for adaptive behavioural decisions. In fi
 },
 }
 
+@Article{Lindner2004,
+  author    = {B. Lindner and J. Garcı́a-Ojalvo and A. Neiman and L. Schimansky-Geier},
+  title     = {Effects of noise in excitable systems},
+  journal   = {Physics Reports},
+  year      = {2004},
+  volume    = {392},
+  number    = {6},
+  pages     = {321 - 424},
+  issn      = {0370-1573},
+  abstract  = {We review the behavior of theoretical models of excitable systems driven by Gaussian white noise. We focus mainly on those general properties of such systems that are due to noise, and present several applications of our findings in biophysics and lasers. As prototypes of excitable stochastic dynamics we consider the FitzHugh–Nagumo and the leaky integrate-and-fire model, as well as cellular automata and phase models. In these systems, taken as individual units or as networks of globally or locally coupled elements, we study various phenomena due to noise, such as noise-induced oscillations, stochastic resonance, stochastic synchronization, noise-induced phase transitions and noise-induced pulse and spiral dynamics. Our approach is based on stochastic differential equations and their corresponding Fokker–Planck equations, treated by both analytical calculations and/or numerical simulations. We calculate and/or measure the rate and diffusion coefficient of the excitation process, as well as spectral quantities like power spectra and degree of coherence. Combined with a multiparametric bifurcation analysis of the corresponding cumulant equations, these approaches provide a comprehensive picture of the multifaceted dynamical behaviour of noisy excitable systems.},
+  doi       = {https://doi.org/10.1016/j.physrep.2003.10.015},
+  file      = {Lindner2004.pdf:Lindner2004.pdf:PDF},
+  keywords  = {Stochastic dynamics, Excitable dynamics, FitzHugh–Nagumo system, Leaky integrate-and-fire model, Active phase rotators, Stochastic cellular automata, Firing rate, Coefficient of variation, Spike count diffusion, Brownian motion in periodic potentials, Phase synchronization, Noise induced phase transition, Noisy pattern formation, Laser dynamics, Ion-channel clusters},
+  timestamp = {2018-02-05},
+  url       = {http://www.sciencedirect.com/science/article/pii/S0370157303004228},
+}
+
+@Article{Lindner2001,
+  author    = {Lindner, Benjamin and Schimansky-Geier, Lutz},
+  title     = {Transmission of Noise Coded versus Additive Signals through a Neuronal Ensemble},
+  journal   = {Phys. Rev. Lett.},
+  year      = {2001},
+  volume    = {86},
+  pages     = {2934--2937},
+  month     = {Apr},
+  doi       = {10.1103/PhysRevLett.86.2934},
+  file      = {Lindner2001.pdf:Lindner2001.pdf:PDF},
+  issue     = {14},
+  numpages  = {0},
+  publisher = {American Physical Society},
+  timestamp = {2018-02-05},
+  url       = {https://link.aps.org/doi/10.1103/PhysRevLett.86.2934},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: fileDirectory:/home/warkentin/Dropbox/Master/Lab Rotations/Romanczuk/literature;}
