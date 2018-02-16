@@ -1,46 +1,46 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: master_thesis.aux
-The style file: apalike.bst
+The style file: abbrvnat.bst
 Database file #1: masterthesisbib.bib
-You've used 1 entry,
-            1935 wiz_defined-function locations,
-            479 strings with 4033 characters,
-and the built_in function-call counts, 521 in all, are:
-= -- 49
-> -- 28
-< -- 0
-+ -- 10
-- -- 10
-* -- 48
-:= -- 95
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 10
-chr.to.int$ -- 1
-cite$ -- 1
-duplicate$ -- 14
-empty$ -- 32
-format.name$ -- 11
-if$ -- 96
+You've used 6 entries,
+            2773 wiz_defined-function locations,
+            656 strings with 6473 characters,
+and the built_in function-call counts, 3756 in all, are:
+= -- 346
+> -- 261
+< -- 1
++ -- 87
+- -- 81
+* -- 365
+:= -- 603
+add.period$ -- 33
+call.type$ -- 6
+change.case$ -- 45
+chr.to.int$ -- 6
+cite$ -- 12
+duplicate$ -- 124
+empty$ -- 252
+format.name$ -- 89
+if$ -- 766
 int.to.chr$ -- 1
-int.to.str$ -- 0
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 3
-pop$ -- 8
+int.to.str$ -- 1
+missing$ -- 6
+newline$ -- 53
+num.names$ -- 24
+pop$ -- 63
 preamble$ -- 1
-purify$ -- 10
+purify$ -- 39
 quote$ -- 0
-skip$ -- 11
+skip$ -- 101
 stack$ -- 0
-substring$ -- 43
-swap$ -- 1
+substring$ -- 176
+swap$ -- 8
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 6
+type$ -- 66
 warning$ -- 0
-while$ -- 4
+while$ -- 25
 width$ -- 0
-write$ -- 15
+write$ -- 115

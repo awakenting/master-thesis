@@ -1,11 +1,71 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Rosenthal et~al., 2015]{Rosenthal2015}
-Rosenthal, S.~B., Twomey, C.~R., Hartnett, A.~T., Wu, H.~S., and Couzin, I.~D.
-  (2015).
+\bibitem[Bhattacharyya et~al.(2017)Bhattacharyya, McLean, and
+  MacIver]{Bhattacharyya2017}
+K.~Bhattacharyya, D.~L. McLean, and M.~A. MacIver.
+\newblock Visual threat assessment and reticulospinal encoding of calibrated
+  responses in larval zebrafish.
+\newblock \emph{Current Biology}, 27\penalty0 (18):\penalty0 2751 -- 2762.e6,
+  2017.
+\newblock ISSN 0960-9822.
+\newblock \doi{10.1016/j.cub.2017.08.012}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0960982217310217}.
+
+\bibitem[Dunn et~al.(2016)Dunn, Gebhardt, Naumann, Riegler, Ahrens, Engert, and
+  {Del Bene}]{Dunn2016}
+T.~Dunn, C.~Gebhardt, E.~Naumann, C.~Riegler, M.~Ahrens, F.~Engert, and F.~{Del
+  Bene}.
+\newblock Neural circuits underlying visually evoked escapes in larval
+  zebrafish.
+\newblock \emph{Neuron}, 89\penalty0 (3):\penalty0 613 -- 628, 2016.
+\newblock ISSN 0896-6273.
+\newblock \doi{10.1016/j.neuron.2015.12.021}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S089662731501123X}.
+
+\bibitem[Koyama et~al.({2016})Koyama, Minale, Shum, Nishimura, Schaffer, and
+  Fetcho]{Koyama2016}
+M.~Koyama, F.~Minale, J.~Shum, N.~Nishimura, C.~B. Schaffer, and J.~R. Fetcho.
+\newblock {A circuit motif in the zebrafish hindbrain for a two alternative
+  behavioral choice to turn left or right}.
+\newblock \emph{{ELIFE}}, {5}, {AUG 9} {2016}.
+\newblock ISSN {2050-084X}.
+\newblock \doi{10.7554/elife.16808}.
+
+\bibitem[Preuss and Faber(2003)]{Preuss2003}
+T.~Preuss and D.~S. Faber.
+\newblock Central cellular mechanisms underlying temperature-dependent changes
+  in the goldfish startle-escape behavior.
+\newblock \emph{Journal of Neuroscience}, 23\penalty0 (13):\penalty0
+  5617--5626, 2003.
+\newblock ISSN 0270-6474.
+\newblock URL \url{http://www.jneurosci.org/content/23/13/5617}.
+
+\bibitem[Rosenthal et~al.(2015)Rosenthal, Twomey, Hartnett, Wu, and
+  Couzin]{Rosenthal2015}
+S.~B. Rosenthal, C.~R. Twomey, A.~T. Hartnett, H.~S. Wu, and I.~D. Couzin.
 \newblock Revealing the hidden networks of interaction in mobile animal groups
   allows prediction of complex behavioral contagion.
-\newblock {\em Proceedings of the National Academy of Sciences of the United
-  States of America}, 112:4690--4695.
+\newblock \emph{Proceedings of the National Academy of Sciences of the United
+  States of America}, 112:\penalty0 4690--4695, Apr. 2015.
+\newblock ISSN 1091-6490.
+\newblock \doi{10.1073/pnas.1420068112}.
+
+\bibitem[Temizer et~al.(2015)Temizer, Donovan, Baier, and
+  Semmelhack]{Temizer2015}
+I.~Temizer, J.~Donovan, H.~Baier, and J.~Semmelhack.
+\newblock A visual pathway for looming-evoked escape in larval zebrafish.
+\newblock \emph{Current Biology}, 25\penalty0 (14):\penalty0 1823 -- 1834,
+  2015.
+\newblock ISSN 0960-9822.
+\newblock \doi{10.1016/j.cub.2015.06.002}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0960982215006673}.
 
 \end{thebibliography}

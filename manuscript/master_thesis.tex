@@ -10,6 +10,7 @@
 \usepackage[toc,page]{appendix}				% more control over appendices
 \usepackage[english]{babel} 				% Anpassung für mehrsprachige Dokumente
 \usepackage[usenames, dvipsnames]{color}					% Nutzung von Farben
+\usepackage{doi}
 \usepackage{float}					% notw. für explizite Setzung von Grafiken
 \usepackage[T1]{fontenc} 				% Zuweisung Codierschemas für Zeichensätze
 \usepackage[paper=a4paper,left=40mm,right=30mm,top=20mm,bottom=25mm]{geometry} % Randmaße
@@ -22,7 +23,7 @@
 \usepackage{pgfplots}
 \usepackage{mdwlist}					% kompaktere Auflistungen
 \usepackage{microtype}	 				% Optischer Randausgleich
-\usepackage{natbib}
+\usepackage{natbib, hyperref}
 \usepackage{subcaption}					% Subfigure/-tabellen
 \usepackage{scrpage2}
 \usepackage{tabularx}					% Textsetzung in Tabellen in p-Spalten
@@ -85,15 +86,117 @@
 	\newpage
 	
 	\section{Introduction}
-
+	\begin{itemize}
+		\item visual ecology
+		\begin{itemize}
+			\item warning: making analogies to human vision is almost always misleading
+			\item "sensory world of each species is unique"
+			\item color vision in fish: Visual Ecology pp. 159
+			\item fish orient to overhead polarization orientation in laboratory Hawryshyn 1992
+			\item most fish species don't have a fovea (Encyclopedia of Fish Physiology, p. 141) so that eye movements/saccades should not be interpreted as fixations as is the case for humans
+			\item zebrafish have a row-ordered retinal mosaic with alternating rows with LWS double cones (red and green) and rows with SWS (blue and ultraviolet)
+			\item rhodopsin (based on vitamin A1, shorter, "blue" wavelengths) more in marine fish and porphyropsins (based on A2, longer, "green" wavelengths) rather in freshwater fish (more green environment)
+			\item important thing to remember: the visual field above a fish is very different from the lateral view which is again different from the visual field below a fish
+			\item fritsches and marshall 2002: eye movements in teleosts
+			
+		\end{itemize}
+	\end{itemize}
 	\section{Methods and Materials}
-	
+	\begin{itemize}
+		\item first paragraph
+	\end{itemize}
 	\section{Results}
-	
+	\subsection{Response properties of a single LIF neuron}
+	As a first step we presented a single LIF neuron with an input current that follows the visual angle $\theta$ over time.
+	In order to compare our results with experimental work(see e.g. \cite{Bhattacharyya2017}, \cite{Temizer2015}, \cite{Dunn2016}) we analyzed the angle, distance, latency and time-to-collision of the response.
+	The response onset was defined as the time of the first spike of the LIF neuron.
+	We ignore further processing time after the spike of the Mauthner cell because it is in the order of milliseconds \cite{Preuss2003} and thus irrelevant with respect to the overall response time which is in the order of at least hundreds of milliseconds in this case.\\
+	In the model, we used the basic electrophysiological parameters that were measured in larval zebrafish 4 days post-fertilization \citep{Koyama2016} and kept them fixed for all simulations.
+	We analyzed the effects of parameters of a linear transformation of the input, i.e. the slope and offset and furthermore the effects of noise on the input, on the initial condition, and on the spiking threshold.
+	%TODO: add variable names
+	%TODO: add formulas
+	All parameters are listed in table \ref{tab:params}
+	effects:
+	\begin{itemize}
+		\item effects of increasing m:
+		\begin{itemize}
+			\item mean response distance: mean increases linearly independent 
+			of threshold noise (only for high threshold noise slightly 
+			sub-linear)
+			\item variance of response distance: increases linearly for small 
+			threshold noise (except for a high lv value and low threshold 
+			noise, this is due to a very low mean and outliers that distort the 
+			standard deviation estimate), increases sub-linearly for medium 
+			threshold noise, slightly decreases for high threshold noise
+			\item mean response angle: decreases exponentially  independent of 
+			threshold noise
+			\item variance of response angle: slightly decreases independent of 
+			threshold noise
+			\item mean time to collision: absolute value increases linearly 
+			independent of threshold noise, decreases more strongly for higher 
+			L/V values
+			\item variance of time to collision: very small increases for L/V 
+			values smaller than 0.9, for L/V values above 0.9 the variance is 
+			in general higher, for small threshold noise it is smallest for 
+			medium m-values and for higher threshold noise it also increases 
+			with m
+			\item mean response time: 
+		\end{itemize}
+		\item effects of increasing threshold noise:
+		\begin{itemize}
+			\item mean response distance: 
+		\end{itemize}
+	\end{itemize}
+	\begin{table} [!th]
+		\begin{center}
+			\begin{tabular}{|l|c|p{7cm}|}
+				\hline
+				\textbf{Parameter} & \textbf{Value (unit)} & \textbf{Comment} \\
+				\hline
+				$E_L$ & -79 mV & Resting potential\\
+				$R_M$ & 10 MOhm & Membrane resistance\\
+				$\tau_{m}$ & 23 ms & Membrane time constant\\
+				$V_t$ & -61 mV & Mean spiking threshold\\
+				$dt$ & 0.001 s & Integration time step\\
+				$T$ & 5 s & Total time\\
+				$sd_{thr}$ & 1 mV & Standard deviation of spiking threshold noise\\
+				$sd_{I}$ & 5 mV & Standard deviation of input noise\\
+				$sd_{init}$ & 1 mV & Standard deviation of initial condition noise\\
+				$m$ & 1 \textdegree/s  & Slope of linear transformation\\
+				$b$ & 0 \textdegree & Offset of linear transformation\\
+				\hline
+			\end{tabular}
+		\end{center}
+		\caption{Parameters of the single LIF neuron model with a looming stimulus input. Parameters that were explored are indicated either by a value range such as e.g. for $\mu_s$ or by a set with all explored values inside of curly brackets such as e.g. for $\sigma_s$.}
+		\label{tab:params}
+	\end{table}
+	\begin{itemize}
+		\item Effect of input transformation
+		\item Effect of different noise sources
+		\item Effect of input type
+	\end{itemize}
+	\subsection{Input}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	\subsection{Feedforward inhibition}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	\subsection{Cross-inhibition}
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	\subsection{Feedback inhibition}
+	\begin{itemize}
+		\item 
+	\end{itemize}
 	\section{Discussion}
-	
+	\begin{itemize}
+		\item first paragraph
+	\end{itemize}
 	\newpage
-	\bibliographystyle{apalike}
+	\bibliographystyle{abbrvnat}
 	\bibliography{masterthesisbib}
 	
 	\newpage
