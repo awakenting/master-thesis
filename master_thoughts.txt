@@ -14,3 +14,5 @@
 - about visual processing in OT: see references in the introduction of this paper: https://www.frontiersin.org/articles/10.3389/fnana.2017.00135/full?utm_source=F-AAE&utm_medium=EMLF&utm_campaign=MRK_527044_55_Neuros_20180130_arts_A#h2
 	-> especially del bene 2010 and preuss 2014
 	- also interesting: Mu 2012
+- for all the assumptions on the properties of the input from the OT we can on the other hand formulate predictions, e.g.:
+	- if the input to the mauthner cell is something like theta, the input needs to go at least [this] high to make the neuron fire (or so)
