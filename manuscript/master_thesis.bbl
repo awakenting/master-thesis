@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{8}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -38,6 +38,15 @@ M.~Koyama, F.~Minale, J.~Shum, N.~Nishimura, C.~B. Schaffer, and J.~R. Fetcho.
 \newblock ISSN {2050-084X}.
 \newblock \doi{10.7554/elife.16808}.
 
+\bibitem[Pita et~al.(2015)Pita, Moore, Tyrrell, and
+  Fernández-Juricic]{Pita2015}
+D.~Pita, B.~A. Moore, L.~P. Tyrrell, and E.~Fernández-Juricic.
+\newblock Vision in two cyprinid fish: implications for collective behavior.
+\newblock \emph{PeerJ}, 3:\penalty0 e1113, Aug. 2015.
+\newblock ISSN 2167-8359.
+\newblock \doi{10.7717/peerj.1113}.
+\newblock URL \url{https://doi.org/10.7717/peerj.1113}.
+
 \bibitem[Preuss and Faber(2003)]{Preuss2003}
 T.~Preuss and D.~S. Faber.
 \newblock Central cellular mechanisms underlying temperature-dependent changes
@@ -46,6 +55,17 @@ T.~Preuss and D.~S. Faber.
   5617--5626, 2003.
 \newblock ISSN 0270-6474.
 \newblock URL \url{http://www.jneurosci.org/content/23/13/5617}.
+
+\bibitem[Preuss et~al.(2006)Preuss, Osei-Bonsu, Weiss, Wang, and
+  Faber]{Preuss2006}
+T.~Preuss, P.~E. Osei-Bonsu, S.~A. Weiss, C.~Wang, and D.~S. Faber.
+\newblock Neural representation of object approach in a decision-making motor
+  circuit.
+\newblock \emph{Journal of Neuroscience}, 26\penalty0 (13):\penalty0
+  3454--3464, 2006.
+\newblock ISSN 0270-6474.
+\newblock \doi{10.1523/JNEUROSCI.5259-05.2006}.
+\newblock URL \url{http://www.jneurosci.org/content/26/13/3454}.
 
 \bibitem[Rosenthal et~al.(2015)Rosenthal, Twomey, Hartnett, Wu, and
   Couzin]{Rosenthal2015}

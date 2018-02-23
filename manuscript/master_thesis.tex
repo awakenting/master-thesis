@@ -93,7 +93,11 @@
 			\item "sensory world of each species is unique"
 			\item color vision in fish: Visual Ecology pp. 159
 			\item fish orient to overhead polarization orientation in laboratory Hawryshyn 1992
-			\item most fish species don't have a fovea (Encyclopedia of Fish Physiology, p. 141) so that eye movements/saccades should not be interpreted as fixations as is the case for humans
+			\item most fish species don't have a fovea (Encyclopedia of Fish 
+			Physiology, p. 141) so that eye movements/saccades should not be 
+			interpreted as fixations as is the case for humans
+			\item they do have different ganglion cell densities though, see 
+			\cite{Pita2015}
 			\item zebrafish have a row-ordered retinal mosaic with alternating rows with LWS double cones (red and green) and rows with SWS (blue and ultraviolet)
 			\item rhodopsin (based on vitamin A1, shorter, "blue" wavelengths) more in marine fish and porphyropsins (based on A2, longer, "green" wavelengths) rather in freshwater fish (more green environment)
 			\item important thing to remember: the visual field above a fish is very different from the lateral view which is again different from the visual field below a fish
@@ -107,15 +111,22 @@
 	\end{itemize}
 	\section{Results}
 	\subsection{Response properties of a single LIF neuron}
-	As a first step we presented a single LIF neuron with an input current that follows the visual angle $\theta$ over time.
-	In order to compare our results with experimental work(see e.g. \cite{Bhattacharyya2017}, \cite{Temizer2015}, \cite{Dunn2016}) we analyzed the angle, distance, latency and time-to-collision of the response.
+	As a first step we presented a single LIF neuron with the visual angle 
+	$\theta$ over time as input current.
+	In order to compare our results with experimental work (see e.g. 
+	\cite{Bhattacharyya2017}, \cite{Temizer2015}, \cite{Dunn2016}) we analyzed 
+	the angle, distance, latency and time-to-collision of the response.
 	The response onset was defined as the time of the first spike of the LIF neuron.
-	We ignore further processing time after the spike of the Mauthner cell because it is in the order of milliseconds \cite{Preuss2003} and thus irrelevant with respect to the overall response time which is in the order of at least hundreds of milliseconds in this case.\\
+	We ignore further processing time after the spike of the Mauthner cell 
+	because it is in the order of milliseconds (\cite{Preuss2003}) and thus 
+	irrelevant with respect to the overall response time which is in the order 
+	of at least hundreds of milliseconds for visual stimuli 
+	\citep{Preuss2006}.\\
 	In the model, we used the basic electrophysiological parameters that were measured in larval zebrafish 4 days post-fertilization \citep{Koyama2016} and kept them fixed for all simulations.
 	We analyzed the effects of parameters of a linear transformation of the input, i.e. the slope and offset and furthermore the effects of noise on the input, on the initial condition, and on the spiking threshold.
 	%TODO: add variable names
 	%TODO: add formulas
-	All parameters are listed in table \ref{tab:params}
+	All parameters are listed in table \ref{tab:params}.\\
 	effects:
 	\begin{itemize}
 		\item effects of increasing m:
@@ -140,7 +151,7 @@
 			in general higher, for small threshold noise it is smallest for 
 			medium m-values and for higher threshold noise it also increases 
 			with m
-			\item mean response time: 
+			\item mean response time: very similar to TTC
 		\end{itemize}
 		\item effects of increasing threshold noise:
 		\begin{itemize}
