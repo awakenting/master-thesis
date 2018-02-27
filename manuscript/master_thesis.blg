@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: master_thesis.aux
 The style file: abbrvnat.bst
 Database file #1: masterthesisbib.bib
-You've used 8 entries,
+Warning--empty journal in Isaacson2011
+You've used 9 entries,
             2773 wiz_defined-function locations,
-            674 strings with 6990 characters,
-and the built_in function-call counts, 4984 in all, are:
-= -- 461
-> -- 348
-< -- 1
-+ -- 116
-- -- 108
-* -- 487
-:= -- 801
-add.period$ -- 45
-call.type$ -- 8
-change.case$ -- 60
-chr.to.int$ -- 8
-cite$ -- 16
-duplicate$ -- 166
-empty$ -- 333
-format.name$ -- 118
-if$ -- 1016
+            683 strings with 7204 characters,
+and the built_in function-call counts, 5480 in all, are:
+= -- 513
+> -- 369
+< -- 2
++ -- 123
+- -- 114
+* -- 529
+:= -- 877
+add.period$ -- 51
+call.type$ -- 9
+change.case$ -- 65
+chr.to.int$ -- 9
+cite$ -- 19
+duplicate$ -- 186
+empty$ -- 373
+format.name$ -- 127
+if$ -- 1120
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 8
-newline$ -- 69
-num.names$ -- 32
-pop$ -- 83
+missing$ -- 9
+newline$ -- 77
+num.names$ -- 36
+pop$ -- 90
 preamble$ -- 1
-purify$ -- 52
+purify$ -- 56
 quote$ -- 0
-skip$ -- 133
+skip$ -- 149
 stack$ -- 0
-substring$ -- 226
+substring$ -- 253
 swap$ -- 11
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 88
-warning$ -- 0
-while$ -- 34
+type$ -- 99
+warning$ -- 1
+while$ -- 39
 width$ -- 0
-write$ -- 153
+write$ -- 171
+(There was 1 warning)

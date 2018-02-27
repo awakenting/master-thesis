@@ -1,4 +1,4 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{9}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -28,6 +28,15 @@ T.~Dunn, C.~Gebhardt, E.~Naumann, C.~Riegler, M.~Ahrens, F.~Engert, and F.~{Del
 \newblock \doi{10.1016/j.neuron.2015.12.021}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S089662731501123X}.
+
+\bibitem[Isaacson and Scanziani(2011)]{Isaacson2011}
+J.~Isaacson and M.~Scanziani.
+\newblock How inhibition shapes cortical activity.
+\newblock 72\penalty0 (2):\penalty0 231--243, 2011.
+\newblock ISSN 0896-6273.
+\newblock \doi{10.1016/j.neuron.2011.09.027}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0896627311008798}.
 
 \bibitem[Koyama et~al.({2016})Koyama, Minale, Shum, Nishimura, Schaffer, and
   Fetcho]{Koyama2016}

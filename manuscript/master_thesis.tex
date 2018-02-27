@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt]{scrartcl}
+\documentclass[a4paper,10pt,hidelinks]{scrartcl}
 %\usepackage[utf8x]{inputenc}
 
 % Packages =========================================
@@ -10,20 +10,21 @@
 \usepackage[toc,page]{appendix}				% more control over appendices
 \usepackage[english]{babel} 				% Anpassung für mehrsprachige Dokumente
 \usepackage[usenames, dvipsnames]{color}					% Nutzung von Farben
-\usepackage{doi}
+
 \usepackage{float}					% notw. für explizite Setzung von Grafiken
 \usepackage[T1]{fontenc} 				% Zuweisung Codierschemas für Zeichensätze
 \usepackage[paper=a4paper,left=40mm,right=30mm,top=20mm,bottom=25mm]{geometry} % Randmaße
 \usepackage{graphicx} 					% Einbindung externer Grafiken
 \usepackage{hyperref}
 %\usepackage[utf8]{inputenc}				% for german characters like "ä, ö, ü"
-\usepackage{listings}					% notwendig für Quellcode
+%\usepackage{listings}					% notwendig für Quellcode
 \usepackage{lmodern}	 				% Moderne Version von Computer Modern
 \usepackage{pdfpages}					% Einbindung einer pdf-Datei
 \usepackage{pgfplots}
 \usepackage{mdwlist}					% kompaktere Auflistungen
 \usepackage{microtype}	 				% Optischer Randausgleich
-\usepackage{natbib, hyperref}
+\usepackage[round]{natbib}
+\usepackage{doi}
 \usepackage{subcaption}					% Subfigure/-tabellen
 \usepackage{scrpage2}
 \usepackage{tabularx}					% Textsetzung in Tabellen in p-Spalten
@@ -196,7 +197,7 @@
 		\centering
 		\includegraphics[width=0.6\textwidth, 
 		height=0.4\textheight]{../figures/isaacson2001_figure4.jpg}
-		\caption{how input sharpens tuning}
+		\caption{how input sharpens tuning. From \cite{Isaacson2011}}
 		\label{fig:feedf}
 	\end{figure}
 	\begin{itemize}
@@ -212,7 +213,11 @@
 	\end{itemize}
 	\section{Discussion}
 	\begin{itemize}
-		\item first paragraph
+		\item we focus here on the experimental results from 
+		\cite{Bhattacharyya2017} but one should keep in mind that their results 
+		might be specific to properties of experiment such as fish handling, 
+		fish age, species, arena, environment, stimulus setup (projection on 
+		screen)
 	\end{itemize}
 	\newpage
 	\bibliographystyle{abbrvnat}
