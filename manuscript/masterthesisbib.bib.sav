@@ -2689,6 +2689,65 @@ Animals process multimodal information for adaptive behavioural decisions. In fi
   url       = {https://www.frontiersin.org/article/10.3389/fncir.2018.00011},
 }
 
+@Article{Sanes2015,
+  author    = {Joshua R. Sanes and Richard H. Masland},
+  title     = {The Types of Retinal Ganglion Cells: Current Status and Implications for Neuronal Classification},
+  journal   = {Annual Review of Neuroscience},
+  year      = {2015},
+  volume    = {38},
+  number    = {1},
+  pages     = {221-246},
+  note      = {PMID: 25897874},
+  abstract  = { In the retina, photoreceptors pass visual information to interneurons, which process it and pass it to retinal ganglion cells (RGCs). Axons of RGCs then travel through the optic nerve, telling the rest of the brain all it will ever know about the visual world. Research over the past several decades has made clear that most RGCs are not merely light detectors, but rather feature detectors, which send a diverse set of parallel, highly processed images of the world on to higher centers. Here, we review progress in classification of RGCs by physiological, morphological, and molecular criteria, making a particular effort to distinguish those cell types that are definitive from those for which information is partial. We focus on the mouse, in which molecular and genetic methods are most advanced. We argue that there are around 30 RGC types and that we can now account for well over half of all RGCs. We also use RGCs to examine the general problem of neuronal classification, arguing that insights and methods from the retina can guide the classification enterprise in other brain regions. },
+  doi       = {10.1146/annurev-neuro-071714-034120},
+  eprint    = {https://doi.org/10.1146/annurev-neuro-071714-034120},
+  file      = {:Sanes2015.pdf:PDF},
+  timestamp = {2018-02-26},
+  url       = { 
+        https://doi.org/10.1146/annurev-neuro-071714-034120
+    
+},
+}
+
+@Article{Simoncelli2001,
+  author    = {Eero P Simoncelli and Bruno A Olshausen},
+  title     = {Natural Image Statistics and Neural Representation},
+  journal   = {Annual Review of Neuroscience},
+  year      = {2001},
+  volume    = {24},
+  number    = {1},
+  pages     = {1193-1216},
+  note      = {PMID: 11520932},
+  abstract  = { ▪ Abstract It has long been assumed that sensory neurons are adapted, through both evolutionary and developmental processes, to the statistical properties of the signals to which they are exposed. Attneave (1954), Barlow (1961) proposed that information theory could provide a link between environmental statistics and neural responses through the concept of coding efficiency. Recent developments in statistical modeling, along with powerful computational tools, have enabled researchers to study more sophisticated statistical models for visual images, to validate these models empirically against large sets of data, and to begin experimentally testing the efficient coding hypothesis for both individual neurons and populations of neurons. },
+  doi       = {10.1146/annurev.neuro.24.1.1193},
+  eprint    = {https://doi.org/10.1146/annurev.neuro.24.1.1193},
+  file      = {:Simoncelli2001.pdf:PDF},
+  timestamp = {2018-02-26},
+  url       = { 
+        https://doi.org/10.1146/annurev.neuro.24.1.1193
+    
+},
+}
+
+@Article{Isaacson2011,
+  author        = {Isaacson, Jeffry S. and Scanziani, Massimo},
+  title         = {How Inhibition Shapes Cortical Activity},
+  volume        = {72},
+  number        = {2},
+  pages         = {231--243},
+  issn          = {0896-6273},
+  __markedentry = {[warkentin:]},
+  abstract      = {Cortical processing reflects the interplay of synaptic excitation and synaptic inhibition. Rapidly accumulating evidence is highlighting the crucial role of inhibition in shaping spontaneous and sensory-evoked cortical activity and thus underscores how a better knowledge of inhibitory circuits is necessary for our understanding of cortical function. We discuss current views of how inhibition regulates the function of cortical neurons and point to a number of important open questions.},
+  date          = {2011-10-20},
+  doi           = {10.1016/j.neuron.2011.09.027},
+  file          = {:Isaacson2011.pdf:PDF},
+  journaltitle  = {Neuron},
+  shortjournal  = {Neuron},
+  timestamp     = {2018-02-26},
+  url           = {http://www.sciencedirect.com/science/article/pii/S0896627311008798},
+  urldate       = {2018-02-26},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: fileDirectory:/home/warkentin/Dropbox/Master/Lab Rotations/Romanczuk/literature;}

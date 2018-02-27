@@ -4,9 +4,9 @@
 \contentsline {section}{\numberline {3}Results}{2}{section.3}
 \contentsline {subsection}{\numberline {3.1}Response properties of a single LIF neuron}{2}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Input}{3}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Feedforward inhibition}{3}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Cross-inhibition}{3}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Feedback inhibition}{3}{subsection.3.5}
-\contentsline {section}{\numberline {4}Discussion}{3}{section.4}
+\contentsline {subsection}{\numberline {3.3}Feedforward inhibition}{4}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Cross-inhibition}{4}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Feedback inhibition}{4}{subsection.3.5}
+\contentsline {section}{\numberline {4}Discussion}{4}{section.4}
 \setcounter {tocdepth}{-1}
-\contentsline {section}{\numberline {A}Appendix}{5}{appendix.A}
+\contentsline {section}{\numberline {A}Appendix}{6}{appendix.A}
