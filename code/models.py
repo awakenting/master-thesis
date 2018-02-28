@@ -1,18 +1,23 @@
 import numpy as np
 from numba import jit
 
-def generate_stimulus(stim_size=1, speed=1, length=10, dt=0.1, init_distance=50):
-    timesteps = np.arange(int(length/dt))*dt
-    distances = init_distance - timesteps*speed
+def generate_stimulus(stim_size=1, speed=1, length=10, dt=0.1, init_distance=50, init_period=0):
+    total_length = length + init_period
+    stim_timesteps = np.arange(int(length/dt))*dt
+    all_timesteps = np.arange(int(total_length/dt))*dt
+    
+    init_period_distances = np.ones(int(init_period/dt))*init_distance
+    distances = np.concatenate((init_period_distances, init_distance - stim_timesteps*speed))
+    
     angles = np.arctan2(stim_size/2, distances)*2
     angles_degrees = angles/np.pi*180
-    return timesteps, angles_degrees, distances
+    return all_timesteps, angles_degrees, distances
 
 def f_theta_linear(theta, m, b):
     return theta*m + b
 
-def transform_stim(stim_size, speed, length, dt, m=1.5, b=0):
-    t, stims, dists = generate_stimulus(stim_size=stim_size, speed=speed, length=length, dt=dt)
+def transform_stim(stim_size, speed, length, dt, m=1.5, b=0, init_period=0):
+    t, stims, dists = generate_stimulus(stim_size=stim_size, speed=speed, length=length, dt=dt, init_period=init_period)
     collision_idx = np.argmin(np.abs(dists))
     t_collision = t[collision_idx]
     stim_collision = stims[collision_idx]
@@ -44,8 +49,8 @@ def lif_dynamics(tau_m, e_l, r_m, stimulus, noise, v_t, dt, total_time, init_vm_
     return time_points, v_m, t_spks, idx_spks
 
 @jit
-def jit_lif_dynamics(tau_m, e_l, r_m, stimulus, noise, v_t, dt, total_time, init_vm_std, vt_std):
-    ntime_steps = int(total_time/dt)
+def jit_lif_dynamics(tau_m, e_l, r_m, stimulus, noise, v_t, dt, total_time, init_vm_std, vt_std, init_period):
+    ntime_steps = int((total_time + init_period) / dt)
     time_points = np.arange(ntime_steps)*dt
     v_m = np.zeros(ntime_steps)
     v_m[0] = np.random.normal(loc=e_l, scale=init_vm_std)
@@ -58,8 +63,9 @@ def jit_lif_dynamics(tau_m, e_l, r_m, stimulus, noise, v_t, dt, total_time, init
         v_m[t] = v_m[t - 1] + dt*(- (v_m[t - 1] - e_l) + r_m*stimulus[t])/tau_m + noise[t]
         if v_m[t] > v_t[t]:
             v_m[t] = e_l
-            t_spks.append(t*dt)
-            idx_spks.append(t)
+            if t*dt > init_period:
+                t_spks.append(t*dt)
+                idx_spks.append(t)
         t = t + 1
 
     return time_points, v_m, t_spks, idx_spks
@@ -69,7 +75,8 @@ def calc_response(params):
     stim_size = np.random.rand()*15 + 10
     speed = 1/(lv/stim_size)
     t, stims, tstims, dists, t_to_coll, tstim_to_coll = transform_stim(stim_size, speed, params['total_time'],
-                                                                       params['dt'], params['m'], params['b'])
+                                                                       params['dt'], params['m'], params['b'],
+                                                                       params['init_period'])
 
     stimulus = tstims*1e-11
     sigma = params['noise_std'] * np.sqrt(params['dt'])
@@ -78,7 +85,7 @@ def calc_response(params):
     #np.random.seed(1)
     time, v_m, spks, spk_idc = jit_lif_dynamics(params['tau_m'], params['e_l'], params['r_m'], stimulus, noise_vals,
                                                 params['v_t'], params['dt'], params['total_time'], params['init_vm_std'],
-                                                params['vt_std'])
+                                                params['vt_std'], params['init_period'])
     if not len(spks)==0:
         first_spike = spks[0]
         first_spike_idx = spk_idc[0]
