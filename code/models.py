@@ -1,7 +1,7 @@
 import numpy as np
 from numba import jit
 
-def generate_stimulus(stim_size=1, speed=1, length=10, dt=0.1, init_distance=50, init_period=0):
+def generate_stimulus(stim_size=1, speed=1, length=10, dt=0.1, init_distance=50, init_period=0, cutoff_angle=None):
     total_length = length + init_period
     stim_timesteps = np.arange(int(length/dt))*dt
     all_timesteps = np.arange(int(total_length/dt))*dt
@@ -11,13 +11,17 @@ def generate_stimulus(stim_size=1, speed=1, length=10, dt=0.1, init_distance=50,
     
     angles = np.arctan2(stim_size/2, distances)*2
     angles_degrees = angles/np.pi*180
+    if not cutoff_angle is None:
+        cutoff_mask = angles_degrees > cutoff_angle
+        angles_degrees[cutoff_mask] = cutoff_angle
     return all_timesteps, angles_degrees, distances
 
 def f_theta_linear(theta, m, b):
     return theta*m + b
 
-def transform_stim(stim_size, speed, length, dt, m=1.5, b=0, init_period=0):
-    t, stims, dists = generate_stimulus(stim_size=stim_size, speed=speed, length=length, dt=dt, init_period=init_period)
+def transform_stim(stim_size, speed, length, dt, m=1.5, b=0, init_period=0, cutoff_angle=None):
+    t, stims, dists = generate_stimulus(stim_size=stim_size, speed=speed, length=length, dt=dt, init_period=init_period,
+                                        cutoff_angle=cutoff_angle)
     collision_idx = np.argmin(np.abs(dists))
     t_collision = t[collision_idx]
     stim_collision = stims[collision_idx]
@@ -76,7 +80,7 @@ def calc_response(params):
     speed = 1/(lv/stim_size)
     t, stims, tstims, dists, t_to_coll, tstim_to_coll = transform_stim(stim_size, speed, params['total_time'],
                                                                        params['dt'], params['m'], params['b'],
-                                                                       params['init_period'])
+                                                                       params['init_period'], params['cutoff_angle'])
 
     stimulus = tstims*1e-11
     sigma = params['noise_std'] * np.sqrt(params['dt'])
