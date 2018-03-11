@@ -1,4 +1,4 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{10}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -96,5 +96,15 @@ I.~Temizer, J.~Donovan, H.~Baier, and J.~Semmelhack.
 \newblock \doi{10.1016/j.cub.2015.06.002}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S0960982215006673}.
+
+\bibitem[Tytell and Lauder(2008)]{Tytell2008}
+E.~D. Tytell and G.~V. Lauder.
+\newblock Hydrodynamics of the escape response in bluegill sunfish, lepomis
+  macrochirus.
+\newblock \emph{Journal of Experimental Biology}, 211\penalty0 (21):\penalty0
+  3359--3369, 2008.
+\newblock ISSN 0022-0949.
+\newblock \doi{10.1242/jeb.020917}.
+\newblock URL \url{http://jeb.biologists.org/content/211/21/3359}.
 
 \end{thebibliography}

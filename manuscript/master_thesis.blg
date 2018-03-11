@@ -4,45 +4,45 @@ The top-level auxiliary file: master_thesis.aux
 The style file: abbrvnat.bst
 Database file #1: masterthesisbib.bib
 Warning--empty journal in Isaacson2011
-You've used 9 entries,
+You've used 10 entries,
             2773 wiz_defined-function locations,
-            683 strings with 7204 characters,
-and the built_in function-call counts, 5480 in all, are:
-= -- 513
-> -- 369
-< -- 2
-+ -- 123
-- -- 114
-* -- 529
-:= -- 877
-add.period$ -- 51
-call.type$ -- 9
-change.case$ -- 65
-chr.to.int$ -- 9
-cite$ -- 19
-duplicate$ -- 186
-empty$ -- 373
-format.name$ -- 127
-if$ -- 1120
+            696 strings with 7489 characters,
+and the built_in function-call counts, 5995 in all, are:
+= -- 568
+> -- 390
+< -- 3
++ -- 130
+- -- 120
+* -- 573
+:= -- 956
+add.period$ -- 57
+call.type$ -- 10
+change.case$ -- 70
+chr.to.int$ -- 10
+cite$ -- 21
+duplicate$ -- 206
+empty$ -- 415
+format.name$ -- 136
+if$ -- 1229
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 9
-newline$ -- 77
-num.names$ -- 36
-pop$ -- 90
+missing$ -- 10
+newline$ -- 85
+num.names$ -- 40
+pop$ -- 95
 preamble$ -- 1
-purify$ -- 56
+purify$ -- 60
 quote$ -- 0
-skip$ -- 149
+skip$ -- 165
 stack$ -- 0
-substring$ -- 253
-swap$ -- 11
+substring$ -- 286
+swap$ -- 12
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 99
+type$ -- 110
 warning$ -- 1
-while$ -- 39
+while$ -- 44
 width$ -- 0
-write$ -- 171
+write$ -- 190
 (There was 1 warning)

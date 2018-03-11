@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.6.14)  27 FEB 2018 15:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.6.14)  11 MAR 2018 22:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1404,7 +1404,7 @@ File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
                    \relax 
 l.156 			\item m
                 ean response time: very similar to TTC [2]
-<../figures/isaacson2001_figure4.jpg, id=74, 563.10374pt x 741.52031pt>
+<../figures/isaacson2001_figure4.jpg, id=77, 563.10374pt x 741.52031pt>
 File: ../figures/isaacson2001_figure4.jpg Graphic file (type jpg)
 
 <use ../figures/isaacson2001_figure4.jpg>
@@ -1432,10 +1432,10 @@ Package rerunfilecheck Info: File `master_thesis.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 235.
  ) 
 Here is how much of TeX's memory you used:
- 38546 strings out of 493105
- 846844 string characters out of 6137072
- 1049801 words of memory out of 5000000
- 41302 multiletter control sequences out of 15000+600000
+ 38550 strings out of 493105
+ 846913 string characters out of 6137072
+ 1050838 words of memory out of 5000000
+ 41305 multiletter control sequences out of 15000+600000
  51779 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,10n,80p,10502b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1448,10 +1448,10 @@ f/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi
 /type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1
 /public/lm/lmtt10.pfb>
-Output written on master_thesis.pdf (8 pages, 321827 bytes).
+Output written on master_thesis.pdf (8 pages, 322672 bytes).
 PDF statistics:
- 171 PDF objects out of 1000 (max. 8388607)
- 146 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
+ 178 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
  14354 words of extra memory for PDF output out of 14400 (max. 10000000)
 
