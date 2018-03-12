@@ -16,6 +16,7 @@ This repository contains everything related to my master thesis.
 - defense_presentation: slides for the master defense
 - figures: figures for the manuscript and the slides
 - manuscript: the thesis manuscript
+- poster: the poster I presented at the DPG Tagung 2018 in Berlin ([link](http://berlin18.dpg-tagungen.de/))
 
 # Reproducibility
 
@@ -27,7 +28,7 @@ This repository contains everything related to my master thesis.
 - pandas
 - seaborn
 
-If you use [Anaconda](https://docs.anaconda.com/anaconda/install/), you can just use the enviroment file to create an environment with all necessary packages. To do so ...
+If you use [Anaconda](https://docs.anaconda.com/anaconda/install/), you can just use the enviroment file to create an environment with all necessary packages. To do so ... (coming soon)
 
 # Materials
 
@@ -35,7 +36,7 @@ If you use [Anaconda](https://docs.anaconda.com/anaconda/install/), you can just
 I collect relevant literature in [this spreadsheet](https://docs.google.com/spreadsheets/d/1aVUXqSDKMgWAFVwmBe_403FhNa1M6eInFz3Ooj6oTIY/edit?usp=sharing). There is also a [bibtex file](https://github.com/awakenting/master-thesis/blob/master/manuscript/masterthesisbib.bib) in the "manuscript" folder. The bibtex file is more likely to be up to date. Feel free to add other papers if you think they're relevant, even if you don't have the time to fill all columns. It would be nice if you could put the paper in the correct row according to the last name of the first Author. Also, if you want, you can add your name in the "Contributor" column and I will acknowledge your contribution in the thesis.
 
 ## Related models
-- a
+- (coming soon)
 
 ### TODO
 - [ ] create conda environment and explain how to install it
