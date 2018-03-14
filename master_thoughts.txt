@@ -16,3 +16,6 @@
 	- also interesting: Mu 2012
 - for all the assumptions on the properties of the input from the OT we can on the other hand formulate predictions, e.g.:
 	- if the input to the mauthner cell is something like theta, the input needs to go at least [this] high to make the neuron fire (or so)
+- the stimuli in Bhattacharyya et al. 2017 are actually very slow compared to the neuronal time scales so that the feedforward inhibition is not needed
+	- now the questions is what happens with much faster stimuli that are on the same timescale, say 10's of milliseconds?
+	- for such fast stimuli it might also be important to consider what the temporal resolution in earlier visual stages is, i.e. retina, optical tectum
