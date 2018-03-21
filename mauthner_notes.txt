@@ -14,6 +14,8 @@ presi outline:
 			- input from auditory also activates inhibitory interneurons leading to feedforward inhibition (TODO: check if this is the case for ventral dendrite as well)
 			- auditory afferent synapses are called club endings and are electrical and chemical at the same time leading to a fast and a slow component in the EPSP's
 			- visual input has much higher latency bc it is "preprocessed" in the optical tectum first
+			- proposed visual pathway by Zottoli 1987: left optic nerve -> right optic tectum -> both m-cells
+			- Zottoli 1987 discuss that there are two classes of PHP neurons and that tectical input goes to a second class closer to the ventral dendrite
 			- there is also input from excitatory spiral fiber neurons which when removed by ablation lead to no more short-latency c-starts (TODO: reference)
 			- cross-inhibition to the other mauthner cell
 	- physiology
