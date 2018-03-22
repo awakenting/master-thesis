@@ -43,8 +43,11 @@ def run_sim(traj):
                               exc_scale=traj.exc_scale,
                               noise_std_exc=traj.noise_std_exc,
                               noise_std_inh=traj.noise_std_inh,
-                              bodylength=traj.bodylength,
-                              print_startles=traj.print_startles
+                              print_startles=traj.print_startles,
+                              vis_input_m=traj.vis_input_m,
+                              vis_input_b=traj.vis_input_b,
+                              vis_input_method=traj.vis_input_method,
+                              vis_input_k=traj.vis_input_k
                               )
 
     outData, agentData = sw.SingleRun(paraSystem, paraFish)
@@ -62,7 +65,7 @@ env = Environment(trajectory='looming_swarm',
                   git_message='automatic commit by pypet:',
                   git_fail=False,
                   multiproc=True,
-                  ncores=7,
+                  ncores=6,
                   use_pool=True,  # Our runs are inexpensive we can get rid of overhead
                   # by using a pool
                   freeze_input=True,  # We can avoid some
@@ -122,12 +125,17 @@ traj.f_add_parameter('rho_scale', 9.6*1e6, comment='scaling factor of visual inp
 traj.f_add_parameter('exc_scale', 30, comment='general scaling factor of visual input')
 traj.f_add_parameter('noise_std_exc', 0.010, comment='standard deviation of noise for M-cell')
 traj.f_add_parameter('noise_std_inh', 0.005, comment='standard deviation of noise for inhibitory population')
-traj.f_add_parameter('bodylength', 1, comment='bodylength. this will be used as the diameter of a sphere to calculate the visual angle of neighbours')
+traj.f_add_parameter('rho_null', 0.010, comment='default activity level of inhibitory population')
+traj.f_add_parameter('vis_input_m', 3, comment='slope of the linear transformation of the visual angle')
+traj.f_add_parameter('vis_input_b', 0, comment='offset of the linear transformation of the visual angle')
+traj.f_add_parameter('vis_input_method', 'max', comment='how to combine the visual input from all neighbors')
+traj.f_add_parameter('vis_input_k', 3, comment='number of neighbors to consider if vis_input_method is "knn_mean"')
 
 # Explore the parameters with a cartesian product
-traj.f_explore(cartesian_product({'seed': np.arange(200, 205).tolist(),
-                                  'speed0': np.linspace(0.5, 3.0, 8).tolist(),
-                                  'noisep': np.linspace(0.01, 0.2, 8).tolist()
+traj.f_explore(cartesian_product({'seed': np.arange(200, 203).tolist(),
+                                  'speed0': np.linspace(0.5, 3.0, 5).tolist(),
+                                  'noisep': np.linspace(0.01, 0.2, 5).tolist(),
+                                  'vis_input_method': ['max', 'mean', 'knn_mean', 'mean_deviate']
                                   }))
 
 # Run the simulation

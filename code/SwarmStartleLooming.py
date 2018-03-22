@@ -140,8 +140,8 @@ class AgentData(object):
 
     def UpdateDynamicVars(self, dt, step):
         """ update vm and rho with passive parts"""
-        self.v_m += dt*(-(self.v_m - self.e_l))/self.tau_m + self.noise_exc[:, step]
-        self.rho += dt*(self.rho_null - self.rho)/self.tau_rho + self.noise_rho[:, step]
+        self.v_m += dt * (-(self.v_m - self.e_l)) / self.tau_m + self.noise_exc[:, step]
+        self.rho += dt * (self.rho_null - self.rho) / self.tau_rho + self.noise_rho[:, step]
 
 
 class BaseParams(object):
@@ -189,24 +189,26 @@ class AgentParams(object):
                  dist_pow=3,
                  cutoff_neg_rel_velocity=True,
                  blocked_escape_angle=np.pi * 1.0,
-                 r_m=10*1e6,
+                 r_m=10 * 1e6,
                  tau_m=0.023,
                  e_l=-0.079,
                  v_t=-0.061,
                  vt_std=0.003,
                  tau_rho=0.001,
                  rho_null=0.010,
-                 rho_scale=9.6*1e6,
+                 rho_scale=9.6 * 1e6,
                  exc_scale=5,
                  noise_std_exc=0.005,
                  noise_std_inh=0.005,
-                 bodylength=25,
+                 vis_input_m=3,
+                 vis_input_b=0,
+                 vis_input_method='max',
+                 vis_input_k=3
                  ):
         self.print_startles = print_startles
 
         self.alpha = alpha
         self.speed0 = speed0
-        self.bodylength = bodylength
 
         self.sigmav = np.sqrt(2.0 * paraSystem.dt * noisev)
         self.sigmap = np.sqrt(2.0 * paraSystem.dt * noisep)
@@ -254,6 +256,10 @@ class AgentParams(object):
             self.rho_null = rho_null
             self.noise_std_exc = noise_std_exc
             self.noise_std_inh = noise_std_inh
+            self.vis_input_m = vis_input_m
+            self.vis_input_b = vis_input_b
+            self.vis_input_method = vis_input_method
+            self.vis_input_k = vis_input_k
 
         self.kneigh = kneigh
 
@@ -304,8 +310,8 @@ def InitAgents(agentData, paraSystem, paraAgents):
         agentData.cutoff_neg_rel_velocity[:] = paraAgents.cutoff_neg_rel_velocity
         sigma_exc = paraAgents.noise_std_exc * np.sqrt(paraSystem.dt)
         sigma_inh = paraAgents.noise_std_inh * np.sqrt(paraSystem.dt)
-        agentData.noise_exc = np.random.normal(loc=0, scale=sigma_exc, size=(N, steps+1))
-        agentData.noise_rho = np.random.normal(loc=0, scale=sigma_inh, size=(N, steps+1))
+        agentData.noise_exc = np.random.normal(loc=0, scale=sigma_exc, size=(N, steps + 1))
+        agentData.noise_rho = np.random.normal(loc=0, scale=sigma_inh, size=(N, steps + 1))
         agentData.v_m *= paraAgents.e_l
         agentData.rho *= paraAgents.rho_null
         agentData.rho_null = paraAgents.rho_null
@@ -317,7 +323,7 @@ def InitAgents(agentData, paraSystem, paraAgents):
 
 def SaveOutData(s, agentData, outdata, paraSystem):
     """ Creates list of dictionaries for output
-        each list entry corresponds to single time step 
+        each list entry corresponds to single time step
 
         returns list of dict()
     """
@@ -465,13 +471,13 @@ def PeriodicDist(x, y, L=10.0, dim=2):
 # @jit(nopython=True, nogil=True)
 def SigThresh(x, x0=0.5, steepness=10):
     """ Sigmoid function f(x)=1/2*(tanh(a*(x-x0)+1)
-        
+
         Input parameters:
         -----------------
         x:  function argument
         x0: position of the transition point (f(x0)=1/2)
         steepness:  parameter setting the steepness of the transition.
-                    (positive values: transition from 0 to 1, negative values: 
+                    (positive values: transition from 0 to 1, negative values:
                     transition from 1 to 0)
     """
     return 0.5 * (np.tanh(steepness * (x - x0)) + 1)
@@ -479,8 +485,8 @@ def SigThresh(x, x0=0.5, steepness=10):
 
 def CalcDistVecMatrix(pos, L, BC):
     """ Calculate N^2 distance matrix (d_ij)
-        
-        Returns: 
+
+        Returns:
         --------
         distmatrix - matrix of all pairwise distances (NxN)
         dX - matrix of all differences in x coordinate (NxN)
@@ -503,8 +509,8 @@ def CalcDistVecMatrix(pos, L, BC):
 
 def CalcVelDiffVecMatrix(vel):
     """ Calculate N^2 velocity difference matrix (dv_ij) for velocity alignment calculation
-        
-        Returns: 
+
+        Returns:
         --------
         dVX - matrix of all differences in vx coordinate (NxN)
         dVY - matrix of all differences in vy coordinate (NxN)
@@ -518,7 +524,7 @@ def CalcVelDiffVecMatrix(vel):
 
 def CalcForceVecMatrix(factormatrix, dX, dY, distmatrix):
     """ Calculate all pairwise forces
-        Input: 
+        Input:
         ------
         factormatrix - pre-factor matrix e.g. interaction strength
         distmatrix - distance matrix
@@ -527,7 +533,7 @@ def CalcForceVecMatrix(factormatrix, dX, dY, distmatrix):
         Return:
         -------
         FX,FY - arrays with force components
-    
+
     """
     dUX = np.divide(dX, distmatrix)
     dUY = np.divide(dY, distmatrix)
@@ -541,7 +547,7 @@ def CalcAlgVecMatrix(factormatrix, dUX, dUY):
     """ Calculate alignment forces from velocity differences
         Input:
         ------
-        factormatrix - pre-factor matrix e.g. interaction strength 
+        factormatrix - pre-factor matrix e.g. interaction strength
         dVX,dVY - difference matrices for different velocity components
 
         Return:
@@ -658,7 +664,7 @@ def CalcInteractionGlobal(agentData, paraSystem, paraAgents):
 
 def CalcSingleRepForce(i, distvec, dist, agentData):
     repfactor = SigThresh(dist, agentData.reprange[i], agentData.repsteepness[i])
-    agentData.force_rep[i] -= repfactor * distvec/dist
+    agentData.force_rep[i] -= repfactor * distvec / dist
     agentData.neighbors_rep[i] += 1
     agentData.weighted_neighbors_rep[i] += repfactor
     return
@@ -674,7 +680,7 @@ def CalcSingleAlgForce(i, dvel, dist, agentData):
 
 def CalcSingleAttForce(i, distvec, dist, agentData):
     attfactor = SigThresh(dist, agentData.attrange[i], agentData.attsteepness[i])
-    agentData.force_att[i] += attfactor * distvec/dist
+    agentData.force_att[i] += attfactor * distvec / dist
     agentData.neighbors_att[i] += 1
     agentData.weighted_neighbors_att[i] += attfactor
     return
@@ -687,7 +693,7 @@ def CalcInteractionPair(i, j, agentData, paraSystem, update_both=True):
     BC = paraSystem.BC
     dim = paraSystem.dim
 
-    # calculate distance vector and scalar   
+    # calculate distance vector and scalar
     distvec = CalcDistanceVec(agentData.pos[i], agentData.pos[j], L, BC, dim)
     dist = 0.0
     for d in range(dim):
@@ -706,7 +712,7 @@ def CalcInteractionPair(i, j, agentData, paraSystem, update_both=True):
     #    gamma_i=arccos(sp_distv_i)
     #    agent_i.blindfactor=SigThresh(np.abs(gamma_i),np.pi-blindangle,blindanglesteepness)
     #    if(update_both):
-    #        if(agent_j.velproj>0.0 and dist>0.0):  
+    #        if(agent_j.velproj>0.0 and dist>0.0):
     #            sp_distv_j=-(distvec[0]*agent_j.vel[0]+distvec[1]*agent_j.vel[1])/dist/agent_j.velproj
     #        else:
     #            sp_distv_j=1
@@ -778,28 +784,28 @@ def CalcBoundaryRepelling(pos, L):
 
 def CalcStartleInfluencePair(responder, initiator, agentData, paraAgents, dt):
     """ Update internal variable due to neighbour behaviour:
-        If focal individual observes a startle it receives an increment for internal LIF-dynamics, 
+        If focal individual observes a startle it receives an increment for internal LIF-dynamics,
         decreasing with distance of the startling neighbor
     """
     distvec = agentData.pos[initiator] - agentData.pos[responder]
     dist = np.linalg.norm(distvec)
 
-    vis_angle = (np.arctan2(paraAgents.bodylength/2, dist) * 2) / np.pi * 180
+    vis_angle = (np.arctan2(1 / 2, dist) * 2) / np.pi * 180
     if vis_angle > 180:
         vis_angle = 180
     stimulus = vis_angle * 3 * 1e-11
-    agentData.rho += dt*(paraAgents.rho_scale * stimulus)/paraAgents.tau_rho
-    agentData.v_m += dt*(paraAgents.r_m * stimulus - agentData.rho)/paraAgents.tau_m
+    agentData.rho += dt * (paraAgents.rho_scale * stimulus) / paraAgents.tau_rho
+    agentData.v_m += dt * (paraAgents.r_m * stimulus - agentData.rho) / paraAgents.tau_m
 
     # calculate direction of startling
     # np.arctan2 returns values from -pi to pi but we calculate values from 0 to 2*pi, so
     # we add pi to the value from np.arctan2:
-    dist_phi = np.arctan2(distvec[1], distvec[0]) + np.pi*1.0
-    open_escape_range = np.pi*2.0 - paraAgents.blocked_escape_angle
-    escape_range_mid = open_escape_range/2.0
-    agentData.phiDes_startle[responder] = (dist_phi + np.random.rand(1)*open_escape_range
+    dist_phi = np.arctan2(distvec[1], distvec[0]) + np.pi * 1.0
+    open_escape_range = np.pi * 2.0 - paraAgents.blocked_escape_angle
+    escape_range_mid = open_escape_range / 2.0
+    agentData.phiDes_startle[responder] = (dist_phi + np.random.rand(1) * open_escape_range
                                            - escape_range_mid)
-    #agentData.phiDes_startle[responder] = 0.5 * (agentData.phiDes_startle[responder] + agentData.phiDes_startle[initiator])
+    # agentData.phiDes_startle[responder] = 0.5 * (agentData.phiDes_startle[responder] + agentData.phiDes_startle[initiator])
 
 
 def CalcStartleInfluenceMatrix(agentData, paraAgents, paraSystem):
@@ -807,12 +813,37 @@ def CalcStartleInfluenceMatrix(agentData, paraAgents, paraSystem):
         Updates AgentData() inline and returns distmatrix
     """
     distmatrix, dX, dY = CalcDistVecMatrix(agentData.pos, paraSystem.L, paraSystem.BC)
-    vis_angle = (np.arctan2(paraAgents.bodylength / 2, distmatrix) * 2) / np.pi * 180
+    vis_angle = (np.arctan2(1 / 2, distmatrix) * 2) / np.pi * 180
     vis_angle[vis_angle > 180] = 180
     vis_angle[vis_angle == 180] = 0
-    agentData.vis_angles = np.max(vis_angle, axis=1)
-    stimulus = vis_angle * 3 * 1e-11 * paraAgents.exc_scale
-    stimulus = np.max(stimulus, axis=1)
+    vis_angle = paraAgents.vis_input_m * vis_angle + paraAgents.vis_input_b
+
+    if paraAgents.vis_input_method == 'max':
+        vis_angle = np.max(vis_angle, axis=1)
+    elif paraAgents.vis_input_method == 'mean':
+        vis_angle = np.mean(vis_angle, axis=1)
+    elif paraAgents.vis_input_method == 'knn_mean':
+        sort_idc = np.argsort(vis_angle, axis=1)
+        # argsort gives ascending order so we have to reverse the order
+        sort_idc = sort_idc[:, -1::-1]
+        # for integer indexing we also need the row indices:
+        rows = np.arange(paraSystem.N)[:, np.newaxis]
+        knn_vis_angle = vis_angle[rows, sort_idc[:, 0:paraAgents.vis_input_k]]
+        vis_angle = np.mean(knn_vis_angle, axis=1)
+    elif paraAgents.vis_input_method == 'mean_deviate':
+        vis_angle = np.max(vis_angle, axis=1) - np.mean(vis_angle, axis=1)
+    elif paraAgents.vis_input_method == 'knn_mean_deviate':
+        sort_idc = np.argsort(vis_angle, axis=1)
+        # argsort gives ascending order so we have to reverse the order
+        sort_idc = sort_idc[:, -1::-1]
+        # for integer indexing we also need the row indices:
+        rows = np.arange(paraSystem.N)[:, np.newaxis]
+        knn_vis_angle = vis_angle[rows, sort_idc[:, 0:paraAgents.vis_input_k]]
+        knn_mean = np.mean(knn_vis_angle, axis=1)
+        vis_angle = np.max(vis_angle, axis=1) - knn_mean
+
+    agentData.vis_angles = vis_angle
+    stimulus = vis_angle * 1e-11 * paraAgents.exc_scale
     agentData.rho += paraSystem.dt * (paraAgents.rho_scale * stimulus) / paraAgents.tau_rho
     agentData.v_m += paraSystem.dt * (paraAgents.r_m * stimulus - agentData.rho) / paraAgents.tau_m
 
@@ -830,12 +861,12 @@ def ActivationStartle(agentData, paraAgents):
     agentData.timer_startle[agentData.v_m > paraAgents.v_t] = paraAgents.duration_startle
     agentData.statevar_startle[agentData.timer_startle > 0.0] = 0.0
 
-    condition_new_startle = (agentData.timer_startle > 0.0) & (np.sum(agentData.force_startle) == 0)\
+    condition_new_startle = (agentData.timer_startle > 0.0) & (np.sum(agentData.force_startle) == 0) \
                             & agentData.allow_startling
     indices_new_startle = np.where(condition_new_startle)[0]
 
     for i in indices_new_startle:
-        #new_phi_startle = agentData.phiDes_startle[i] + 0.1 * np.pi * np.random.random()
+        # new_phi_startle = agentData.phiDes_startle[i] + 0.1 * np.pi * np.random.random()
         new_phi_startle = agentData.phiDes_startle[i]
         agentData.force_startle[i, 0] = np.cos(new_phi_startle)
         agentData.force_startle[i, 1] = np.sin(new_phi_startle)
@@ -854,7 +885,7 @@ def UpdateStartle(agentData, paraSystem, paraAgents, edges=None, distmatrix=None
     agentData.UpdateDynamicVars(paraSystem.dt, step)
 
     # calc social influence (increment of internal variable due to neighbors startling)
-    #if edges is not None:
+    # if edges is not None:
     #    for e in edges:
     #        if e[0] != e[1]:
     #            CalcStartleInfluencePair(e[1], e[0], agentData, paraAgents, paraSystem.dt)
@@ -1061,7 +1092,7 @@ def RunAnimateWithStartlePotential(paraSystem, paraAgents, agentData=None, dobli
     pointstail = ax1.plot(x, y, 'r.', alpha=0.2)[0]
 
     ax2.set_xlim([0, paraSystem.time])
-    #ax2.set_ylim([paraAgents.v_t + paraAgents.v_t, paraAgents.v_t * 0.5])
+    # ax2.set_ylim([paraAgents.v_t + paraAgents.v_t, paraAgents.v_t * 0.5])
     ax2.set_ylim([-0.090, -0.050])
     ax2.set_title('Membrane potential of agent {:}'.format(startleAgent))
     ax2.hlines(paraAgents.threshold_startle, 0, paraSystem.time, linestyles='--')
@@ -1099,10 +1130,10 @@ def RunAnimateWithStartlePotential(paraSystem, paraAgents, agentData=None, dobli
         # when it startles. this is achieved by calling UpdateCartesian
         # with a nonzero value for velproj so that uw and up have nonzero
         # values when UpdateCoordinates is called
-        #agentData.phi[startleAgent] = agentData.phiDes_startle[startleAgent]
-        #agentData.velproj[startleAgent] = 1.0
-        #agentData.UpdateCartesian()
-        #agentData.velproj[startleAgent] = 0
+        # agentData.phi[startleAgent] = agentData.phiDes_startle[startleAgent]
+        # agentData.velproj[startleAgent] = 1.0
+        # agentData.UpdateCartesian()
+        # agentData.velproj[startleAgent] = 0
 
         UpdateCoordinates(agentData, paraSystem, paraAgents)
 

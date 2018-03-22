@@ -72,7 +72,10 @@ paraFish = sw.AgentParams(paraSystem, speed0=speed0, alpha=alpha,
                           exc_scale=30,
                           noise_std_exc=0.010,
                           noise_std_inh=0.005,
-                          bodylength=1,
+                          vis_input_m=3,
+                          vis_input_b=0,
+                          vis_input_method='max',
+                          vis_input_k=3
                           )
 
 #outData, agentData = sw.RunAnimate(paraSystem, paraFish)
