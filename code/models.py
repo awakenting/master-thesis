@@ -19,9 +19,9 @@ def generate_stimulus(stim_size=1, speed=1, length=10, dt=0.1, init_distance=50,
 def f_theta_linear(theta, m, b):
     return theta*m + b
 
-def transform_stim(stim_size, speed, length, dt, m=1.5, b=0, init_period=0, cutoff_angle=None):
+def transform_stim(stim_size, speed, length, dt, m=1.5, b=0, init_period=0, cutoff_angle=None, init_distance=50):
     t, stims, dists = generate_stimulus(stim_size=stim_size, speed=speed, length=length, dt=dt, init_period=init_period,
-                                        cutoff_angle=cutoff_angle)
+                                        cutoff_angle=cutoff_angle, init_distance=init_distance)
     collision_idx = np.argmin(np.abs(dists))
     t_collision = t[collision_idx]
     stim_collision = stims[collision_idx]
