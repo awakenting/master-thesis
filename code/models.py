@@ -3,10 +3,10 @@ from numba import jit
 
 def generate_stimulus(stim_size=1, speed=1, length=10, dt=0.1, init_distance=50, init_period=0, cutoff_angle=None):
     total_length = length + init_period
-    stim_timesteps = np.arange(int(length/dt))*dt
-    all_timesteps = np.arange(int(total_length/dt))*dt
+    stim_timesteps = np.arange(np.ceil(length/dt))*dt
+    all_timesteps = np.arange(np.ceil(total_length/dt))*dt
     
-    init_period_distances = np.ones(int(init_period/dt))*init_distance
+    init_period_distances = np.ones(np.ceil(init_period/dt).astype(int))*init_distance
     distances = np.concatenate((init_period_distances, init_distance - stim_timesteps*speed))
     
     angles = np.arctan2(stim_size/2, distances)*2
