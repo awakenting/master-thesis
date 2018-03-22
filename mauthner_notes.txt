@@ -28,4 +28,3 @@ presi outline:
 		- which species? : recent studies: zebrafish(larvae and adults), goldfish, cichlid
 		- stimuli: mostly sound pulses (sine waves of 200Hz), some water pulses and some visual looming stimuli( mostly a black disk increasing in size)
 		- 
-		
