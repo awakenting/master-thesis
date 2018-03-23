@@ -107,10 +107,88 @@
 			\item here I cite \cite{Tytell2008}
 		\end{itemize}
 	\end{itemize}
+	\newpage
 	\section{Methods and Materials}
+	\subsection{Neuronal model}
+	\begin{equation}
+	I(t) = f(\theta (t))
+	\label{eq:input}
+	\end{equation}
+	
+	\begin{equation}
+	\theta (t) = 2\cdot \arctan(\frac{L/2}{distance})
+	\label{eq:theta}
+	\end{equation}
+	
+	\begin{equation}
+	\tau _{\rho} \frac{d\rho}{dt} = - (\rho(t) - \rho_{0}) + c_{\rho} I(t) + 
+	\eta _{\rho}(t)
+	\label{eq:inhib}
+	\end{equation}
+	
+	\begin{equation}
+	\tau _m \frac{dV_m}{dt} = - (V(t) - E_{L}) + R_{m} I(t) - \rho (t) +  \eta 
+	_m (t)
+	\label{eq:mcell}
+	\end{equation}
+	\subsection{Adiabatic approximation}
+	We assume that the timescale of the Input is much higher that the timescale 
+	of the neuronal dynamics so that we have a the following stationary process:
+	\begin{equation}
+	\hat{V}_m(t) = E_{L} + I_{tot}(t) + noise
+	\end{equation}
+	where
+	\begin{equation}
+	I_{tot}(t) = R_{m} I(t) - \hat{\rho}(t)
+	\end{equation}
+	
+	\begin{equation}
+	\hat{\rho}(t) = c_{\rho} 10^{7} I(t) + \rho_{0}
+	\end{equation}
+	
+	\begin{equation}
+	I(t) = 10^{-11} c_{exc} f(\theta(t)) = 10^{-11} c_{exc} (m \cdot \theta(t) 
+	+ b)
+	\end{equation}
+	
+	We set all noise to zero and want to find the input at which the membrane 
+	potential reaches the threshold $V_{t}=-61$ mV:
+	\begin{equation}
+	\hat{V}_m(t) \overset{!}{=} V_t
+	\end{equation}
+	\begin{equation}
+	\Leftrightarrow E_{L} + R_{m} I(t) - c_{\rho} I(t) - \rho_{0} 
+	\overset{!}{=} V_t
+	\end{equation}
+	Inserting values for the fixed parameters $E_{L}=-79$ mV, $R_{m}=10$ 
+	M$\Omega$ 
+	and $V_{t}=-61$ mV:
+	\begin{equation}
+	-0.079 + 10^{7} I(t) - c_{\rho} 10^{7} I(t) - \rho_{0} \overset{!}{=} -0.061
+	\end{equation}
+	
+	\begin{equation}
+	10^{7} I(t) - c_{\rho} 10^{7} I(t) - \rho_{0} \overset{!}{=} 0.018
+	\end{equation}
+
+	\begin{equation}
+	10^{-4} c_{exc} f(\theta(t)) (1 - c_{\rho}) - \rho_{0} \overset{!}{=} 0.018
+	\end{equation}
+	
+	\begin{equation}
+	f(\theta(t)) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
+	{c_{exc}(1 - c_{\rho})}
+	\end{equation}
+
+	\begin{equation}
+	\theta(t) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
+	{m \cdot c_{exc}(1 - c_{\rho})} - \frac{b}{m}
+	\end{equation}
+	\subsection{Further points}
 	\begin{itemize}
 		\item first paragraph
 	\end{itemize}
+	\newpage
 	\section{Results}
 	\subsection{Response properties of a single LIF neuron}
 	As a first step we presented a single LIF neuron with the visual angle 
@@ -128,7 +206,7 @@
 	We analyzed the effects of parameters of a linear transformation of the input, i.e. the slope and offset and furthermore the effects of noise on the input, on the initial condition, and on the spiking threshold.
 	%TODO: add variable names
 	%TODO: add formulas
-	All parameters are listed in table \ref{tab:params}.\\
+	All parameters are listed in table \ref{tab:neuroparams}.\\
 	effects:
 	\begin{itemize}
 		\item effects of increasing m:
@@ -181,7 +259,7 @@
 			\end{tabular}
 		\end{center}
 		\caption{Parameters of the single LIF neuron model with a looming stimulus input. Parameters that were explored are indicated either by a value range such as e.g. for $\mu_s$ or by a set with all explored values inside of curly brackets such as e.g. for $\sigma_s$.}
-		\label{tab:params}
+		\label{tab:neuroparams}
 	\end{table}
 	\begin{itemize}
 		\item Effect of input transformation
