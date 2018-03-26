@@ -2819,23 +2819,37 @@ Endocannabinoids are well established as inhibitors of chemical synaptic transmi
 }
 
 @Article{Mu2012,
-  author        = {Mu, Yu and Li, Xiao-quan and Zhang, Bo and Du, Jiu-lin},
-  title         = {Visual Input Modulates Audiomotor Function via Hypothalamic Dopaminergic Neurons through a Cooperative Mechanism},
-  volume        = {75},
-  number        = {4},
-  pages         = {688--699},
-  issn          = {0896-6273},
-  __markedentry = {[warkentin:]},
-  abstract      = {Summary
+  author       = {Mu, Yu and Li, Xiao-quan and Zhang, Bo and Du, Jiu-lin},
+  title        = {Visual Input Modulates Audiomotor Function via Hypothalamic Dopaminergic Neurons through a Cooperative Mechanism},
+  volume       = {75},
+  number       = {4},
+  pages        = {688--699},
+  issn         = {0896-6273},
+  abstract     = {Summary
 Visual cues often modulate auditory signal processing, leading to improved sound detection. However, the synaptic and circuit mechanism underlying this cross-modal modulation remains poorly understood. Using larval zebrafish, we first established a cross-modal behavioral paradigm in which a preceding flash enhances sound-evoked escape behavior, which is known to be executed through auditory afferents ({VIIIth} nerves) and command-like neurons (Mauthner cells). In vivo recording revealed that the visual enhancement of auditory escape is achieved by increasing sound-evoked Mauthner cell responses. This increase in Mauthner cell responses is accounted for by the increase in the signal-to-noise ratio of sound-evoked {VIIIth} nerve spiking and efficacy of {VIIIth} nerve-Mauthner cell synapses. Furthermore, the visual enhancement of Mauthner cell response and escape behavior requires light-responsive dopaminergic neurons in the caudal hypothalamus and D1 dopamine receptor activation. Our findings illustrate a cooperative neural mechanism for visual modulation of audiomotor processing that involves dopaminergic neuromodulation.},
-  date          = {2012-08-23},
-  doi           = {10.1016/j.neuron.2012.05.035},
-  file          = {ScienceDirect Full Text PDF:Mu2012.pdf:application/pdf},
-  journaltitle  = {Neuron},
-  shortjournal  = {Neuron},
-  timestamp     = {2018-03-20},
-  url           = {http://www.sciencedirect.com/science/article/pii/S0896627312005740},
-  urldate       = {2018-03-20},
+  date         = {2012-08-23},
+  doi          = {10.1016/j.neuron.2012.05.035},
+  file         = {ScienceDirect Full Text PDF:Mu2012.pdf:application/pdf},
+  journaltitle = {Neuron},
+  shortjournal = {Neuron},
+  timestamp    = {2018-03-20},
+  url          = {http://www.sciencedirect.com/science/article/pii/S0896627312005740},
+  urldate      = {2018-03-20},
+}
+
+@InCollection{Lueckmann2017,
+  author        = {Lueckmann, Jan-Matthis and Goncalves, Pedro J and Bassetto, Giacomo and Öcal, Kaan and Nonnenmacher, Marcel and Macke, Jakob H},
+  title         = {Flexible statistical inference for mechanistic models of neural dynamics},
+  booktitle     = {Advances in Neural Information Processing Systems 30},
+  publisher     = {Curran Associates, Inc.},
+  editor        = {Guyon, I. and Luxburg, U. V. and Bengio, S. and Wallach, H. and Fergus, R. and Vishwanathan, S. and Garnett, R.},
+  pages         = {1289--1299},
+  __markedentry = {[warkentin:]},
+  date          = {2017},
+  file          = {NIPS Full Text PDF:Lueckmann2017.pdf:application/pdf},
+  timestamp     = {2018-03-26},
+  url           = {http://papers.nips.cc/paper/6728-flexible-statistical-inference-for-mechanistic-models-of-neural-dynamics.pdf},
+  urldate       = {2018-03-26},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
