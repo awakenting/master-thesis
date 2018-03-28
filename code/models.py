@@ -152,8 +152,8 @@ def calc_response_ffi(params):
     noise_exc = np.random.normal(loc=0.0, scale=sigma_exc, size=len(stimulus))
     noise_inh = np.random.normal(loc=0.0, scale=sigma_inh, size=len(stimulus))
 
-    # rho_null = np.random.lognormal(mean=params['rho_null'], sigma=params['rho_null_std'])
-    rho_null = np.random.exponential(scale=params['rho_null'])
+    rho_null = np.random.lognormal(mean=params['rho_null'], sigma=params['rho_null_std'])
+    #rho_null = np.random.exponential(scale=params['rho_null'])
     rho_null = rho_null / 1000
     time, v_m, spks, spk_idc, rho_inh = jit_ffi_model(params['tau_m'], params['e_l'], params['r_m'], stimulus,
                                                       noise_exc,
@@ -171,7 +171,7 @@ def calc_response_ffi(params):
         resp_in_t_to_coll = t_to_coll[first_spike_idx]
     else:
         resp_in_t_to_coll = 0
-
+    
     return stims[first_spike_idx], dists[first_spike_idx], first_spike, lv, stim_size, speed, resp_in_t_to_coll
 
 

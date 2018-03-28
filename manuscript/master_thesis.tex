@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt,hidelinks]{scrartcl}
+\documentclass[a4paper,10pt,hidelinks]{scrreprt}
 %\usepackage[utf8x]{inputenc}
 
 % Packages =========================================
@@ -87,7 +87,7 @@
 	\end{abstract}
 	\newpage
 	
-	\section{Introduction}
+	\chapter{Introduction}
 	\begin{itemize}
 		\item visual ecology
 		\begin{itemize}
@@ -108,8 +108,8 @@
 		\end{itemize}
 	\end{itemize}
 	\newpage
-	\section{Methods and Materials}
-	\subsection{Neuronal model}
+	\chapter{Methods and Materials}
+	\section{Neuronal model}
 	\begin{equation}
 	I(t) = f(\theta (t))
 	\label{eq:input}
@@ -131,9 +131,12 @@
 	_m (t)
 	\label{eq:mcell}
 	\end{equation}
-	\subsection{Adiabatic approximation}
-	We assume that the timescale of the Input is much higher that the timescale 
-	of the neuronal dynamics so that we have a the following stationary process:
+	
+	
+	\section{Adiabatic approximation}
+	We assume that the timescale of the Input is much higher than the timescale 
+	of the dynamics of the inhibitory population so that we have a the 
+	following stationary process:
 	\begin{equation}
 	\hat{V}_m(t) = E_{L} + I_{tot}(t) + noise
 	\end{equation}
@@ -168,20 +171,22 @@
 	\end{equation}
 	
 	\begin{equation}
-	10^{7} I(t) - c_{\rho} 10^{7} I(t) - \rho_{0} \overset{!}{=} 0.018
+	\Leftrightarrow 10^{7} I(t) - c_{\rho} 10^{7} I(t) - \rho_{0} 
+	\overset{!}{=} 0.018
 	\end{equation}
 
 	\begin{equation}
-	10^{-4} c_{exc} f(\theta(t)) (1 - c_{\rho}) - \rho_{0} \overset{!}{=} 0.018
+	\Leftrightarrow 10^{-4} c_{exc} f(\theta(t)) (1 - c_{\rho}) - \rho_{0} 
+	\overset{!}{=} 0.018
 	\end{equation}
 	
 	\begin{equation}
-	f(\theta(t)) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
+	\Leftrightarrow f(\theta(t)) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
 	{c_{exc}(1 - c_{\rho})}
 	\end{equation}
 
 	\begin{equation}
-	\theta(t) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
+	\Leftrightarrow \theta(t) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
 	{m \cdot c_{exc}(1 - c_{\rho})} - \frac{b}{m}
 	\end{equation}
 	\subsection{Further points}
@@ -289,7 +294,7 @@
 	\begin{itemize}
 		\item 
 	\end{itemize}
-	\section{Discussion}
+	\chapter{Discussion}
 	\begin{itemize}
 		\item we focus here on the experimental results from 
 		\cite{Bhattacharyya2017} but one should keep in mind that their results 
