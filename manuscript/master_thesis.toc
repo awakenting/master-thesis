@@ -1,15 +1,15 @@
 \select@language {english}
 \contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
-\contentsline {chapter}{\numberline {2}Methods and Materials}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Neuronal model}{3}{section.2.1}
-\contentsline {section}{\numberline {2.2}Adiabatic approximation}{3}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Further points}{3}{subsection.2.2.1}
-\contentsline {section}{\numberline {2.3}Results}{4}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Response properties of a single LIF neuron}{4}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Input}{5}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Feedforward inhibition}{5}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}Cross-inhibition}{5}{subsection.2.3.4}
-\contentsline {subsection}{\numberline {2.3.5}Feedback inhibition}{5}{subsection.2.3.5}
-\contentsline {chapter}{\numberline {3}Discussion}{6}{chapter.3}
+\contentsline {chapter}{\numberline {2}Methods and Materials}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Neuronal model}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Adiabatic approximation}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Further points}{5}{subsection.2.2.1}
+\contentsline {section}{\numberline {2.3}Results}{6}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Response properties of a single LIF neuron}{6}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Input}{7}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Feedforward inhibition}{7}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Cross-inhibition}{7}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}Feedback inhibition}{7}{subsection.2.3.5}
+\contentsline {chapter}{\numberline {3}Discussion}{8}{chapter.3}
 \setcounter {tocdepth}{-1}
-\contentsline {section}{\numberline {.1}Appendix}{8}{section.Alph0.1}
+\contentsline {section}{\numberline {.1}Appendix}{11}{section.Alph0.1}

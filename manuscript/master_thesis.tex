@@ -88,7 +88,139 @@
 	\newpage
 	
 	\chapter{Introduction}
+	A common interpretation of the function of the nervous system in animals is 
+	to use the sensory input in order to make appropriate actions.
+	One situation where this would be useful for the animal is the sudden 
+	appearance of a predator.
+	The quick response to such a sudden, unexpected stimulus is called startle 
+	response and can be observed in many species \citep{Eaton1984a}.
+	In fish the startle response can take the form of freezing, where the fish 
+	stops moving entirely, or the form of an escape response, where it quickly 
+	accelerates and moves away within less than a second.
+	Escape responses in fish, also called fast starts, can be divided into the 
+	three stages 1) first body bend, 2) second body bend and a third, variable 
+	stage where the fish either goes into continuous swimming, coasting or 
+	braking \citep{Domenici2011}.
+	Due to the body shape at the end of the first stage escape responses are 
+	also called C-start or S-start \citep{Domenici2011}\footnote{It should be 
+	noted here that not all C-starts are escape responses because the can also 
+	be involved in e.g. prey capture but we will ignore other roles in the 
+	following.}.
+	This thesis will focus on the C-start behavior of fish.\\
+	The C-start behavior in fish has been extensively studied and one of the 
+	main reasons for this is that a pair of neurons that play a major role in 
+	the initiation of the C-start, have large soma and axons and are therefore 
+	relatively easy to find in experiments.
+	They are called Mauthner cells (M-cells), named after Ludwig Mauthner who 
+	first found and described their axons \citep{Mauthner1859}.
+	
 	\begin{itemize}
+		\begin{itemize}
+		\item it can be evoked by different sensory modalities such as 
+		auditory, 
+		vibrational, and visual
+		\item we will focus on visual modality here
+		\end{itemize}
+		\item the neural correlates of this behavior also have been studied 
+		already
+		\item before we go into the details I'll give a short overview of the 
+		neuroanatomy of fish:
+		\begin{itemize}
+		\item structure is very similar to mammals with a spinal cord, brain 
+		stem, 
+		(some have cerebellum?), sensory organs and telencephalon
+		\item visual system is also very similar to mammals:
+		\item eyes have pupils(?), lenses, and a retina with different cones 
+		and 
+		rods and different types and layers of neurons with ganglion cell axons 
+		building the optic nerve
+		\item most fish don't have something like fovea but they do have 
+		regions of 
+		higher ganglion cell density \cite{Pita2015}
+		\item at this point the difference to mammals/humans become bigger 
+		because 
+		the next station is already some sort of cortex, the optical tectum 
+		(instead of suprior colliculus as in humans) (have to double-check this)
+		\item from OT we have axons going to the hindbrain which is the main 
+		region 
+		of interest for this thesis
+		\item in the hindbrain we have, among others, a pair of giant fiber 
+		neurons, called Mauthner-cells
+		\end{itemize}
+		\item these cells have been found to play a major role in the c-start 
+		behavior of fish
+		\item name important examples to support this statement
+		\item the mauthner cells and their surrounding circuit are highly 
+		specialized, seemingly for the c-start:
+		\begin{itemize}
+		\item multisensory input for using all available information
+		\item auditory nerve axons have mixed electrical-chemical synapses 
+		directly 
+		onto the lateral dendrite of the mauthner cell
+		\item feedforward inhibition is stronger on contralateral side, 
+		probably in 
+		order to favor the ipsilateral m-cell to fire (because that would lead 
+		to an escape away from the stimulus)
+		\item feedback inhibition makes the m-cell only fire once because the 
+		behavior is energetically expensive
+		\item high input resistance plus feedforward inhibition of input for 
+		high 
+		threshold of activation
+		\item huge axons for fast signal transmission to motor neurons in 
+		spinal 
+		chord
+		\item in spinal chord, inhibitory interneurons seem to deactivate 
+		"swimming 
+		motor neurons" and activate a different population of "escape motor 
+		neurons"
+		\end{itemize}
+		\item in first part of thesis I will study a simple neuronal model that 
+		should 1) have features of the m-cell and 2) reproduce experimental 
+		c-start behavior
+		\item when using a neuronal model we have to decide on the level auf 
+		biophysical detail that we want to capture
+		\begin{itemize}
+		\item the main levels to consider here are ionic currents based models 
+		like 
+		the hodgikn-huxley model, leaky integrate-and-fire models and rate 
+		based models
+		\item I chose the LIF because we are not interested in the shape of the 
+		action potential but only in the timing dependent of input
+		\item it also allows us to efficiently simulate it which is useful for 
+		parameter explorations and fitting as well as integrating it in the 
+		collective model that I will talk about next
+		\end{itemize}
+		\item if we think about the natural environment of fish, for many 
+		species 
+		this means that a single fish is surrounded by many others and that 
+		they are moving more or less coordinated together as a fish shoal(less 
+		ordered) or school(highly ordered)
+		\item in the second part the thesis I want to understand how the 
+		initiation 
+		mechanism in the first part integrates into such collective behavior
+		\begin{itemize}
+		\item can startling also be evoked by neighboring fish that come too 
+		close 
+		to fast? how does this depend on the properties of the school?
+		\item does the startling of a single fish spread in the school? how 
+		does 
+		this depend on the properties of the school?
+		\end{itemize}
+		\item in order to address these questions I will use an agent-based 
+		model 
+		for collective behavior
+		\begin{itemize}
+		\item it describes the collective behavior by so-called social forces 
+		that 
+		lead to repulsion, alignment, and attraction between fish
+		\item the forces either work on neighbors in specific ranges (also 
+		called 
+		metric interaction) or on topological neighbors
+		\item dependent on the parameters of the social forces and of the speed 
+		of 
+		the agents we get different modes of the collective such as highly 
+		polarized and cohesive schools or a milling behavior \cite{Couzin2002}
+		\end{itemize}
 		\item visual ecology
 		\begin{itemize}
 			\item warning: making analogies to human vision is almost always misleading

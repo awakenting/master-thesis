@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{14}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -17,6 +17,27 @@ K.~Bhattacharyya, D.~L. McLean, and M.~A. MacIver.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S0960982217310217}.
 
+\bibitem[Couzin et~al.(2002)Couzin, Krause, James, Ruxton, and
+  Franks]{Couzin2002}
+I.~D. Couzin, J.~Krause, R.~James, G.~D. Ruxton, and N.~R. Franks.
+\newblock Collective memory and spatial sorting in animal groups.
+\newblock \emph{Journal of Theoretical Biology}, 218\penalty0 (1):\penalty0 1
+  -- 11, 2002.
+\newblock ISSN 0022-5193.
+\newblock \doi{http://dx.doi.org/10.1006/jtbi.2002.3065}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0022519302930651}.
+
+\bibitem[Domenici(2011)]{Domenici2011}
+P.~Domenici.
+\newblock {BUOYANCY, LOCOMOTION, AND MOVEMENT IN FISHES} | fast start.
+\newblock In A.~P. Farrell, editor, \emph{Encyclopedia of Fish Physiology},
+  pages 587 -- 596. Academic Press, San Diego, 2011.
+\newblock ISBN 978-0-08-092323-9.
+\newblock \doi{10.1016/B978-0-12-374553-8.00215-X}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/B978012374553800215X}.
+
 \bibitem[Dunn et~al.(2016)Dunn, Gebhardt, Naumann, Riegler, Ahrens, Engert, and
   {Del Bene}]{Dunn2016}
 T.~Dunn, C.~Gebhardt, E.~Naumann, C.~Riegler, M.~Ahrens, F.~Engert, and F.~{Del
@@ -28,6 +49,13 @@ T.~Dunn, C.~Gebhardt, E.~Naumann, C.~Riegler, M.~Ahrens, F.~Engert, and F.~{Del
 \newblock \doi{10.1016/j.neuron.2015.12.021}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S089662731501123X}.
+
+\bibitem[Eaton(1984)]{Eaton1984a}
+R.~Eaton.
+\newblock \emph{Neural Mechanisms of Startle Behavior}.
+\newblock Springer, 1984.
+\newblock ISBN 9780306415562.
+\newblock URL \url{https://books.google.de/books?id=eNdUpgSOWMoC}.
 
 \bibitem[Isaacson and Scanziani(2011)]{Isaacson2011}
 J.~Isaacson and M.~Scanziani.
@@ -46,6 +74,13 @@ M.~Koyama, F.~Minale, J.~Shum, N.~Nishimura, C.~B. Schaffer, and J.~R. Fetcho.
 \newblock \emph{{ELIFE}}, {5}, {AUG 9} {2016}.
 \newblock ISSN {2050-084X}.
 \newblock \doi{10.7554/elife.16808}.
+
+\bibitem[Mauthner(1859)]{Mauthner1859}
+L.~Mauthner.
+\newblock Untersuchungen uber den bau des ruckenmarkes der fische: Eine
+  vorlaufige mittheilung.
+\newblock \emph{Sitzungsberichte der Kaiserlichen Akademie der Wissenschaften.
+  Mathematisch-Naturwissenschaftliche Classe. Wien}, 34:\penalty0 31--36, 1859.
 
 \bibitem[Pita et~al.(2015)Pita, Moore, Tyrrell, and
   Fernández-Juricic]{Pita2015}
