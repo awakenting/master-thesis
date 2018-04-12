@@ -1,4 +1,4 @@
-\begin{thebibliography}{14}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -66,6 +66,22 @@ J.~Isaacson and M.~Scanziani.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S0896627311008798}.
 
+\bibitem[Koch and Segev({2000})]{Koch2000}
+C.~Koch and I.~Segev.
+\newblock {The role of single neurons in information processing}.
+\newblock \emph{{NATURE NEUROSCIENCE}}, {3}\penalty0 ({11, S}):\penalty0
+  {1171--1177}, {NOV} {2000}.
+\newblock ISSN {1097-6256}.
+\newblock \doi{{10.1038/81444}}.
+
+\bibitem[Korn and Faber(2005)]{Korn2005}
+H.~Korn and D.~S. Faber.
+\newblock The mauthner cell half a century later: a neurobiological model for
+  decision-making?
+\newblock \emph{Neuron}, 47:\penalty0 13--28, July 2005.
+\newblock ISSN 0896-6273.
+\newblock \doi{10.1016/j.neuron.2005.05.019}.
+
 \bibitem[Koyama et~al.({2016})Koyama, Minale, Shum, Nishimura, Schaffer, and
   Fetcho]{Koyama2016}
 M.~Koyama, F.~Minale, J.~Shum, N.~Nishimura, C.~B. Schaffer, and J.~R. Fetcho.
@@ -81,6 +97,15 @@ L.~Mauthner.
   vorlaufige mittheilung.
 \newblock \emph{Sitzungsberichte der Kaiserlichen Akademie der Wissenschaften.
   Mathematisch-Naturwissenschaftliche Classe. Wien}, 34:\penalty0 31--36, 1859.
+
+\bibitem[Medan et~al.({2017})Medan, Mäki-Marttunen, Sztarker, and
+  Preuss]{Medan2017}
+V.~Medan, T.~Mäki-Marttunen, J.~Sztarker, and T.~Preuss.
+\newblock Differential processing in modality-specific mauthner cell dendrites.
+\newblock \emph{The Journal of Physiology}, pages n/a--n/a, {2017}.
+\newblock ISSN 1469-7793.
+\newblock \doi{10.1113/JP274861}.
+\newblock URL \url{http://dx.doi.org/10.1113/JP274861}.
 
 \bibitem[Pita et~al.(2015)Pita, Moore, Tyrrell, and
   Fernández-Juricic]{Pita2015}
@@ -120,6 +145,17 @@ S.~B. Rosenthal, C.~R. Twomey, A.~T. Hartnett, H.~S. Wu, and I.~D. Couzin.
   States of America}, 112:\penalty0 4690--4695, Apr. 2015.
 \newblock ISSN 1091-6490.
 \newblock \doi{10.1073/pnas.1420068112}.
+
+\bibitem[Song et~al.(2015)Song, Ampatzis, Ausborn, and El Manira]{Song2015}
+J.~Song, K.~Ampatzis, J.~Ausborn, and A.~El Manira.
+\newblock A hardwired circuit supplemented with endocannabinoids encodes
+  behavioral choice in zebrafish.
+\newblock \emph{Current Biology}, 25\penalty0 (20):\penalty0 2610 -- 2620,
+  2015.
+\newblock ISSN 0960-9822.
+\newblock \doi{10.1016/j.cub.2015.08.042}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0960982215010131}.
 
 \bibitem[Temizer et~al.(2015)Temizer, Donovan, Baier, and
   Semmelhack]{Temizer2015}

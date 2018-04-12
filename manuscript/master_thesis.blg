@@ -1,48 +1,52 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: master_thesis.aux
+White space in argument---line 28 of file master_thesis.aux
+ : \citation{the
+ :               chapter in encyclopedia of fish physiology}
+I'm skipping whatever remains of this command
 The style file: abbrvnat.bst
 Database file #1: masterthesisbib.bib
 Warning--empty journal in Isaacson2011
-You've used 14 entries,
+You've used 18 entries,
             2773 wiz_defined-function locations,
-            735 strings with 8490 characters,
-and the built_in function-call counts, 7919 in all, are:
-= -- 753
-> -- 472
-< -- 7
-+ -- 159
-- -- 145
-* -- 715
-:= -- 1256
-add.period$ -- 78
-call.type$ -- 14
-change.case$ -- 89
-chr.to.int$ -- 14
-cite$ -- 29
-duplicate$ -- 302
-empty$ -- 581
-format.name$ -- 165
-if$ -- 1649
+            773 strings with 9404 characters,
+and the built_in function-call counts, 10203 in all, are:
+= -- 981
+> -- 592
+< -- 10
++ -- 199
+- -- 181
+* -- 915
+:= -- 1604
+add.period$ -- 100
+call.type$ -- 18
+change.case$ -- 113
+chr.to.int$ -- 18
+cite$ -- 37
+duplicate$ -- 393
+empty$ -- 753
+format.name$ -- 209
+if$ -- 2137
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 15
-newline$ -- 113
-num.names$ -- 58
-pop$ -- 131
+missing$ -- 19
+newline$ -- 143
+num.names$ -- 74
+pop$ -- 163
 preamble$ -- 1
-purify$ -- 76
+purify$ -- 96
 quote$ -- 0
-skip$ -- 234
+skip$ -- 308
 stack$ -- 0
-substring$ -- 363
-swap$ -- 27
-text.length$ -- 1
+substring$ -- 488
+swap$ -- 42
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 149
+type$ -- 193
 warning$ -- 1
-while$ -- 61
+while$ -- 80
 width$ -- 0
-write$ -- 259
-(There was 1 warning)
+write$ -- 331
+(There was 1 error message)

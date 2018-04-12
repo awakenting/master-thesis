@@ -88,159 +88,172 @@
 	\newpage
 	
 	\chapter{Introduction}
-	A common interpretation of the function of the nervous system in animals is 
-	to use the sensory input in order to make appropriate actions.
-	One situation where this would be useful for the animal is the sudden 
-	appearance of a predator.
-	The quick response to such a sudden, unexpected stimulus is called startle 
-	response and can be observed in many species \citep{Eaton1984a}.
-	In fish the startle response can take the form of freezing, where the fish 
-	stops moving entirely, or the form of an escape response, where it quickly 
-	accelerates and moves away within less than a second.
-	Escape responses in fish, also called fast starts, can be divided into the 
-	three stages 1) first body bend, 2) second body bend and a third, variable 
-	stage where the fish either goes into continuous swimming, coasting or 
-	braking \citep{Domenici2011}.
-	Due to the body shape at the end of the first stage escape responses are 
-	also called C-start or S-start \citep{Domenici2011}\footnote{It should be 
-	noted here that not all C-starts are escape responses because the can also 
-	be involved in e.g. prey capture but we will ignore other roles in the 
-	following.}.
+	A common interpretation of the function of the nervous system in animals is to use the sensory 
+	input in order to make appropriate actions.
+	One situation where this would be useful for the animal is the sudden appearance of a predator.
+	The quick response to such a sudden, unexpected stimulus is called startle response and can be 
+	observed in many species \citep{Eaton1984a}.
+	In fish, the startle response can take the form of freezing, where the fish	stops moving 
+	entirely, or the form of an escape response, where it quickly accelerates and moves away within 
+	less than a second.
+	Escape responses in fish, also called fast starts, can be divided into the three stages 1) 
+	first body bend, 2) second body bend and a third, variable stage where the fish either goes 
+	into continuous swimming, coasting or braking \citep{Domenici2011}.
+	Due to the body shape at the end of the first stage escape responses are also called C-start or 
+	S-start \citep{Domenici2011}\footnote{It should be noted here that not all C-starts are escape 
+	responses because the can also be involved in e.g. prey capture but we will ignore other roles 
+	in the following.}.
 	This thesis will focus on the C-start behavior of fish.\\
-	The C-start behavior in fish has been extensively studied and one of the 
-	main reasons for this is that a pair of neurons that play a major role in 
-	the initiation of the C-start, have large soma and axons and are therefore 
-	relatively easy to find in experiments.
-	They are called Mauthner cells (M-cells), named after Ludwig Mauthner who 
-	first found and described their axons \citep{Mauthner1859}.
-	
+	The C-start behavior in fish has been extensively studied and one of the main reasons for this 
+	is that a pair of neurons that play a major role in the initiation of the C-start, have large 
+	soma and axons and are therefore relatively easy to find in experiments.
+	They are called Mauthner cells (M-cells), named after Ludwig Mauthner who first found and 
+	described their axons \citep{Mauthner1859}.\\
+	Before going into the details of the M-cell circuit I will give a brief overview of the nervous 
+	system of fish to provide some context.
+	Since I will later focus on visually evoked C-starts I will go into more detail when it comes 
+	to the visual pathways in the brain.
+	The overall structure of the nervous system of fish is very similar to mammals.
+	Starting at the caudal end there is the spinal cord with descending motor pathways and the 
+	ascending sensory pathways.
+	The spinal cord goes over into the hindbrain region with the medulla and the cerebellum.
+	This is followed by the midbrain which comprises the rostral part of the brainstem and a roof 
+	region, the tectum \cite{the chapter in encyclopedia of fish physiology}.
+	The remaining forebrain consists of the diencephalon and the telencephalon.
+	%TODO: say what is different in mammals/humans
+	In terms of sensory organs fish are equipped with the same senses as mammals and additionally 
+	have the lateral line organ that senses lower frequency signals around the body such as e.g. 
+	water flow and in some cases organs that can sense electrical fields.\\
+	%TODO: some transitional sentence to introduce the visual system
+	Going from outside to inside, the eyes, again similar to mammals, consist of the cornea, the 
+	lens surrounded by the iris and the retina followed by the photoreceptors which build the most 
+	inside layer.
+	In contrast to mammals the pupils of fish are not responsive to the amount of light in the 
+	environment.
+	Fish mostly have rods and three different cones although across species there are up to seven 
+	different types of cones.
+	The retina has different types of neurons that build different layers.
+	The output neurons of the retina are the ganglion cells which show different kinds of tuning 
+	and whose axons build the optic nerve when the exit the eye.
+	%TODO: cite paper about tuning of retinal ganglion cells
+	Although most fish don't have a fovea as we know it from humans there are retinal areas of 
+	higher ganglion cell and photoreceptor densities \citep{Pita2015}.
+	Most of the ganglion cell axons cross sides and end up in the optic tectum which is the 
+	equivalent to the mammalian superior colliculus.
+	While in humans much of the visual information goes further to the primary visual cortex in 
+	fish the optic tectum is the main site of processing of visual information.
+	Similar to cortical areas it is comprised of different layers, also receiving input from other 
+	senses and other brain areas such as the telencephalon.
+	The output of the optic tectum goes, among other regions, to the reticular nuclei in the 
+	hindbrain where we also find the Mauthner cell and can thus come the M-cell circuit.\\
+	The M-cell is located in the hindbrain and has two major dendritic branches, the ventral 
+	dendrite and the lateral dendrite.
+	It receives multisensory input which is divided between the two dendritic branches.
+	The lateral dendrite receives auditory and lateral line input whereas the ventral dendrite 
+	receives visual input via the optic tectum as described before.
+	While this means that the visual input is highly processed by the networks in retina and optic 
+	tectum before it arrives at the M-cell the auditory input comes directly from the auditory 
+	nerve.
+	This might be one of the reasons why the physiology of the auditory input has been studied in 
+	more detail than the visual part.
+	I will therefore continue to describe the properties of the auditory processing and will have 
+	to assume that they also hold for the processing of the visual input.
+	The synapses between auditory nerve and lateral dendrite are called club endings and transmit 
+	auditory signals via electrical as well as chemical mechanisms which leads to Excitatory 
+	Post-Synaptic Potentials (EPSPs) that consist of a fast and a slow component \citep{Korn2005}.
+	At the same time the auditory nerve excites an interneuron which itself inhibits the M-cell.
+	One interpretation of this feed-forward inhibition (FFI) is to increase the threshold for 
+	initiating the startle response.
+	But this is not the only function of these interneurons because they also inhibit the 
+	contralateral M-cell as well as their contralateral counterparts \citep{Koyama2016}.\\
+	This microcircuit is probably responsible for the decision of which direction to escape to.
+	To illustrate why this connectivity makes sense in this decision-making context, let us 
+	consider an auditory stimulus coming from the left side:
+	It will inhibit the M-cell on the right side, inhibit the interneurons on the right side and 
+	excite the M-cell on the left side.
+	Effectively, we have an increased inhibition of the right M-cell, decreased inhibition of the 
+	left M-cell and increased excitation of the left M-cell.
+	Because the axons of the M-cells cross sides, an action potential of the M-cell on the left 
+	side will lead to a contraction of muscles on the right side, resulting in movements of head 
+	and tail away from the stimulus on the left side.\\
+	There are further properties that seem to make the M-cell specialized for initiating the 
+	C-start.
+	Additional to the feed-forward inhibition the big size of the some of the M-cell leads to a 
+	high input resistance which again increases the threshold for incoming currents to initiate an 
+	action potential.
+	The axon of the M-cell is unusually big as well which results in a fast signal transmission 
+	when an action potential is initiated.
+	The axon is also connected to interneurons that provide feedback inhibition to both M-cells.
+	This is thought to prevent repetitive firing of the M-cell that fired in the first place and 
+	also to prevent the contralateral M-cell to fire shortly after.
+	%TODO: check if axons are connected directly to interneurons
+	%TODO: check what cranial relay neurons do and put it here
+	Apart from this feedback inhibition the axon goes through the whole spinal chord with 
+	colaterals that go to the motor neurons on the contralateral side.
+	And also at this level we have again interneurons that putatively have the role of inhibiting a 
+	different set of motor neurons that are responsible for steady swimming movements 
+	\citep{Song2015}.\\
+	The exact role of the M-cells and the surrounding circuit in the C-start behavior are still a 
+	subject of study.
+	The current state of research seems to suggest the M-cell is sufficient and necessary to evoke 
+	the first phase of short-latency C-starts.
+	%TODO: find reference and explain difference between short and long-latency c-starts
+	Nevertheless, if the M-cell is ablated the fish are still able to perform long-latency C-starts.
+	Furthermore, there is another population of neurons, that, if ablated, increase the latency of 
+	C-starts in a similar manner as the ablation of the M-cell does.\\
+	%TODO: put references for the statements above
+	In the first part of this thesis I will make first steps towards a mechanistic understanding of 
+	functional role of the M-cell circuit for the C-start behavior.
+	For this, I will greatly simplify the physiological properties of the M-cell and use a Leaky 
+	Integrate-and-Fire (LIF) model to capture the relevant dynamics.
+	I didn't choose the more realistic Hodgkin-Huxley like model type that takes into account 
+	different ion currents because I was not interested in the action potential shape but rather in 
+	the action potential timing dependent on the input.
+	%TODO: maybe add reference to \cite{Brette2015}
+	The simpler LIF model also allowed for more efficient simulation which was also useful for the 
+	integration of the neuronal model in the collective behavior model in the second part.
+	For the input of the M-cell I will assume that the visual input, coming from the optic tectum, 
+	is the result of a feature extraction of the visual scene.
+	Taken together, this will allow me to link parameters of the neuronal model to behavioral 
+	response properties and to compare and fit this to experimental data.\\
+	%TODO: describe previous work in "modeling the mauthner system"
+	While the first part of the thesis is concerned with the behavior of single fish, for many fish 
+	species the natural environment is rather that of being in a large group of fish.
+	Such groups of fish that move around together are called shoals if they are rather 
+	uncoordinated and schools if they move in a highly ordered manner.
+	This collective behavior is not well understood yet and in the second part of this thesis I 
+	want to analyze how the startle response interacts with it.
+	In more detail, I was interested in the following questions:
+	Can the startle response be evoked spontaneously in the fish school e.g. when neighboring fish 
+	come too close too fast?
+	Does the startling of a single fish spread in the school?
+	How do these effects depend on the properties of the school?\\
+	In order to address these questions I will use an agent-based model that describes the 
+	interactions between fish by so-called social forces.
+	Typically, there are the three forces repulsion, alignment and attraction and they can work 
+	either on neighbors within a specific range (metric interaction) or only on topological 
+	neighbors (topological interaction).
+	An example for a topological type of interaction would be to only consider the neighboring 
+	cells of the Voronoi tessellation of the group of fish.
+	Using such an agent-based collective behavior model with metric interaction \cite{Couzin2002} 
+	could show that the simulated fish school shows different modes of behavior dependent on the 
+	parameters of the social forces.
+	While in one mode the collective would be uncoordinated but stay loosely together, it would 
+	move highly polarized and cohesive in another parameter regime or show a kind of milling 
+	behavior in a third mode.
+	%TODO: explain what I will do with this collective model
+	%TODO: sum up and outline the remaining thesis
+	\newpage
+	\chapter{Single Mauthner Cell - Theory}
 	\begin{itemize}
+		\item explain and motivate "full" single M-cell model:
 		\begin{itemize}
-		\item it can be evoked by different sensory modalities such as 
-		auditory, 
-		vibrational, and visual
-		\item we will focus on visual modality here
-		\end{itemize}
-		\item the neural correlates of this behavior also have been studied 
-		already
-		\item before we go into the details I'll give a short overview of the 
-		neuroanatomy of fish:
-		\begin{itemize}
-		\item structure is very similar to mammals with a spinal cord, brain 
-		stem, 
-		(some have cerebellum?), sensory organs and telencephalon
-		\item visual system is also very similar to mammals:
-		\item eyes have pupils(?), lenses, and a retina with different cones 
-		and 
-		rods and different types and layers of neurons with ganglion cell axons 
-		building the optic nerve
-		\item most fish don't have something like fovea but they do have 
-		regions of 
-		higher ganglion cell density \cite{Pita2015}
-		\item at this point the difference to mammals/humans become bigger 
-		because 
-		the next station is already some sort of cortex, the optical tectum 
-		(instead of suprior colliculus as in humans) (have to double-check this)
-		\item from OT we have axons going to the hindbrain which is the main 
-		region 
-		of interest for this thesis
-		\item in the hindbrain we have, among others, a pair of giant fiber 
-		neurons, called Mauthner-cells
-		\end{itemize}
-		\item these cells have been found to play a major role in the c-start 
-		behavior of fish
-		\item name important examples to support this statement
-		\item the mauthner cells and their surrounding circuit are highly 
-		specialized, seemingly for the c-start:
-		\begin{itemize}
-		\item multisensory input for using all available information
-		\item auditory nerve axons have mixed electrical-chemical synapses 
-		directly 
-		onto the lateral dendrite of the mauthner cell
-		\item feedforward inhibition is stronger on contralateral side, 
-		probably in 
-		order to favor the ipsilateral m-cell to fire (because that would lead 
-		to an escape away from the stimulus)
-		\item feedback inhibition makes the m-cell only fire once because the 
-		behavior is energetically expensive
-		\item high input resistance plus feedforward inhibition of input for 
-		high 
-		threshold of activation
-		\item huge axons for fast signal transmission to motor neurons in 
-		spinal 
-		chord
-		\item in spinal chord, inhibitory interneurons seem to deactivate 
-		"swimming 
-		motor neurons" and activate a different population of "escape motor 
-		neurons"
-		\end{itemize}
-		\item in first part of thesis I will study a simple neuronal model that 
-		should 1) have features of the m-cell and 2) reproduce experimental 
-		c-start behavior
-		\item when using a neuronal model we have to decide on the level auf 
-		biophysical detail that we want to capture
-		\begin{itemize}
-		\item the main levels to consider here are ionic currents based models 
-		like 
-		the hodgikn-huxley model, leaky integrate-and-fire models and rate 
-		based models
-		\item I chose the LIF because we are not interested in the shape of the 
-		action potential but only in the timing dependent of input
-		\item it also allows us to efficiently simulate it which is useful for 
-		parameter explorations and fitting as well as integrating it in the 
-		collective model that I will talk about next
-		\end{itemize}
-		\item if we think about the natural environment of fish, for many 
-		species 
-		this means that a single fish is surrounded by many others and that 
-		they are moving more or less coordinated together as a fish shoal(less 
-		ordered) or school(highly ordered)
-		\item in the second part the thesis I want to understand how the 
-		initiation 
-		mechanism in the first part integrates into such collective behavior
-		\begin{itemize}
-		\item can startling also be evoked by neighboring fish that come too 
-		close 
-		to fast? how does this depend on the properties of the school?
-		\item does the startling of a single fish spread in the school? how 
-		does 
-		this depend on the properties of the school?
-		\end{itemize}
-		\item in order to address these questions I will use an agent-based 
-		model 
-		for collective behavior
-		\begin{itemize}
-		\item it describes the collective behavior by so-called social forces 
-		that 
-		lead to repulsion, alignment, and attraction between fish
-		\item the forces either work on neighbors in specific ranges (also 
-		called 
-		metric interaction) or on topological neighbors
-		\item dependent on the parameters of the social forces and of the speed 
-		of 
-		the agents we get different modes of the collective such as highly 
-		polarized and cohesive schools or a milling behavior \cite{Couzin2002}
-		\end{itemize}
-		\item visual ecology
-		\begin{itemize}
-			\item warning: making analogies to human vision is almost always misleading
-			\item "sensory world of each species is unique"
-			\item color vision in fish: Visual Ecology pp. 159
-			\item fish orient to overhead polarization orientation in laboratory Hawryshyn 1992
-			\item most fish species don't have a fovea (Encyclopedia of Fish 
-			Physiology, p. 141) so that eye movements/saccades should not be 
-			interpreted as fixations as is the case for humans
-			\item they do have different ganglion cell densities though, see 
-			\cite{Pita2015}
-			\item zebrafish have a row-ordered retinal mosaic with alternating rows with LWS double cones (red and green) and rows with SWS (blue and ultraviolet)
-			\item rhodopsin (based on vitamin A1, shorter, "blue" wavelengths) more in marine fish and porphyropsins (based on A2, longer, "green" wavelengths) rather in freshwater fish (more green environment)
-			\item important thing to remember: the visual field above a fish is very different from the lateral view which is again different from the visual field below a fish
-			\item fritsches and marshall 2002: eye movements in teleosts
-			\item here I cite \cite{Tytell2008}
+			\item single input source coming from optic tectum
+			\item feed-forward inhibition via a population of inhibitory interneurons who get input 
+			via electrical synapses and therefore have very small time constant
+			\item 
 		\end{itemize}
 	\end{itemize}
-	\newpage
-	\chapter{Methods and Materials}
 	\section{Neuronal model}
 	\begin{equation}
 	I(t) = f(\theta (t))
@@ -326,8 +339,8 @@
 		\item first paragraph
 	\end{itemize}
 	\newpage
-	\section{Results}
-	\subsection{Response properties of a single LIF neuron}
+	\chapter{Single Mauthner Cell - Numerical experiments}
+	\section{Response properties of a single LIF neuron}
 	As a first step we presented a single LIF neuron with the visual angle 
 	$\theta$ over time as input current.
 	In order to compare our results with experimental work (see e.g. 
@@ -426,6 +439,8 @@
 	\begin{itemize}
 		\item 
 	\end{itemize}
+	\chapter{Two Mauthner Cells Model}
+	\chapter{Coupling of Neuronal Model and Collective Dynamics}
 	\chapter{Discussion}
 	\begin{itemize}
 		\item we focus here on the experimental results from 
@@ -433,6 +448,12 @@
 		might be specific to properties of experiment such as fish handling, 
 		fish age, species, arena, environment, stimulus setup (projection on 
 		screen)
+		\item we took the fitted parameters from \cite{Koyama2016} but those are fitted for their 
+		specific context which might vary in other experimental conditions and certainly in other 
+		species
+		\item furthermore the LIF model makes strong assumptions about the processing power of the 
+		neuron which are likely not true. see for example \cite{Koch2000}, and specifically for the 
+		M-cell \cite{Medan2017}
 	\end{itemize}
 	\newpage
 	\bibliographystyle{abbrvnat}

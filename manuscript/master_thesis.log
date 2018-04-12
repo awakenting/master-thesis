@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.6.14)  6 APR 2018 18:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.6.14)  12 APR 2018 10:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1421,48 +1421,50 @@ Class scrreprt Warning: \float@addtolists detected!
 (scrreprt)              deprecated \float@addtolist interface .
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 108.
+(Font)              <8> on input line 105.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 108.
+(Font)              <6> on input line 105.
 
-! LaTeX Error: Something's wrong--perhaps a missing \item.
+Package natbib Warning: Citation `the chapter in encyclopedia of fish physiolog
+y' on page 2 undefined on input line 121.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.118 		\begin{itemize}
-                       
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 124.
-
-(/usr/share/texmf/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
- been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
+been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.166 		\item h
-               igh input resistance plus feedforward inhibition of input for
-[2
+l.246 	\newpage
+                [2
 
 ] [3] [4]
 Chapter 2.
-[5
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 330.
 
-] [6]
-<../figures/isaacson2001_figure4.jpg, id=143, 563.10374pt x 741.52031pt>
+(/usr/share/texmf/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [5
+
+]
+Chapter 3.
+<../figures/isaacson2001_figure4.jpg, id=138, 563.10374pt x 741.52031pt>
 File: ../figures/isaacson2001_figure4.jpg Graphic file (type jpg)
 
 <use ../figures/isaacson2001_figure4.jpg>
 Package pdftex.def Info: ../figures/isaacson2001_figure4.jpg used on input line
- 414.
+ 418.
 (pdftex.def)             Requested size: 239.0023pt x 286.80435pt.
- [7 <../figures/isaacson2001_figure4.jpg>]
-Chapter 3.
+ [6
+
+] [7 <../figures/isaacson2001_figure4.jpg>]
+Chapter 4.
 [8
+
+]
+Chapter 5.
+[9
+
+]
+Chapter 6.
+[10
 
 ] (./master_thesis.bbl
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 18.
@@ -1473,31 +1475,45 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [9
 
-])
-[10] [11]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 450.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 450.
+Underfull \hbox (badness 2080) in paragraph at lines 70--76
+[]\T1/lmr/m/n/10 (+20) C. Koch and I. Segev.  The role of sin-gle neu-rons in i
+n-for-ma-tion pro-cess-ing.
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 70--76
+|   []\T1/lmr/m/n/10 (+20) , 3(11, S):1171--1177, NOV 2000.  ISSN 1097-6256.
+ []
+
+[11
+
+]) [12]
+
+Package natbib Warning: There were undefined citations.
+
+[13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 463.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 463.
  (./master_thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 450.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 450.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 463.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 463.
 Package rerunfilecheck Info: File `master_thesis.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 450.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 463.
  ) 
 Here is how much of TeX's memory you used:
- 38734 strings out of 493105
- 849796 string characters out of 6137072
- 1059677 words of memory out of 5000000
- 41425 multiletter control sequences out of 15000+600000
- 69707 words of font info for 98 fonts, out of 8000000 for 9000
+ 38765 strings out of 493105
+ 850225 string characters out of 6137072
+ 1061891 words of memory out of 5000000
+ 41438 multiletter control sequences out of 15000+600000
+ 70122 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,10n,80p,10502b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
-ips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/s
-hare/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
--ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/f
+ips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/shar
+e/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/l
+m-rm.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx7.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmmi5.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></us
@@ -1507,10 +1523,10 @@ xmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmss
 bx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.p
 fb>
-Output written on master_thesis.pdf (13 pages, 389323 bytes).
+Output written on master_thesis.pdf (15 pages, 397138 bytes).
 PDF statistics:
- 273 PDF objects out of 1000 (max. 8388607)
- 238 compressed objects within 3 object streams
- 59 named destinations out of 1000 (max. 500000)
+ 307 PDF objects out of 1000 (max. 8388607)
+ 270 compressed objects within 3 object streams
+ 67 named destinations out of 1000 (max. 500000)
  19986 words of extra memory for PDF output out of 20736 (max. 10000000)
 
