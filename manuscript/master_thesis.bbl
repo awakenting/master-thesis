@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -27,6 +27,16 @@ I.~D. Couzin, J.~Krause, R.~James, G.~D. Ruxton, and N.~R. Franks.
 \newblock \doi{http://dx.doi.org/10.1006/jtbi.2002.3065}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S0022519302930651}.
+
+\bibitem[Dill(1974)]{Dill1974}
+L.~M. Dill.
+\newblock The escape response of the zebra danio (brachydanio rerio) i. the
+  stimulus for escape.
+\newblock \emph{Animal Behaviour}, 22\penalty0 (3):\penalty0 711 -- 722, 1974.
+\newblock ISSN 0003-3472.
+\newblock \doi{https://doi.org/10.1016/S0003-3472(74)80022-9}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0003347274800229}.
 
 \bibitem[Domenici(2011)]{Domenici2011}
 P.~Domenici.
@@ -57,14 +67,24 @@ R.~Eaton.
 \newblock ISBN 9780306415562.
 \newblock URL \url{https://books.google.de/books?id=eNdUpgSOWMoC}.
 
-\bibitem[Isaacson and Scanziani(2011)]{Isaacson2011}
-J.~Isaacson and M.~Scanziani.
-\newblock How inhibition shapes cortical activity.
-\newblock 72\penalty0 (2):\penalty0 231--243, 2011.
-\newblock ISSN 0896-6273.
-\newblock \doi{10.1016/j.neuron.2011.09.027}.
-\newblock URL
-  \url{http://www.sciencedirect.com/science/article/pii/S0896627311008798}.
+\bibitem[Fischer et~al.(2015)Fischer, Schwartz, Hoke, and Soares]{Fischer2015}
+E.~K. Fischer, A.~J. Schwartz, K.~L. Hoke, and D.~Soares.
+\newblock Social context modulates predator evasion strategy in guppies.
+\newblock \emph{Ethology}, 121\penalty0 (4):\penalty0 364--371, 2015.
+\newblock ISSN 1439-0310.
+\newblock \doi{10.1111/eth.12345}.
+\newblock URL \url{http://dx.doi.org/10.1111/eth.12345}.
+\newblock ETH-14-0189.
+
+\bibitem[Hatsopoulos et~al.(1995)Hatsopoulos, Gabbiani, and
+  Laurent]{Hatsopoulos1995}
+N.~Hatsopoulos, F.~Gabbiani, and G.~Laurent.
+\newblock Elementary computation of object approach by a wide-field visual
+  neuron.
+\newblock \emph{Science}, 270\penalty0 (5238):\penalty0 1000--1003, 1995.
+\newblock ISSN 0036-8075.
+\newblock \doi{10.1126/science.270.5238.1000}.
+\newblock URL \url{http://science.sciencemag.org/content/270/5238/1000}.
 
 \bibitem[Koch and Segev({2000})]{Koch2000}
 C.~Koch and I.~Segev.
@@ -90,6 +110,20 @@ M.~Koyama, F.~Minale, J.~Shum, N.~Nishimura, C.~B. Schaffer, and J.~R. Fetcho.
 \newblock \emph{{ELIFE}}, {5}, {AUG 9} {2016}.
 \newblock ISSN {2050-084X}.
 \newblock \doi{10.7554/elife.16808}.
+
+\bibitem[Lueckmann et~al.(2018)Lueckmann, Goncalves, Bassetto, Öcal,
+  Nonnenmacher, and Macke]{Lueckmann2018}
+J.-M. Lueckmann, P.~J. Goncalves, G.~Bassetto, K.~Öcal, M.~Nonnenmacher, and
+  J.~H. Macke.
+\newblock Flexible statistical inference for mechanistic models of neural
+  dynamics.
+\newblock In I.~Guyon, U.~V. Luxburg, S.~Bengio, H.~Wallach, R.~Fergus,
+  S.~Vishwanathan, and R.~Garnett, editors, \emph{Advances in Neural
+  Information Processing Systems 30}, volume~38, pages 1289--1299. Curran
+  Associates, Inc., 2018.
+\newblock \doi{10.1523/jneurosci.2225-17.2018}.
+\newblock URL
+  \url{http://papers.nips.cc/paper/6728-flexible-statistical-inference-for-mechanistic-models-of-neural-dynamics.pdf}.
 
 \bibitem[Mauthner(1859)]{Mauthner1859}
 L.~Mauthner.
@@ -167,15 +201,5 @@ I.~Temizer, J.~Donovan, H.~Baier, and J.~Semmelhack.
 \newblock \doi{10.1016/j.cub.2015.06.002}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S0960982215006673}.
-
-\bibitem[Tytell and Lauder(2008)]{Tytell2008}
-E.~D. Tytell and G.~V. Lauder.
-\newblock Hydrodynamics of the escape response in bluegill sunfish, lepomis
-  macrochirus.
-\newblock \emph{Journal of Experimental Biology}, 211\penalty0 (21):\penalty0
-  3359--3369, 2008.
-\newblock ISSN 0022-0949.
-\newblock \doi{10.1242/jeb.020917}.
-\newblock URL \url{http://jeb.biologists.org/content/211/21/3359}.
 
 \end{thebibliography}

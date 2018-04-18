@@ -2852,7 +2852,7 @@ Visual cues often modulate auditory signal processing, leading to improved sound
   urldate       = {2018-03-26},
 }
 
-@Book{eaton1984neural,
+@Book{Eaton1984a,
   title     = {Neural Mechanisms of Startle Behavior},
   publisher = {Springer},
   year      = {1984},
@@ -2861,6 +2861,50 @@ Visual cues often modulate auditory signal processing, leading to improved sound
   lccn      = {lc84013375},
   timestamp = {2018-04-05},
   url       = {https://books.google.de/books?id=eNdUpgSOWMoC},
+}
+
+@Article{Kepler1992,
+  author    = {Kepler, Thomas B. and Abbott, L. F. and Marder, Eve},
+  title     = {Reduction of conductance-based neuron models},
+  journal   = {Biological Cybernetics},
+  year      = {1992},
+  volume    = {66},
+  number    = {5},
+  pages     = {381--387},
+  month     = {Mar},
+  issn      = {1432-0770},
+  abstract  = {We present a scheme for systematically reducing the number of differential equations required for biophysically realistic neuron models. The techniques are general, are designed to be applicable to a large set of such models and retain in the reduced system as high a degree of fidelity to the original system as possible. As examples, we provide reductions of the Hodgkin-Huxley system and the A-current model of Connor et al. (1977).},
+  day       = {01},
+  doi       = {10.1007/BF00197717},
+  file      = {:Kepler1992.pdf:PDF},
+  timestamp = {2018-04-13},
+  url       = {https://doi.org/10.1007/BF00197717},
+}
+
+@Book{Gerstner2014,
+  title     = {Neuronal Dynamics: From Single Neurons to Networks and Models of Cognition},
+  publisher = {Cambridge University Press},
+  year      = {2014},
+  author    = {Gerstner, Wulfram and Kistler, Werner M. and Naud, Richard and Paninski, Liam},
+  address   = {New York, NY, USA},
+  isbn      = {1107635195, 9781107635197},
+  timestamp = {2018-04-13},
+}
+
+@Article{Dill1974,
+  author    = {Lawrence M. Dill},
+  title     = {The escape response of the zebra danio (Brachydanio rerio) I. The stimulus for escape},
+  journal   = {Animal Behaviour},
+  year      = {1974},
+  volume    = {22},
+  number    = {3},
+  pages     = {711 - 722},
+  issn      = {0003-3472},
+  abstract  = {The hypothesis was tested that zebra danios (Brachydanio rerio) react to an approaching predator when the rate of change of the angle subtended by the predator at the prey's eye (dα/dt) exceeds some threshold level. Danios were presented with real predators (largemouth bass, Micropterus salmoides) and artificial predators of two types: a model predator, whose size and velocity could be varied, and a film of an approaching object. The reactive distance for flight (RD) could be predicted from the relationship: RD=[(VS/k)−(S2/4)]1/2 where V is the predator approach velocity (cm/s), S is the predator front diameter (cm), and k is the threshold rate of change of visual angle (radians/s). The best overall estimate of k was 0·43 rad/s. The reactive field was shown to be circular, demonstrating that the mechanism is not solely a binocular one. Escape velocity, though higher in response to real than to artificial predators, was not correlated with reactive distance.},
+  doi       = {https://doi.org/10.1016/S0003-3472(74)80022-9},
+  file      = {:Dill1974.pdf:PDF},
+  timestamp = {2018-04-17},
+  url       = {http://www.sciencedirect.com/science/article/pii/S0003347274800229},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

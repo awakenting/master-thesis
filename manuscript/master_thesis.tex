@@ -10,7 +10,7 @@
 \usepackage[toc,page]{appendix}				% more control over appendices
 \usepackage[english]{babel} 				% Anpassung für mehrsprachige Dokumente
 \usepackage[usenames, dvipsnames]{color}					% Nutzung von Farben
-
+\usepackage{diagbox}
 \usepackage{float}					% notw. für explizite Setzung von Grafiken
 \usepackage[T1]{fontenc} 				% Zuweisung Codierschemas für Zeichensätze
 \usepackage[paper=a4paper,left=40mm,right=30mm,top=20mm,bottom=25mm]{geometry} % Randmaße
@@ -101,7 +101,7 @@
 	into continuous swimming, coasting or braking \citep{Domenici2011}.
 	Due to the body shape at the end of the first stage escape responses are also called C-start or 
 	S-start \citep{Domenici2011}\footnote{It should be noted here that not all C-starts are escape 
-	responses because the can also be involved in e.g. prey capture but we will ignore other roles 
+	responses because they can also be involved in e.g. prey capture but we will ignore other roles 
 	in the following.}.
 	This thesis will focus on the C-start behavior of fish.\\
 	The C-start behavior in fish has been extensively studied and one of the main reasons for this 
@@ -109,9 +109,10 @@
 	soma and axons and are therefore relatively easy to find in experiments.
 	They are called Mauthner cells (M-cells), named after Ludwig Mauthner who first found and 
 	described their axons \citep{Mauthner1859}.\\
-	Before going into the details of the M-cell circuit I will give a brief overview of the nervous 
+	Before going into the details of the M-cell circuit we will give a brief overview of the 
+	nervous 
 	system of fish to provide some context.
-	Since I will later focus on visually evoked C-starts I will go into more detail when it comes 
+	Since we will later focus on visually evoked C-starts we will go into more detail when it comes 
 	to the visual pathways in the brain.
 	The overall structure of the nervous system of fish is very similar to mammals.
 	Starting at the caudal end there is the spinal cord with descending motor pathways and the 
@@ -120,6 +121,7 @@
 	This is followed by the midbrain which comprises the rostral part of the brainstem and a roof 
 	region, the tectum \cite{the chapter in encyclopedia of fish physiology}.
 	The remaining forebrain consists of the diencephalon and the telencephalon.
+	%TODO: add appropriate references
 	%TODO: say what is different in mammals/humans
 	In terms of sensory organs fish are equipped with the same senses as mammals and additionally 
 	have the lateral line organ that senses lower frequency signals around the body such as e.g. 
@@ -134,7 +136,7 @@
 	different types of cones.
 	The retina has different types of neurons that build different layers.
 	The output neurons of the retina are the ganglion cells which show different kinds of tuning 
-	and whose axons build the optic nerve when the exit the eye.
+	and whose axons build the optic nerve when they exit the eye.
 	%TODO: cite paper about tuning of retinal ganglion cells
 	Although most fish don't have a fovea as we know it from humans there are retinal areas of 
 	higher ganglion cell and photoreceptor densities \citep{Pita2015}.
@@ -150,13 +152,13 @@
 	dendrite and the lateral dendrite.
 	It receives multisensory input which is divided between the two dendritic branches.
 	The lateral dendrite receives auditory and lateral line input whereas the ventral dendrite 
-	receives visual input via the optic tectum as described before.
+	receives visual input via the optic tectum mentioned before.
 	While this means that the visual input is highly processed by the networks in retina and optic 
 	tectum before it arrives at the M-cell the auditory input comes directly from the auditory 
 	nerve.
 	This might be one of the reasons why the physiology of the auditory input has been studied in 
 	more detail than the visual part.
-	I will therefore continue to describe the properties of the auditory processing and will have 
+	We will therefore continue to describe the properties of the auditory processing and will have 
 	to assume that they also hold for the processing of the visual input.
 	The synapses between auditory nerve and lateral dendrite are called club endings and transmit 
 	auditory signals via electrical as well as chemical mechanisms which leads to Excitatory 
@@ -195,40 +197,44 @@
 	\citep{Song2015}.\\
 	The exact role of the M-cells and the surrounding circuit in the C-start behavior are still a 
 	subject of study.
-	The current state of research seems to suggest the M-cell is sufficient and necessary to evoke 
+	The current state of research suggests that the M-cell is sufficient and necessary to evoke 
 	the first phase of short-latency C-starts.
 	%TODO: find reference and explain difference between short and long-latency c-starts
 	Nevertheless, if the M-cell is ablated the fish are still able to perform long-latency C-starts.
 	Furthermore, there is another population of neurons, that, if ablated, increase the latency of 
 	C-starts in a similar manner as the ablation of the M-cell does.\\
 	%TODO: put references for the statements above
-	In the first part of this thesis I will make first steps towards a mechanistic understanding of 
+	In the first part of this thesis we will make first steps towards a mechanistic understanding 
+	of 
 	functional role of the M-cell circuit for the C-start behavior.
-	For this, I will greatly simplify the physiological properties of the M-cell and use a Leaky 
+	For this, we will greatly simplify the physiological properties of the M-cell and use a Leaky 
 	Integrate-and-Fire (LIF) model to capture the relevant dynamics.
-	I didn't choose the more realistic Hodgkin-Huxley like model type that takes into account 
-	different ion currents because I was not interested in the action potential shape but rather in 
+	We didn't choose the more realistic Hodgkin-Huxley like model type that takes into account 
+	different ion currents because we were not interested in the action potential shape but rather 
+	in 
 	the action potential timing dependent on the input.
 	%TODO: maybe add reference to \cite{Brette2015}
 	The simpler LIF model also allowed for more efficient simulation which was also useful for the 
 	integration of the neuronal model in the collective behavior model in the second part.
-	For the input of the M-cell I will assume that the visual input, coming from the optic tectum, 
+	For the input of the M-cell we will assume that the visual input, coming from the optic tectum, 
 	is the result of a feature extraction of the visual scene.
-	Taken together, this will allow me to link parameters of the neuronal model to behavioral 
+	Taken together, this will allow us to link parameters of the neuronal model to behavioral 
 	response properties and to compare and fit this to experimental data.\\
+	%TODO: mention looming stimulus experiments
 	%TODO: describe previous work in "modeling the mauthner system"
+	%TODO: mention rosenthal paper as motivation for the second part of the thesis
 	While the first part of the thesis is concerned with the behavior of single fish, for many fish 
 	species the natural environment is rather that of being in a large group of fish.
 	Such groups of fish that move around together are called shoals if they are rather 
 	uncoordinated and schools if they move in a highly ordered manner.
-	This collective behavior is not well understood yet and in the second part of this thesis I 
+	This collective behavior is not well understood yet and in the second part of this thesis we 
 	want to analyze how the startle response interacts with it.
-	In more detail, I was interested in the following questions:
+	In more detail, we were interested in the following questions:
 	Can the startle response be evoked spontaneously in the fish school e.g. when neighboring fish 
 	come too close too fast?
 	Does the startling of a single fish spread in the school?
 	How do these effects depend on the properties of the school?\\
-	In order to address these questions I will use an agent-based model that describes the 
+	In order to address these questions we will use an agent-based model that describes the 
 	interactions between fish by so-called social forces.
 	Typically, there are the three forces repulsion, alignment and attraction and they can work 
 	either on neighbors within a specific range (metric interaction) or only on topological 
@@ -241,20 +247,163 @@
 	While in one mode the collective would be uncoordinated but stay loosely together, it would 
 	move highly polarized and cohesive in another parameter regime or show a kind of milling 
 	behavior in a third mode.
-	%TODO: explain what I will do with this collective model
+	%TODO: explain what we will do with this collective model
 	%TODO: sum up and outline the remaining thesis
-	\newpage
-	\chapter{Single Mauthner Cell - Theory}
+	\chapter{Single Mauthner Cell Model - Theory}
+	In this chapter we will explain the theoretical aspects of the neuronal model for a single 
+	Mauthner Cell.
+	By 'single' Mauthner cell we only mean that we are considering the mechanisms of the 
+	surrounding circuit involving one of the two existing Mauthner cells instead of both.
+	We will start with the description of the full model and continue with two reductions that 
+	assume a separation of timescales and thus provide stationary approximations of the model.
+	\section{Full neuronal model}
+	The full neuronal model of a single Mauthner cell consists of a rate-based model for the 
+	population of inhibitory interneurons that provide the feed-forward inhibition and a LIF model 
+	for the M-cell itself.
+	Both the inhibitory population and the M-cell get their input from a single source.
+	In our case this input will represent the visual information coming from the optic tectum which 
+	will be described in more detail in the next chapter.
+	The time evolution of the activity $\rho$ of the inhibitory population is described by the 
+	following equation:
+	\begin{equation}
+	\tau _{\rho} \frac{d\rho}{dt} = - (\rho(t) - \rho_{0}) + c_{\rho} I(t) + 
+	\eta _{\rho},
+	\label{eq:inhib}
+	\end{equation}
+	where $\tau _{_\rho}$ is the time constant, $\rho _{0}$ is the resting activity of the 
+	population, $c_{\rho}$ is a scaling factor, $I(t)$ is the time dependent input and $\eta 
+	_{\rho}$ is a Gaussian noise term.
+	For the M-cell we use a LIF model where the time evolution of the membrane potential $V_m$ is 
+	described by the following equation:
+	\begin{equation}
+	\tau _m \frac{dV_m}{dt} = - (V(t) - E_{L}) + R_{m} I(t) - \rho (t) +  \eta 
+	_m,
+	\label{eq:mcell}
+	\end{equation}
+	where $\tau_{m}$ is the membrane time constant, $E_L$ is the resting potential, $R_m$ is the 
+	membrane resistance and $\eta_{m}$ is again a Gaussian noise term.
+	The M-cell thus gets the direct visual input $I(t)$ and is inhibited by $\rho(t)$.
+	If the membrane potential $V_m$ crosses a threshold $V_t$ an action potential is artificially 
+	produced and the membrane potential is reset to the resting potential $E_L$.
+	Additional to the noise terms in equations \ref{eq:inhib} and \ref{eq:mcell} we will also 
+	consider fluctuations of the firing threshold $V_t$:
+	\begin{equation}
+	V_t (t) = V_t + \eta_t,
+	\label{eq:thrs}
+	\end{equation}
+	where $\eta_t$ is a Gaussian noise term.\\
+	The basic parameters of the LIF model, i.e. $E_L$, $R_m$, $\tau_m$ and $V_t$, have been fitted 
+	to experimental data in a previous study by \cite{Koyama2016} using recordings from four larval 
+	zebrafish at four days post-fertilization(dpf).
+	For the details of the fitting procedure see their methods section.\\
+	One important property of this dynamic system are the time scales on which the described 
+	activity is going on.
+	Since we know that the synapses at the inhibitory interneurons are electric, at least for the 
+	auditory input, the time constant, and therefore the relevant time scale, of $\rho$ is in the 
+	order of milliseconds.
+	As we will see later on, in the experiments that we want to reproduce the changes in the input 
+	over time are on much bigger time scales of at least hundreds of milliseconds.
+	This fact motivates the reduction in the next section where we approximate the activity of the 
+	inhibitory population by the stationary solution.
+	\section{Stationary Approximation of Inhibitory Population}
+	Here we reduce the model by approximating the activity of the inhibitory population by its 
+	stationary solution.
+	This approximation is the more accurate the higher the difference is between the time scale of 
+	the dynamics of the inhibitory population and the time scale of the input.
+	If we use $\tau_{\rho}$ as the time scale of the inhibitory population and denote $\tau_{in}$ 
+	as the time scale of the input, the approximation becomes equivalent for the limit 
+	$\tau_{\rho}/ \tau_{in} \rightarrow 0$.
+	In the model, this means that equation \ref{eq:inhib} becomes:
+	\begin{equation}
+	\hat{\rho} (t) = \rho_{0} + c_{\rho} I(t) + \eta_{\rho}.
+	\label{eq:inhib_approx}
+	\end{equation}
+	Now we can replace $\rho (t)$ in equation \ref{eq:mcell} and get:
+	\begin{equation}
+	\tau _m \frac{dV_m}{dt} = - (V(t) - E_{L}) + I(t)(R_{m} - c_{\rho}) - \rho_{0} - 
+	\eta_{\rho} +  \eta _m.
+	\label{eq:mcell_approx1}
+	\end{equation}
+	In the resulting LIF model the input is now weighted by the difference between the scaling 
+	factor $c_{\rho}$ and the membrane resistance $R_m$.
+	If we ignore the noise terms for a moment and assume that $\rho_{0}=0$, this means that the 
+	input can only excite the M-cell and therefore evoke an action potential if $c_{\rho} < R_m$.
+	Increasing $\rho_{0}$ would effectively increase the firing threshold $V_t$.
+	\section{Stationary Approximation of Full Model}
+	As a next step we can further approximate the LIF model in equation \ref{eq:mcell_approx1} by 
+	its stationary solution:
+	\begin{equation}
+	\hat{V}_m(t) = E_{L} + I(t)(R_{m} - c_{\rho}) - \rho_{0} - 
+	\eta_{\rho} +  \eta _m.
+	\end{equation}
+	If set all noise to zero we can derive an expression for the input at which the membrane 
+	potential reaches the threshold $V_{t}$:
+	\begin{equation}
+	\hat{V}_m(t) \overset{!}{=} V_t
+	\end{equation}
+	\begin{equation}
+	\Leftrightarrow E_{L} + I(t)(R_{m} - c_{\rho}) - \rho_{0} 
+	\overset{!}{=} V_t
+	\end{equation}
+	\begin{equation}
+	\Leftrightarrow I(t)
+	\overset{!}{=} \frac{V_t - E_{L} + \rho_{0}}{(R_{m} - c_{\rho})}
+	\label{eq:crit_input}
+	\end{equation}
 	\begin{itemize}
-		\item explain and motivate "full" single M-cell model:
-		\begin{itemize}
-			\item single input source coming from optic tectum
-			\item feed-forward inhibition via a population of inhibitory interneurons who get input 
-			via electrical synapses and therefore have very small time constant
-			\item 
-		\end{itemize}
+		\item maybe discuss relation to first-passage time problems
 	\end{itemize}
-	\section{Neuronal model}
+
+
+	\chapter{Single Mauthner Cell Model - Numerical experiments}
+	We will now come to the simulations of the visual looming stimulus experiment.
+	%TODO: describe other sections
+	\section{Visual looming stimulus experiments}
+	One of the earliest studies of the kind we want to look at has been conducted by 
+	\citep{Dill1974} where they photographed a black dot on a white background and projected it on 
+	a tracing paper that was taped to the wall of the aquarium and thus creating a virtual looming 
+	stimulus.
+	In more recent studies computer-generated stimuli are used and therefore the stimulus size 
+	and velocity can be controlled in much more detail.
+	The typical arrangement is a small dish or aquarium in which a single fish can freely move. 
+	%TODO:check if this is true for all papers
+	In the studies that we will consider here they used larval zebrafish (\cite{Temizer2015}, 
+	\cite{Dunn2016}, \cite{Bhattacharyya2017}) and in one case they used goldfish 
+	\citep{Preuss2006}.
+	The stimulus is then either projected on the floor, ceiling or wall of the aquarium or a screen 
+	is placed next to the aquarium.
+	In most studies the stimulus is a black circle or square on a white or blue background.
+	Other stimuli that have been tested, such as a circle with a checkerboard pattern didn't show 
+	significant differences but there has been no systematic analysis.
+	In \cite{Dill1974} they also test a model predator that consisted of a black disk of Plexiglas 
+	that was moved by a motor.
+	
+	An overview of the different conditions in the various experiments is given in Table 
+	\ref{tab:looming_exp}.
+	\begin{table} [!th]
+		\begin{center}
+			\begin{tabular}{|l|c|c|c|c|}
+				\hline
+				\diagbox[width=12em]{\textbf{Condition}}{\textbf{Study}} & \textbf{1} & \textbf{2} 
+				& 
+				\textbf{3} & \textbf{4}\\
+				\hline
+				Species & Zebrafish & Zebrafish & Zebrafish & Goldfish\\
+				\hline
+				Stimulus shape & Circle & Circle & Rectangle & Circle\\
+				\hline
+				Stimulus sizes & Circle & Circle & Rectangle & Circle\\
+				\hline
+				Stimulus velocities & Circle & Circle & Rectangle & Circle\\
+				\hline
+				Stimulus distances (virtual) & Circle & Circle & Rectangle & Circle\\
+				\hline
+			\end{tabular}
+		\end{center}
+		\caption{The according references for the studies are 1: \cite{Temizer2015}, 
+		2:\cite{Dunn2016}, 3:\cite{Bhattacharyya2017}, 4:\cite{Preuss2006}.}
+		\label{tab:looming_exp}
+	\end{table}
 	\begin{equation}
 	I(t) = f(\theta (t))
 	\label{eq:input}
@@ -264,49 +413,10 @@
 	\theta (t) = 2\cdot \arctan(\frac{L/2}{distance})
 	\label{eq:theta}
 	\end{equation}
-	
-	\begin{equation}
-	\tau _{\rho} \frac{d\rho}{dt} = - (\rho(t) - \rho_{0}) + c_{\rho} I(t) + 
-	\eta _{\rho}(t)
-	\label{eq:inhib}
-	\end{equation}
-	
-	\begin{equation}
-	\tau _m \frac{dV_m}{dt} = - (V(t) - E_{L}) + R_{m} I(t) - \rho (t) +  \eta 
-	_m (t)
-	\label{eq:mcell}
-	\end{equation}
-	
-	
-	\section{Adiabatic approximation}
-	We assume that the timescale of the Input is much higher than the timescale 
-	of the dynamics of the inhibitory population so that we have a the 
-	following stationary process:
-	\begin{equation}
-	\hat{V}_m(t) = E_{L} + I_{tot}(t) + noise
-	\end{equation}
-	where
-	\begin{equation}
-	I_{tot}(t) = R_{m} I(t) - \hat{\rho}(t)
-	\end{equation}
-	
-	\begin{equation}
-	\hat{\rho}(t) = c_{\rho} 10^{7} I(t) + \rho_{0}
-	\end{equation}
-	
+
 	\begin{equation}
 	I(t) = 10^{-11} c_{exc} f(\theta(t)) = 10^{-11} c_{exc} (m \cdot \theta(t) 
 	+ b)
-	\end{equation}
-	
-	We set all noise to zero and want to find the input at which the membrane 
-	potential reaches the threshold $V_{t}=-61$ mV:
-	\begin{equation}
-	\hat{V}_m(t) \overset{!}{=} V_t
-	\end{equation}
-	\begin{equation}
-	\Leftrightarrow E_{L} + R_{m} I(t) - c_{\rho} I(t) - \rho_{0} 
-	\overset{!}{=} V_t
 	\end{equation}
 	Inserting values for the fixed parameters $E_{L}=-79$ mV, $R_{m}=10$ 
 	M$\Omega$ 
@@ -319,7 +429,7 @@
 	\Leftrightarrow 10^{7} I(t) - c_{\rho} 10^{7} I(t) - \rho_{0} 
 	\overset{!}{=} 0.018
 	\end{equation}
-
+	
 	\begin{equation}
 	\Leftrightarrow 10^{-4} c_{exc} f(\theta(t)) (1 - c_{\rho}) - \rho_{0} 
 	\overset{!}{=} 0.018
@@ -329,17 +439,55 @@
 	\Leftrightarrow f(\theta(t)) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
 	{c_{exc}(1 - c_{\rho})}
 	\end{equation}
-
+	
 	\begin{equation}
 	\Leftrightarrow \theta(t) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
 	{m \cdot c_{exc}(1 - c_{\rho})} - \frac{b}{m}
 	\end{equation}
-	\subsection{Further points}
 	\begin{itemize}
-		\item first paragraph
+		\item Visual looming stimulus experiments
+		\begin{itemize}
+			\item review experiments that used a visual looming stimulus:
+			\item what species, arena and display arrangement, stimulus types (speeds, sizes)
+			\item main behavioral results: critical angle?
+			\item we will focus on Bhattacharyya here because we have the data and it's from 
+			zebrafish where we have the fitted parameters from \cite{Koyama2016}
+			\item describe how we model the experiment (what exactly is the input, how do we 
+			calculate response properties)
+		\end{itemize}
+		\item results for the minimal model aka the noiseless, stationary solution:
+		\begin{itemize}
+			\item we know expression for critical input from equation \ref{eq:crit_input}
+			\item if we insert our expression for the visual looming stimulus we get this critical 
+			angle as a function of the free parameters: show equation
+			\item optional: what happens if we use sigmoid function instead of linear?
+		\end{itemize}
+		\item results for simple LIF model where inhibitory population activity is approximated:
+		\begin{itemize}
+			\item show response properties (only 2 or 3 as the others are redundant) and their 
+			dependence on free parameters: 
+			\item also always include stationary solution from previous section for comparison
+			\item also show preuss data
+		\end{itemize}
+		\item results for full model:
+		\begin{itemize}
+			\item show effect of additional parameter $\tau_{\rho}$
+		\end{itemize}
+		\item fitting of parameters:
+		\begin{itemize}
+			\item give brief summary of fitting procedure from \cite{Lueckmann2018}
+			\item describe chosen meta parameters for fitting: layers, neurons per layer, nepochs, 
+			ntraining runs etc.
+			\item show fitting results
+		\end{itemize}
+		\item discussion of results:
+		\begin{itemize}
+			\item summarize results
+			\item mention stimulus time scales
+			\item unifying theory that combines bhattacharyya data and preuss data?!
+			\item do fitted parameters make sense?
+		\end{itemize}
 	\end{itemize}
-	\newpage
-	\chapter{Single Mauthner Cell - Numerical experiments}
 	\section{Response properties of a single LIF neuron}
 	As a first step we presented a single LIF neuron with the visual angle 
 	$\theta$ over time as input current.
@@ -416,31 +564,37 @@
 		\item Effect of different noise sources
 		\item Effect of input type
 	\end{itemize}
-	\subsection{Input}
-	\begin{itemize}
-		\item 
-	\end{itemize}
-	\subsection{Feedforward inhibition}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.6\textwidth, 
-		height=0.4\textheight]{../figures/isaacson2001_figure4.jpg}
-		\caption{how input sharpens tuning. From \cite{Isaacson2011}}
-		\label{fig:feedf}
-	\end{figure}
-	\begin{itemize}
-		\item 
-	\end{itemize}
-	\subsection{Cross-inhibition}
-	\begin{itemize}
-		\item 
-	\end{itemize}
-	\subsection{Feedback inhibition}
-	\begin{itemize}
-		\item 
-	\end{itemize}
-	\chapter{Two Mauthner Cells Model}
+	%\chapter{Two Mauthner Cells Model}
 	\chapter{Coupling of Neuronal Model and Collective Dynamics}
+	\begin{itemize}
+		\item description behavioral experiments:
+		\begin{itemize}
+			\item schooling behavior in general has been analyzed
+			\item startling in schools has not been studied so much (except maybe 
+			\cite{Fischer2015})
+			\item but there is study by \cite{Rosenthal2015}
+			\item summarize experiment and findings
+		\end{itemize}
+		\item description schooling model:
+		\begin{itemize}
+			\item movement equations, social forces (take from lab report)
+			\item describe coupling: every agent integrates visual info (how will be described in 
+			next section)
+		\end{itemize}
+		\item how to integrate visual info/couple input from different neighbors
+		\begin{itemize}
+			\item mention ensemble statistics (see paper that pawel sent me)
+			\item what we will look at: global mean/max/deviate, knn mean/deviate
+		\end{itemize}
+		\item simulation results:
+		\begin{itemize}
+			\item show startle frequency, density and polarization for the different integration 
+			strategies
+			\item show effect of school position on startle probability
+			\item show cascade sizes as function 1)input scaling 2) school structure, order, density
+			
+		\end{itemize}
+	\end{itemize}
 	\chapter{Discussion}
 	\begin{itemize}
 		\item we focus here on the experimental results from 
@@ -454,6 +608,8 @@
 		\item furthermore the LIF model makes strong assumptions about the processing power of the 
 		neuron which are likely not true. see for example \cite{Koch2000}, and specifically for the 
 		M-cell \cite{Medan2017}
+		\item in locust neurons have been found that specifically code looming stimuli 
+		\cite{Hatsopoulos1995} (?)
 	\end{itemize}
 	\newpage
 	\bibliographystyle{abbrvnat}
