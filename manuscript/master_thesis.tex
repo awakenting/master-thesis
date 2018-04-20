@@ -357,12 +357,19 @@
 
 	\chapter{Single Mauthner Cell Model - Numerical experiments}
 	We will now come to the simulations of the visual looming stimulus experiment.
-	%TODO: describe other sections
+	For this we first describe the experiments that we want to reproduce, especially the specific 
+	conditions and results.
+	This is followed by the results of the simulations using the model in its various formulations 
+	as described in the previous chapter.
+	Furthermore, we fit the parameters of the full model to experimental data and finally summarize 
+	and discuss our findings.
 	\section{Visual looming stimulus experiments}
 	One of the earliest studies of the kind we want to look at has been conducted by 
 	\citep{Dill1974} where they photographed a black dot on a white background and projected it on 
 	a tracing paper that was taped to the wall of the aquarium and thus creating a virtual looming 
 	stimulus.
+	They also tested a model predator that consisted of a black disk of Plexiglas that was moved by 
+	a motor.
 	In more recent studies computer-generated stimuli are used and therefore the stimulus size 
 	and velocity can be controlled in much more detail.
 	The typical arrangement is a small dish or aquarium in which a single fish can freely move. 
@@ -372,38 +379,48 @@
 	\citep{Preuss2006}.
 	The stimulus is then either projected on the floor, ceiling or wall of the aquarium or a screen 
 	is placed next to the aquarium.
-	In most studies the stimulus is a black circle or square on a white or blue background.
+	In most studies the stimulus is a black disk or square on a white or blue background.
 	Other stimuli that have been tested, such as a circle with a checkerboard pattern didn't show 
 	significant differences but there has been no systematic analysis.
-	In \cite{Dill1974} they also test a model predator that consisted of a black disk of Plexiglas 
-	that was moved by a motor.
-	
+	The sizes, i.e. the diameter of the disk or the side length of the square, range from A to B 
+	and the velocities range from C to D. %TODO: fill in values for A,B,C,D
+	The initial virtual distance of the object ranges from A to B, so that the visual angles on the 
+	retina range from C to D. %TODO: fill in values for A,B,C,D
 	An overview of the different conditions in the various experiments is given in Table 
-	\ref{tab:looming_exp}.
+	\ref{tab:looming_exp}.\\
 	\begin{table} [!th]
 		\begin{center}
 			\begin{tabular}{|l|c|c|c|c|}
 				\hline
-				\diagbox[width=12em]{\textbf{Condition}}{\textbf{Study}} & \textbf{1} & \textbf{2} 
-				& 
-				\textbf{3} & \textbf{4}\\
+				\diagbox[width=16em]{\textbf{Condition [unit]}}{\textbf{Study}} & \textbf{1} & 
+				\textbf{2} & \textbf{3} & \textbf{4}\\
 				\hline
 				Species & Zebrafish & Zebrafish & Zebrafish & Goldfish\\
 				\hline
 				Stimulus shape & Circle & Circle & Rectangle & Circle\\
 				\hline
-				Stimulus sizes & Circle & Circle & Rectangle & Circle\\
+				Stimulus sizes [cm] & ? & ? & ? & ?\\
 				\hline
-				Stimulus velocities & Circle & Circle & Rectangle & Circle\\
+				Stimulus velocities [cm/s] & ? & ? & ? & ?\\
 				\hline
-				Stimulus distances (virtual) & Circle & Circle & Rectangle & Circle\\
+				Initial distances (virtual) [cm] & ? & ? & ? & ?\\
 				\hline
 			\end{tabular}
 		\end{center}
 		\caption{The according references for the studies are 1: \cite{Temizer2015}, 
-		2:\cite{Dunn2016}, 3:\cite{Bhattacharyya2017}, 4:\cite{Preuss2006}.}
+		2: \cite{Dunn2016}, 3: \cite{Bhattacharyya2017} and 4: \cite{Preuss2006}.}
 		\label{tab:looming_exp}
 	\end{table}
+	For the results of the experiment the time from onset of the stimulus, the distance and the 
+	visual angle are measured at the time the fish responds, i.e. starts to move away.
+	While \cite{Bhattacharyya2017} found the visual angle at response time (response angle) to have 
+	the same mean values at different stimulus sizes and velocities, other studies report varying 
+	response angles.\\
+	...
+	We ignore further processing time after the spike of the Mauthner cell 
+	because it is in the order of milliseconds (\cite{Preuss2003}) and thus 
+	irrelevant with respect to the overall response time which is in the order 
+	of at least hundreds of milliseconds for visual stimuli \citep{Preuss2006}.
 	\begin{equation}
 	I(t) = f(\theta (t))
 	\label{eq:input}
@@ -413,7 +430,8 @@
 	\theta (t) = 2\cdot \arctan(\frac{L/2}{distance})
 	\label{eq:theta}
 	\end{equation}
-
+	
+	\section{Stationary model prediction}
 	\begin{equation}
 	I(t) = 10^{-11} c_{exc} f(\theta(t)) = 10^{-11} c_{exc} (m \cdot \theta(t) 
 	+ b)
@@ -444,6 +462,7 @@
 	\Leftrightarrow \theta(t) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
 	{m \cdot c_{exc}(1 - c_{\rho})} - \frac{b}{m}
 	\end{equation}
+	\section{Chapter outline}
 	\begin{itemize}
 		\item Visual looming stimulus experiments
 		\begin{itemize}
@@ -488,54 +507,6 @@
 			\item do fitted parameters make sense?
 		\end{itemize}
 	\end{itemize}
-	\section{Response properties of a single LIF neuron}
-	As a first step we presented a single LIF neuron with the visual angle 
-	$\theta$ over time as input current.
-	In order to compare our results with experimental work (see e.g. 
-	\cite{Bhattacharyya2017}, \cite{Temizer2015}, \cite{Dunn2016}) we analyzed 
-	the angle, distance, latency and time-to-collision of the response.
-	The response onset was defined as the time of the first spike of the LIF neuron.
-	We ignore further processing time after the spike of the Mauthner cell 
-	because it is in the order of milliseconds (\cite{Preuss2003}) and thus 
-	irrelevant with respect to the overall response time which is in the order 
-	of at least hundreds of milliseconds for visual stimuli 
-	\citep{Preuss2006}.\\
-	In the model, we used the basic electrophysiological parameters that were measured in larval zebrafish 4 days post-fertilization \citep{Koyama2016} and kept them fixed for all simulations.
-	We analyzed the effects of parameters of a linear transformation of the input, i.e. the slope and offset and furthermore the effects of noise on the input, on the initial condition, and on the spiking threshold.
-	%TODO: add variable names
-	%TODO: add formulas
-	All parameters are listed in table \ref{tab:neuroparams}.\\
-	effects:
-	\begin{itemize}
-		\item effects of increasing m:
-		\begin{itemize}
-			\item mean response distance: mean increases linearly independent 
-			of threshold noise (only for high threshold noise slightly 
-			sub-linear)
-			\item variance of response distance: increases linearly for small 
-			threshold noise (except for a high lv value and low threshold 
-			noise, this is due to a very low mean and outliers that distort the 
-			standard deviation estimate), increases sub-linearly for medium 
-			threshold noise, slightly decreases for high threshold noise
-			\item mean response angle: decreases exponentially  independent of 
-			threshold noise
-			\item variance of response angle: slightly decreases independent of 
-			threshold noise
-			\item mean time to collision: absolute value increases linearly 
-			independent of threshold noise, decreases more strongly for higher 
-			L/V values
-			\item variance of time to collision: very small increases for L/V 
-			values smaller than 0.9, for L/V values above 0.9 the variance is 
-			in general higher, for small threshold noise it is smallest for 
-			medium m-values and for higher threshold noise it also increases 
-			with m
-			\item mean response time: very similar to TTC
-		\end{itemize}
-		\item effects of increasing threshold noise:
-		\begin{itemize}
-			\item mean response distance: 
-		\end{itemize}
-	\end{itemize}
 	\begin{table} [!th]
 		\begin{center}
 			\begin{tabular}{|l|c|p{7cm}|}
@@ -559,11 +530,6 @@
 		\caption{Parameters of the single LIF neuron model with a looming stimulus input. Parameters that were explored are indicated either by a value range such as e.g. for $\mu_s$ or by a set with all explored values inside of curly brackets such as e.g. for $\sigma_s$.}
 		\label{tab:neuroparams}
 	\end{table}
-	\begin{itemize}
-		\item Effect of input transformation
-		\item Effect of different noise sources
-		\item Effect of input type
-	\end{itemize}
 	%\chapter{Two Mauthner Cells Model}
 	\chapter{Coupling of Neuronal Model and Collective Dynamics}
 	\begin{itemize}
