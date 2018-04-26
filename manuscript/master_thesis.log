@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.6.14)  18 APR 2018 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.6.14)  26 APR 2018 17:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1508,7 +1508,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.252 	\chapter
+l.254 	\chapter
                {Single Mauthner Cell Model - Theory} [2
 
 ] [3] [4]
@@ -1516,12 +1516,17 @@ Chapter 2.
 [5
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 354.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 359.
 
  (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [6]
 Chapter 3.
+
+Overfull \hbox (13.71104pt too wide) in paragraph at lines 403--458
+ [] 
+ []
+
 [7
 
 ] [8] [9]
@@ -1548,42 +1553,18 @@ brachy-danio re-rio) i. the
  []
 
 
-Underfull \hbox (badness 2080) in paragraph at lines 90--96
+Underfull \hbox (badness 2080) in paragraph at lines 97--103
 []\T1/lmr/m/n/10 (+20) C. Koch and I. Segev.  The role of sin-gle neu-rons in i
 n-for-ma-tion pro-cess-ing.
  []
 
 
-Underfull \hbox (badness 2158) in paragraph at lines 90--96
+Underfull \hbox (badness 2158) in paragraph at lines 97--103
 |   []\T1/lmr/m/n/10 (+20) , 3(11, S):1171--1177, NOV 2000.  ISSN 1097-6256.
  []
 
 
-Underfull \hbox (badness 2020) in paragraph at lines 116--127
-[]\T1/lmr/m/n/10 (+20) J.-M. Lueck-mann, P. J. Goncalves, G. Bas-setto, K. Ö-c
-al, M. Non-nen-macher,
- []
-
-
-Underfull \hbox (badness 1173) in paragraph at lines 116--127
-\T1/lmr/m/n/10 (+20) ral dy-nam-ics.  In I. Guyon, U. V. Luxburg, S. Ben-gio, H
-. Wal-lach, R. Fer-
- []
-
-
-Underfull \hbox (badness 2452) in paragraph at lines 116--127
-|   []   |   []   |   []\T1/lmr/m/n/10 (+20) , vol-ume 38, pages 1289--1299. Cu
-r-ran As-so-ciates, Inc.,
- []
-
-
-Underfull \hbox (badness 1454) in paragraph at lines 116--127
-\T1/lmr/m/n/10 (+20) 2018.  doi:[]10.1523/jneurosci.2225-17.2018[].  URL []$\T1
-/lmtt/m/n/10 http : / / papers . nips . cc / paper /
- []
-
-
-Overfull \hbox (21.98277pt too wide) in paragraph at lines 116--127
+Overfull \hbox (21.98277pt too wide) in paragraph at lines 134--144
 \T1/lmtt/m/n/10 6728-[]flexible-[]statistical-[]inference-[]for-[]mechanistic-[
 ]models-[]of-[]neural-[]dynamics .
  []
@@ -1595,25 +1576,25 @@ Overfull \hbox (21.98277pt too wide) in paragraph at lines 116--127
 Package natbib Warning: There were undefined citations.
 
 [14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 593.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 593.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 655.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 655.
  (./master_thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 593.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 593.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 655.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 655.
 Package rerunfilecheck Info: File `master_thesis.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 593.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 655.
  ) 
 Here is how much of TeX's memory you used:
- 39702 strings out of 493105
- 861549 string characters out of 6137072
- 1092314 words of memory out of 5000000
- 42316 multiletter control sequences out of 15000+600000
- 67769 words of font info for 107 fonts, out of 8000000 for 9000
+ 39731 strings out of 493105
+ 862025 string characters out of 6137072
+ 1093099 words of memory out of 5000000
+ 42336 multiletter control sequences out of 15000+600000
+ 68596 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,17n,80p,10502b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 73i,10n,80p,10502b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
-ips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/shar
+ips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/shar
 e/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/l
 m-rm.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx7.p
@@ -1625,10 +1606,10 @@ xmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmss
 bx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.p
 fb>
-Output written on master_thesis.pdf (16 pages, 302933 bytes).
+Output written on master_thesis.pdf (16 pages, 313349 bytes).
 PDF statistics:
- 350 PDF objects out of 1000 (max. 8388607)
- 306 compressed objects within 4 object streams
- 69 named destinations out of 1000 (max. 500000)
- 19469 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 385 PDF objects out of 1000 (max. 8388607)
+ 341 compressed objects within 4 object streams
+ 74 named destinations out of 1000 (max. 500000)
+ 20493 words of extra memory for PDF output out of 20736 (max. 10000000)
 

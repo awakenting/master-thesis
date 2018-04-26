@@ -7,45 +7,45 @@ White space in argument---line 28 of file master_thesis.aux
 I'm skipping whatever remains of this command
 The style file: abbrvnat.bst
 Database file #1: masterthesisbib.bib
-You've used 20 entries,
+You've used 25 entries,
             2773 wiz_defined-function locations,
-            799 strings with 10324 characters,
-and the built_in function-call counts, 11774 in all, are:
-= -- 1122
-> -- 709
-< -- 11
-+ -- 238
-- -- 218
-* -- 1068
-:= -- 1852
-add.period$ -- 113
-call.type$ -- 20
-change.case$ -- 129
-chr.to.int$ -- 20
-cite$ -- 40
-duplicate$ -- 451
-empty$ -- 855
-format.name$ -- 244
-if$ -- 2468
+            849 strings with 11801 characters,
+and the built_in function-call counts, 15113 in all, are:
+= -- 1424
+> -- 958
+< -- 13
++ -- 321
+- -- 296
+* -- 1385
+:= -- 2376
+add.period$ -- 139
+call.type$ -- 25
+change.case$ -- 170
+chr.to.int$ -- 25
+cite$ -- 50
+duplicate$ -- 568
+empty$ -- 1075
+format.name$ -- 329
+if$ -- 3165
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 21
-newline$ -- 159
-num.names$ -- 84
-pop$ -- 188
+missing$ -- 26
+newline$ -- 194
+num.names$ -- 104
+pop$ -- 255
 preamble$ -- 1
-purify$ -- 110
+purify$ -- 146
 quote$ -- 0
-skip$ -- 353
+skip$ -- 450
 stack$ -- 0
-substring$ -- 559
-swap$ -- 57
-text.length$ -- 4
+substring$ -- 697
+swap$ -- 73
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 215
+type$ -- 270
 warning$ -- 0
-while$ -- 91
+while$ -- 113
 width$ -- 0
-write$ -- 372
+write$ -- 458
 (There was 1 error message)

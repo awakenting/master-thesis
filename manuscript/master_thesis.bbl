@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -86,6 +86,13 @@ N.~Hatsopoulos, F.~Gabbiani, and G.~Laurent.
 \newblock \doi{10.1126/science.270.5238.1000}.
 \newblock URL \url{http://science.sciencemag.org/content/270/5238/1000}.
 
+\bibitem[Khan and Echevarria(2017)]{Khan2017}
+K.~M. Khan and D.~J. Echevarria.
+\newblock Feeling fishy: Trait differences in zebrafish (danio rerio).
+\newblock In \emph{Personality in Nonhuman Animals}, pages 111--127. Springer
+  International Publishing, 2017.
+\newblock \doi{10.1007/978-3-319-59300-5_6}.
+
 \bibitem[Koch and Segev({2000})]{Koch2000}
 C.~Koch and I.~Segev.
 \newblock {The role of single neurons in information processing}.
@@ -111,6 +118,17 @@ M.~Koyama, F.~Minale, J.~Shum, N.~Nishimura, C.~B. Schaffer, and J.~R. Fetcho.
 \newblock ISSN {2050-084X}.
 \newblock \doi{10.7554/elife.16808}.
 
+\bibitem[Lacoste et~al.({2015})Lacoste, Schoppik, Robson, Haesemeyer,
+  Portugues, Li, Randlett, Wee, Engert, and Schier]{Lacoste2015}
+A.~M.~B. Lacoste, D.~Schoppik, D.~N. Robson, M.~Haesemeyer, R.~Portugues, J.~M.
+  Li, O.~Randlett, C.~L. Wee, F.~Engert, and A.~F. Schier.
+\newblock {A Convergent and Essential Interneuron Pathway for
+  Mauthner-Cell-Mediated Escapes}.
+\newblock \emph{{CURRENT BIOLOGY}}, {25}\penalty0 ({11}):\penalty0
+  {1526--1534}, {JUN 1} {2015}.
+\newblock ISSN {0960-9822}.
+\newblock \doi{10.1016/j.cub.2015.04.025}.
+
 \bibitem[Lueckmann et~al.(2018)Lueckmann, Goncalves, Bassetto, Öcal,
   Nonnenmacher, and Macke]{Lueckmann2018}
 J.-M. Lueckmann, P.~J. Goncalves, G.~Bassetto, K.~Öcal, M.~Nonnenmacher, and
@@ -121,7 +139,6 @@ J.-M. Lueckmann, P.~J. Goncalves, G.~Bassetto, K.~Öcal, M.~Nonnenmacher, and
   S.~Vishwanathan, and R.~Garnett, editors, \emph{Advances in Neural
   Information Processing Systems 30}, volume~38, pages 1289--1299. Curran
   Associates, Inc., 2018.
-\newblock \doi{10.1523/jneurosci.2225-17.2018}.
 \newblock URL
   \url{http://papers.nips.cc/paper/6728-flexible-statistical-inference-for-mechanistic-models-of-neural-dynamics.pdf}.
 
@@ -140,6 +157,36 @@ V.~Medan, T.~Mäki-Marttunen, J.~Sztarker, and T.~Preuss.
 \newblock ISSN 1469-7793.
 \newblock \doi{10.1113/JP274861}.
 \newblock URL \url{http://dx.doi.org/10.1113/JP274861}.
+
+\bibitem[Miller et~al.(2017)Miller, Clements, Ahn, Park, Hye~Ji, and
+  Issa]{Miller2017}
+T.~H. Miller, K.~Clements, S.~Ahn, C.~Park, E.~Hye~Ji, and F.~A. Issa.
+\newblock Social status{\textendash}dependent shift in neural circuit
+  activation affects decision making.
+\newblock \emph{Journal of Neuroscience}, 37\penalty0 (8):\penalty0 2137--2148,
+  2017.
+\newblock ISSN 0270-6474.
+\newblock \doi{10.1523/JNEUROSCI.1548-16.2017}.
+\newblock URL \url{http://www.jneurosci.org/content/37/8/2137}.
+
+\bibitem[Neumeister et~al.({2010})Neumeister, Whitaker, Hofmann, and
+  Preuss]{Neumeister2010}
+H.~Neumeister, K.~W. Whitaker, H.~A. Hofmann, and T.~Preuss.
+\newblock {Social and Ecological Regulation of a Decision-Making Circuit}.
+\newblock \emph{{JOURNAL OF NEUROPHYSIOLOGY}}, {104}\penalty0 ({6}):\penalty0
+  {3180--3188}, {DEC} {2010}.
+\newblock ISSN {0022-3077}.
+\newblock \doi{10.1152/jn.00574.2010}.
+
+\bibitem[Park et~al.(2018)Park, Clements, Issa, and Ahn]{Park2018}
+C.~Park, K.~N. Clements, F.~A. Issa, and S.~Ahn.
+\newblock Effects of social experience on the habituation rate of zebrafish
+  startle escape response: Empirical and computational analyses.
+\newblock \emph{Frontiers in Neural Circuits}, 12:\penalty0 7, 2018.
+\newblock ISSN 1662-5110.
+\newblock \doi{10.3389/fncir.2018.00007}.
+\newblock URL
+  \url{https://www.frontiersin.org/article/10.3389/fncir.2018.00007}.
 
 \bibitem[Pita et~al.(2015)Pita, Moore, Tyrrell, and
   Fernández-Juricic]{Pita2015}
