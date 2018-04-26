@@ -42,6 +42,7 @@ class AgentData(object):
         self.timer_startle = np.zeros(N)
         self.phiDes_startle = np.zeros(N)
         self.v_m = np.ones(N)
+        self.v_t = None
         self.rho = np.ones(N)
         self.noise_exc = None
         self.noise_rho = None
@@ -51,7 +52,6 @@ class AgentData(object):
         self.rho_null = None
         self.startle = np.zeros(N, dtype=bool)
         self.neighbor_startle = np.ones((N, N))
-        self.cutoff_neg_rel_velocity = np.ones(N, dtype=bool)
         self.vis_angles = np.zeros(N)
 
         # Polar Coordinates
@@ -180,14 +180,6 @@ class AgentParams(object):
                  noisev=0.0, noisep=0.1,
                  amplitude_startle=50.0,
                  duration_startle=0.2,
-                 threshold_startle=1.0,
-                 noise_startle=0.1,
-                 gamma_startle=1.0,
-                 increment_startle=0.2,
-                 only_positive_startle=True,
-                 vis_input_const=0.1,
-                 dist_pow=3,
-                 cutoff_neg_rel_velocity=True,
                  blocked_escape_angle=np.pi * 1.0,
                  r_m=10 * 1e6,
                  tau_m=0.023,
@@ -195,7 +187,8 @@ class AgentParams(object):
                  v_t=-0.061,
                  vt_std=0.003,
                  tau_rho=0.001,
-                 rho_null=0.010,
+                 rho_null=2,
+                 rho_null_std=1,
                  rho_scale=9.6 * 1e6,
                  exc_scale=5,
                  noise_std_exc=0.005,
@@ -236,14 +229,6 @@ class AgentParams(object):
         if paraSystem.startle:
             self.amplitude_startle = amplitude_startle
             self.duration_startle = duration_startle
-            self.threshold_startle = threshold_startle
-            self.noise_startle = noise_startle
-            self.gamma_startle = gamma_startle
-            self.increment_startle = increment_startle
-            self.only_positive_startle = only_positive_startle
-            self.vis_input_const = vis_input_const
-            self.dist_pow = dist_pow
-            self.cutoff_neg_rel_velocity = cutoff_neg_rel_velocity
             self.blocked_escape_angle = blocked_escape_angle
             self.r_m = r_m
             self.tau_m = tau_m
@@ -254,6 +239,7 @@ class AgentParams(object):
             self.rho_scale = rho_scale
             self.exc_scale = exc_scale
             self.rho_null = rho_null
+            self.rho_null_std = rho_null_std
             self.noise_std_exc = noise_std_exc
             self.noise_std_inh = noise_std_inh
             self.vis_input_m = vis_input_m
@@ -304,17 +290,18 @@ def InitAgents(agentData, paraSystem, paraAgents):
     # reset startle variables
     if paraSystem.startle:
         agentData.allow_startling[:] = paraSystem.startle
-        agentData.statevar_startle = np.random.random(N)
         agentData.timer_startle = np.zeros(N)
-        agentData.timer_startle = np.zeros(N)
-        agentData.cutoff_neg_rel_velocity[:] = paraAgents.cutoff_neg_rel_velocity
         sigma_exc = paraAgents.noise_std_exc * np.sqrt(paraSystem.dt)
         sigma_inh = paraAgents.noise_std_inh * np.sqrt(paraSystem.dt)
         agentData.noise_exc = np.random.normal(loc=0, scale=sigma_exc, size=(N, steps + 1))
         agentData.noise_rho = np.random.normal(loc=0, scale=sigma_inh, size=(N, steps + 1))
+        agentData.v_t = np.random.normal(loc=paraAgents.v_t, scale=paraAgents.vt_std, size=(N, steps + 1))
+        if not paraAgents.rho_null_std == 0:
+            agentData.rho_null = np.random.lognormal(mean=paraAgents.rho_null, sigma=paraAgents.rho_null_std, size=N)/1000
+        else:
+            agentData.rho_null = paraAgents.rho_null/1000
         agentData.v_m *= paraAgents.e_l
         agentData.rho *= paraAgents.rho_null
-        agentData.rho_null = paraAgents.rho_null
         agentData.e_l = paraAgents.e_l
         agentData.tau_m = paraAgents.tau_m
         agentData.tau_rho = paraAgents.tau_rho
@@ -655,7 +642,6 @@ def CalcInteractionVoronoi(agentData, paraSystem, paraAgents):
 
 def CalcInteractionGlobal(agentData, paraSystem, paraAgents):
     """ Calculate effective social forces using brute force N^2 iteration """
-
     for i in range(paraSystem.N):
         for j in range(i + 1, paraSystem.N):
             CalcInteractionPair(i, j, agentData, paraSystem, paraAgents)
@@ -699,31 +685,6 @@ def CalcInteractionPair(i, j, agentData, paraSystem, update_both=True):
     for d in range(dim):
         dist += distvec[d] ** 2
     dist = np.sqrt(dist)
-
-    #############################
-    # blindangle=paraAgents.blindangle
-    # blindanglesteepness=paraAgents.blindanglesteepness
-    # if(blindangle>0.0):
-    #    # if finite blindangle, calculate the 'blindfactor' to the rear
-    #    if(agent_i.velproj>0.0 and dist>0.0):
-    #        sp_distv_i=(distvec[0]*agent_j.vel[0]+distvec[1]*agent_i.vel[1])/dist/agent_i.velproj
-    #    else:
-    #        sp_distv_i=1
-    #    gamma_i=arccos(sp_distv_i)
-    #    agent_i.blindfactor=SigThresh(np.abs(gamma_i),np.pi-blindangle,blindanglesteepness)
-    #    if(update_both):
-    #        if(agent_j.velproj>0.0 and dist>0.0):
-    #            sp_distv_j=-(distvec[0]*agent_j.vel[0]+distvec[1]*agent_j.vel[1])/dist/agent_j.velproj
-    #        else:
-    #            sp_distv_j=1
-
-    #        gamma_j=arccos(sp_distv_j)
-    #        agent_j.blindfactor=SigThresh(np.abs(gamma_j),np.pi-blindangle,blindanglesteepness)
-    #        if(np.isnan(gamma_i) or np.isnan(gamma_j)):
-    #            print "ATTENTION!!!"
-    #            print sp_distv_i,sp_distv_j
-    # print("agentData.repstrength={}".format(agentData.repstrength))
-    # print("agentData.attstrength={}".format(agentData.attstrength))
 
     # repulsion
     if agentData.repstrength[i] > 0.0:
@@ -805,7 +766,6 @@ def CalcStartleInfluencePair(responder, initiator, agentData, paraAgents, dt):
     escape_range_mid = open_escape_range / 2.0
     agentData.phiDes_startle[responder] = (dist_phi + np.random.rand(1) * open_escape_range
                                            - escape_range_mid)
-    # agentData.phiDes_startle[responder] = 0.5 * (agentData.phiDes_startle[responder] + agentData.phiDes_startle[initiator])
 
 
 def CalcStartleInfluenceMatrix(agentData, paraAgents, paraSystem):
@@ -815,6 +775,7 @@ def CalcStartleInfluenceMatrix(agentData, paraAgents, paraSystem):
     distmatrix, dX, dY = CalcDistVecMatrix(agentData.pos, paraSystem.L, paraSystem.BC)
     vis_angle = (np.arctan2(1 / 2, distmatrix) * 2) / np.pi * 180
     vis_angle[vis_angle > 180] = 180
+    # neighbours whose calculated angle is above 180 are so close that we assume that they have no impact anymore:
     vis_angle[vis_angle == 180] = 0
     vis_angle = paraAgents.vis_input_m * vis_angle + paraAgents.vis_input_b
 
@@ -854,12 +815,12 @@ def CalcStartleInfluenceMatrix(agentData, paraAgents, paraSystem):
     agentData.phiDes_startle = (dist_phi + np.random.rand(paraSystem.N) * open_escape_range - escape_range_mid)
 
 
-def ActivationStartle(agentData, paraAgents):
+def ActivationStartle(agentData, paraAgents, step):
     """ check for which individuals the startle condition is fulfilled and activate them
     """
 
-    agentData.timer_startle[agentData.v_m > paraAgents.v_t] = paraAgents.duration_startle
-    agentData.statevar_startle[agentData.timer_startle > 0.0] = 0.0
+    agentData.timer_startle[agentData.v_m > agentData.v_t[:, step]] = paraAgents.duration_startle
+    agentData.v_m[agentData.v_m > agentData.v_t[:, step]] = paraAgents.e_l
 
     condition_new_startle = (agentData.timer_startle > 0.0) & (np.sum(agentData.force_startle) == 0) \
                             & agentData.allow_startling
@@ -878,22 +839,18 @@ def ActivationStartle(agentData, paraAgents):
 
 
 def UpdateStartle(agentData, paraSystem, paraAgents, edges=None, distmatrix=None, step=None):
-    """ Update internal variable (LIF-dynamics)
+    """ Update internal variable (neuronal model dynamics)
     """
     # decrease startle duration
     agentData.timer_startle[agentData.timer_startle >= 0.0] -= paraSystem.dt
+    # update passive part of neuronal dynamics
     agentData.UpdateDynamicVars(paraSystem.dt, step)
 
-    # calc social influence (increment of internal variable due to neighbors startling)
-    # if edges is not None:
-    #    for e in edges:
-    #        if e[0] != e[1]:
-    #            CalcStartleInfluencePair(e[1], e[0], agentData, paraAgents, paraSystem.dt)
-    #            CalcStartleInfluencePair(e[0], e[1], agentData, paraAgents, paraSystem.dt)
+    # calc social influence (inputs in neuronal dynamics)
     CalcStartleInfluenceMatrix(agentData, paraAgents, paraSystem)
 
     # activate individuals which crossed threshold
-    ActivationStartle(agentData, paraAgents)
+    ActivationStartle(agentData, paraAgents, step)
     # deactivate individuals
     agentData.startle[agentData.timer_startle <= 0.0] = 0
     agentData.force_startle[agentData.timer_startle <= 0.0] = np.array([0., 0.])
@@ -1095,7 +1052,9 @@ def RunAnimateWithStartlePotential(paraSystem, paraAgents, agentData=None, dobli
     # ax2.set_ylim([paraAgents.v_t + paraAgents.v_t, paraAgents.v_t * 0.5])
     ax2.set_ylim([-0.090, -0.050])
     ax2.set_title('Membrane potential of agent {:}'.format(startleAgent))
-    ax2.hlines(paraAgents.threshold_startle, 0, paraSystem.time, linestyles='--')
+    #ax2.hlines(paraAgents.v_t, 0, paraSystem.time, linestyles='--')
+    time_array = np.arange(0, int((paraSystem.time/paraSystem.dt) + 1)) * paraSystem.dt
+    ax2.plot(time_array, agentData.v_t[startleAgent, :], ls='--')
     startlevar_line = pl.Line2D([], [], linewidth=2, color='k')
     ax2.add_line(startlevar_line)
 

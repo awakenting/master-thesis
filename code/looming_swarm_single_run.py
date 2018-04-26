@@ -9,12 +9,12 @@ import matplotlib.pyplot as plt
 
 #np.random.seed(200)
 # Initialize Parameters
-N = 40
+N = 10
 L = 50
 total_time = 100.0
 dt = 0.001
 
-speed0 = 0.5
+speed0 = 1.5
 alpha = 0.8
 noisep = 0.01
 noisev = 0.05
@@ -55,21 +55,16 @@ paraFish = sw.AgentParams(paraSystem, speed0=speed0, alpha=alpha,
                           noisep=noisep, noisev=noisev,
                           amplitude_startle=amplitude_startle,
                           duration_startle=duration_startle,
-                          threshold_startle=threshold_startle,
-                          noise_startle=noise_startle,
-                          gamma_startle=gamma_startle,
-                          increment_startle=increment_startle,
-                          only_positive_startle=only_positive_startle,
-                          vis_input_const=vis_input_const,
-                          dist_pow=dist_pow,
                           r_m=10*1e6,
                           tau_m=0.023,
                           e_l=-0.079,
                           v_t=-0.061,
-                          vt_std=0.003,
+                          vt_std=0.001,
                           tau_rho=0.001,
+                          rho_null=2,
+                          rho_null_std=1.2,
                           rho_scale=9.6 * 1e6,
-                          exc_scale=30,
+                          exc_scale=40,
                           noise_std_exc=0.010,
                           noise_std_inh=0.005,
                           vis_input_m=3,
@@ -160,7 +155,7 @@ def calcCascadeSizes(startles):
     return np.array(cascade_sizes), np.array(cascade_lengths), np.array(starting_points)
 
 
-def CalcDistVecMatrix(pos):
+def CalcDistVecMatrix(pos, L, BC):
     """ Calculate N^2 distance matrix (d_ij)
 
         Returns:
@@ -175,9 +170,27 @@ def CalcDistVecMatrix(pos):
     dY = np.subtract(Y, Y.T)
     dX_period = np.copy(dX)
     dY_period = np.copy(dY)
-
+    if BC == 0:
+        dX_period[dX > +0.5 * L] -= L
+        dY_period[dY > +0.5 * L] -= L
+        dX_period[dX < -0.5 * L] += L
+        dY_period[dY < -0.5 * L] += L
     distmatrix = np.sqrt(dX_period ** 2 + dY_period ** 2)
     return distmatrix, dX_period, dY_period
+
+
+def PeriodicDist(x, y, L=10.0, dim=2):
+    """ Returns the distance vector of two position vectors x,y
+        by tanking periodic boundary conditions into account.
+
+        Input parameters: L - system size, dim - number of dimensions
+    """
+    distvec = (y - x)
+    distvec_periodic = np.copy(distvec)
+    distvec_periodic[distvec < -0.5 * L] += L
+    distvec_periodic[distvec > 0.5 * L] -= L
+
+    return distvec_periodic
 
 
 def calcCohesion(pos, method='nearest'):
@@ -186,7 +199,7 @@ def calcCohesion(pos, method='nearest'):
     coh = np.empty(ntimesteps)
     for t in np.arange(ntimesteps):
         if method == 'nearest':
-            dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :])
+            dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :], BC)
             np.fill_diagonal(dist_mat, np.inf)
             min_dists = np.min(dist_mat, axis=0)
             current_cohesion = np.mean(min_dists)
@@ -195,7 +208,7 @@ def calcCohesion(pos, method='nearest'):
             # volume is referring to a 3D setting so in a 2D case it gives the area
             current_cohesion = hull.volume
         elif method == 'inter':
-            dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :])
+            dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :], BC)
             np.fill_diagonal(dist_mat, np.nan)
             mean_dists = np.nanmean(dist_mat, axis=0)
             current_cohesion = np.mean(mean_dists)
@@ -204,6 +217,39 @@ def calcCohesion(pos, method='nearest'):
         coh[t] = current_cohesion
     return coh
 
+
+def calc_periodic_mass_center(pos, arena_size):
+    periodic_center = np.zeros(2)
+    norm_term = 2*np.pi/arena_size
+    for dim_idx in range(2):
+        circ_coords = np.zeros((pos.shape[0], 2))
+        circ_coords[:, 0] = np.cos((pos[:, dim_idx] * norm_term)) / norm_term
+        circ_coords[:, 1] = np.sin((pos[:, dim_idx] * norm_term)) / norm_term
+        mean_circ_coords = np.mean(circ_coords, axis=0)
+        mean_angle = np.arctan2(-mean_circ_coords[1], -mean_circ_coords[0]) + np.pi
+        periodic_center[dim_idx] = mean_angle/norm_term
+    return periodic_center
+
+
+def calcStartlePosition(pos, startles):
+    """
+
+    :param pos:
+    :param startles:
+    :return:
+    """
+    ntimesteps = startles.shape[0]
+    for t in np.arange(ntimesteps):
+        startle_idc = np.where(startles[t, :])[0]
+        if startle_idc.size == 0:
+            continue
+        else:
+            cmass_center = calc_periodic_mass_center(pos, L)
+            center_distvecs = PeriodicDist(cmass_center, pos, L)
+            center_dists = np.sqrt(center_distvecs[:, 0] ** 2 + center_distvecs[:, 1] ** 2)
+
+
+    return
 vis_angles = np.array(outData['vis_angles'])
 plt.figure()
 plt.plot(vis_angles[:, 0:5])

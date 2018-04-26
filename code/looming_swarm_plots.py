@@ -6,7 +6,7 @@ from matplotlib import gridspec
 from matplotlib.transforms import blended_transform_factory
 from itertools import product
 from pypet.trajectory import Trajectory
-import schreckstoff_analysis as sca
+import collective_behavior_analysis as cbar
 
 
 def load_result(filename):
@@ -19,15 +19,15 @@ def load_result(filename):
     par_names = ['speed0', 'noisep', 'seed']
 
     result_specs = {'names': ['startle_freq'],
-                    'funcs': [sca.calcStartlingFrequencyWithBurning],
+                    'funcs': [cbar.calcStartlingFrequencyWithBurning],
                     'input_variables': [['results.outdata.crun.startle', 'par.total_time',
                                          'par.output']]}
     time_result_specs = {'names': ['pol', 'coh'],
-                         'funcs': [sca.calcPolarization, sca.get_calcCohesion('nearest')],
+                         'funcs': [cbar.calcPolarization, cbar.get_calcCohesion('nearest')],
                          'input_variables': [['results.outdata.crun.uw'],
                                              ['results.outdata.crun.pos']]}
 
-    res, time_res, ranges, unique_vals, lengths = sca.collect_results(traj, par_names, result_specs,
+    res, time_res, ranges, unique_vals, lengths = cba.collect_results(traj, par_names, result_specs,
                                                                       time_result_specs)
     return res, time_res, ranges, unique_vals, lengths
 
