@@ -1,8 +1,13 @@
+import os
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import pandas as pd
 import models as md
+
+figure_path = '../figures/results/'
+if not os.path.exists(figure_path):
+    os.makedirs(figure_path)
 
 
 def plot_response_props_column(exc_scale, inh_scale, vt_std, rho_null, rho_null_std, tau_inh, cutoff_angle, exc_noise,
@@ -111,4 +116,4 @@ mpl.rcParams['axes.spines.right'] = False
 mpl.rcParams['axes.linewidth'] = 3
 mpl.rcParams['axes.labelpad'] = 10
 plot_response_props_column(exc_scale=40, inh_scale=9.6, vt_std=2, rho_null=2, rho_null_std=1.2, tau_inh=1, cutoff_angle=180, exc_noise=5, m=3)
-#plt.savefig('resp_props.eps', bbox_inches='tight')
+plt.savefig(figure_path + 'resp_props.eps', bbox_inches='tight')
