@@ -1,5 +1,4 @@
 \documentclass[a4paper,10pt,hidelinks]{scrreprt}
-%\usepackage[utf8x]{inputenc}
 
 % Packages =========================================
 \usepackage{algorithm}
@@ -9,6 +8,10 @@
 \usepackage{amssymb}
 \usepackage[toc,page]{appendix}				% more control over appendices
 \usepackage[english]{babel} 				% Anpassung für mehrsprachige Dokumente
+\usepackage[utf8]{inputenc}				% for german characters like "ä, ö, ü"
+\usepackage[safeinputenc=true,backend=biber,style=authoryear,natbib=true,maxbibnames=5,maxcitenames=1,uniquelist=false]{biblatex}
+%\renewcommand*{\multinamedelim}{\semicolon\addspace}
+\addbibresource{masterthesisbib.bib}
 \usepackage[usenames, dvipsnames]{color}					% Nutzung von Farben
 \usepackage{diagbox}
 \usepackage{float}					% notw. für explizite Setzung von Grafiken
@@ -16,15 +19,12 @@
 \usepackage[paper=a4paper,left=40mm,right=30mm,top=20mm,bottom=25mm]{geometry} % Randmaße
 \usepackage{graphicx} 					% Einbindung externer Grafiken
 \usepackage{hyperref}
-%\usepackage[utf8]{inputenc}				% for german characters like "ä, ö, ü"
 %\usepackage{listings}					% notwendig für Quellcode
 \usepackage{lmodern}	 				% Moderne Version von Computer Modern
 \usepackage{pdfpages}					% Einbindung einer pdf-Datei
 \usepackage{pgfplots}
 \usepackage{mdwlist}					% kompaktere Auflistungen
 \usepackage{microtype}	 				% Optischer Randausgleich
-\usepackage[round]{natbib}
-\usepackage{doi}
 \usepackage{subcaption}					% Subfigure/-tabellen
 \usepackage{scrpage2}
 \usepackage{tabularx}					% Textsetzung in Tabellen in p-Spalten
@@ -33,8 +33,16 @@
 \usepackage{url}					% Links
 \usepackage{xfrac}					% notw. für schräggestellten Bruch
 \usepackage[margin=10pt,font=scriptsize,labelfont=bf,labelsep=endash]{caption}
+\renewcommand{\arraystretch}{1.3}
 
-
+% the following code avoids errors that come up if the abstracts in the .bib file contain %-signs
+\DeclareSourcemap{ 
+	\maps[datatype=bibtex]{
+		\map{
+			\step[fieldset=abstract, null]
+		}
+	}
+}
 
 
 \begin{document}
@@ -77,7 +85,9 @@
 	\begin{abstract}
 		\textbf{Abstract}\\
 		Many aspects of fish school behavior can be explained qualitatively by self-propelled agent models with social interaction forces that are based on either metric or topological neighborhoods.
-		Recently, startling of fish has been analyzed in its dependence of the network structure \citep{Rosenthal2015} but a mechanistic model and its influence on the collective behavior is missing.
+		Recently, startling of fish has been analyzed in its dependence of the network structure 
+		\citep{Rosenthal2015} but a mechanistic model and its influence on the collective behavior 
+		is missing.
 		Here we couple a model for collective behavior with a neuronal model that receives looming visual stimulus input to initiate a startle response, inspired by the neurobiologically well-studied Mauthner cell system.
 		First, we analyzed the basic properties of the startle behavior of a single fish as a reaction to a looming stimulus.
 		On the group level, we looked at startling frequency as well as group cohesion and polarization depending on neuronal and collective behavior parameters via simulations of the combined model.
@@ -295,7 +305,8 @@
 	\end{equation}
 	where $\eta_t$ is a Gaussian noise term.\\
 	The basic parameters of the LIF model, i.e. $E_L$, $R_m$, $\tau_m$ and $V_t$, have been fitted 
-	to experimental data in a previous study by \cite{Koyama2016} using recordings from four larval 
+	to experimental data in a previous study by \cite{Koyama2016} using recordings from four 
+	%larval 
 	zebrafish at four days post-fertilization(dpf).
 	For the details of the fitting procedure see their methods section.\\
 	One important property of this dynamic system are the time scales on which the described 
@@ -400,81 +411,83 @@
 	\ref{tab:looming_exp}.\\
 	\begin{table} [!th]
 		\begin{center}
-			\begin{tabular}{|l|c|c|c|c|}
-				\hline
-				\textbf{Study} & 1 & 2 & 3 & 4\\
+			\begin{tabular}{l|c|c|c|c}
+				%\hline
+				\textbf{Study} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}\\
 				\hline
 				\textbf{Species} & Zebrafish & Zebrafish & Zebrafish & Goldfish\\
-				\hline
+				%\hline
 				\textbf{Age} & 6-8 dpf & 5-6 dpf & 5 - 7 dpf & -\\
-				\hline
+				%\hline
 				\textbf{Water temperature [\textdegree C]} & 28  & - & 24  & 18 \\
-				\hline
-				\textbf{Screen spanning [\textdegree]} & 62 & >100* & >70* & -\\
-				\textbf{angle horizontal} & & & & \\
-				\hline
-				\textbf{Screen spanning [\textdegree]} & 50 & - & - & -\\
-				\textbf{angle vertical} & & & & \\
-				\hline
+				%\hline
+				\textbf{Screen spanning} & 62 & >100* & >70* & -\\
+				\textbf{angle horizontal [\textdegree]} & & & & \\
+				%\hline
+				\textbf{Screen spanning} & 50 & - & - & -\\
+				\textbf{angle vertical [\textdegree]} & & & & \\
+				%\hline
 				\textbf{Screen distance [cm]} & 1 & - & 3.25 & 16\\
-				\hline
+				%\hline
 				\textbf{Luminance dark} & 0.07 cd/$m^2$ & 0.7 lux & - & 70-80 lux\\
-				\hline
+				%\hline
 				\textbf{Luminance grey} & - & 75 lux & - & -\\
-				\hline
+				%\hline
 				\textbf{Luminance white} & 122.5 cd/$m^2$ & 512 lux & 500 lumen & 300-320 lux\\
-				\hline
+				%\hline
 				\textbf{L/V values [ms]} & 60-300 \dag & 510 - 2900 \dag & 100 - 
 				1200 & 20 - 110*\\
-				\hline
+				%\hline
 				\textbf{Durations [s]} & 1.65 - 8 & 0.5 - 5* & 1 - 5.5* & 0.25 - 0.8*\\
-				\hline
+				%\hline
 				\textbf{Acclimation time [min]} & - & - & 15 & -\\
-				\hline
+				%\hline
 				\textbf{Visual angles [\textdegree]} & 2 - 48 & 25 - 100* & 8 - 70* & 2 - 100*\\
-				\hline
-				\textbf{Critical angle} & 21.7 +- 2.5 & 72 +- 1.3 & 35 +- 15 & -\\
-				\hline
+				%\hline
+				\textbf{Critical angle [\textdegree]} & 21.7 $\pm$ 2.5 & 72 $\pm$ 1.3 & 35 $\pm$ 15 
+				& -\\
+				%\hline
 				\textbf{Response probabilities} & 20 - 75* & 46 - 60 & 25 - 75* & 70 - 91\\
-				\hline
+				%\hline
 				\textbf{Head-restrained} & Yes & No & No & No\\
-				\hline
+				%\hline
 				\textbf{Stimulus shape} & Circle & Circle & Rectangle & Circle\\
-				\hline
-				\textbf{Stimulus color} & Black/White, & Black/Checkb. & Black & Black\\
-				\hline
+				%\hline
+				\textbf{Stimulus color} & Black/White, & Black/Chkb. & Black & Black\\
+				%\hline
 				\textbf{Background color} & White/Black, & Grey & Blue & White\\
-				\hline
+				%\hline
 				\textbf{Stimulus sizes [cm]} & 0.03 & ? & 1 - 2.5 & 0.5 - 5*\\
-				\hline
+				%\hline
 				\textbf{Stimulus velocities [cm/s]} & 0.2 - 1 & ? & ? & 20 - 60\\
-				\hline
+				%\hline
 				\textbf{Initial distances} & ? & ? & 5 & ?\\
 				\textbf{(virtual) [cm]} &  &  &  & \\
-				\hline
+				%\hline
 				\textbf{Projection site} & Side/Front & Bottom & Side/Front & Above\\
-				\hline
+				%\hline
 			\end{tabular}
 		\end{center}
 		\caption{The corresponding references of the studies are 1: \cite{Temizer2015}, 
 		2: \cite{Dunn2016}, 3: \cite{Bhattacharyya2017} and 4: \cite{Preuss2006}.
 		Note that the studies might have conducted other looming stimulus experiments with 
-		simultaneous neural recordings but restricted this project to the behavioral aspects and 
-		thus did not include them here.
+		simultaneous neural recordings but they are not included here because this project is 
+		restricted to the behavioral aspects.
 		For values denoted with a "\dag" we used the diameter 
-		instead of the radius, as was done in the original studies.
+		instead of the radius, as it was done in the original studies.
 		Values with an "*" are either 
 		read of figures or inferred from other, reported values. }
 		\label{tab:looming_exp}
 	\end{table}
 	For the results of the experiment the time from onset of the stimulus, the distance and the 
 	visual angle are measured at the time when the fish responds, i.e. starts to move away.
-	While \cite{Bhattacharyya2017} found the visual angle at response time (response angle) to have 
-	the same mean value at different stimulus sizes and velocities, other studies report varying 
+	While \cite{Bhattacharyya2017} found the visual angle at response time (response angle) to 
+	have the same mean value at different stimulus sizes and velocities, other studies report 
+	varying 
 	response angles.\\
 	...
 	We ignore further processing time after the spike of the Mauthner cell 
-	because it is in the order of milliseconds (\cite{Preuss2003}) and thus 
+	because it is in the order of milliseconds \citep{Preuss2003} and thus 
 	irrelevant with respect to the overall response time which is in the order 
 	of at least hundreds of milliseconds for visual stimuli \citep{Preuss2006}.
 	\begin{equation}
@@ -567,8 +580,8 @@
 	\end{itemize}
 	\begin{table} [!th]
 		\begin{center}
-			\begin{tabular}{|l|c|p{7cm}|}
-				\hline
+			\begin{tabular}{l|c|p{7cm}}
+				%\hline
 				\textbf{Parameter} & \textbf{Value (unit)} & \textbf{Comment} \\
 				\hline
 				$E_L$ & -79 mV & Resting potential\\
@@ -582,7 +595,7 @@
 				$sd_{init}$ & 1 mV & Standard deviation of initial condition noise\\
 				$m$ & 1 \textdegree/s  & Slope of linear transformation\\
 				$b$ & 0 \textdegree & Offset of linear transformation\\
-				\hline
+				%\hline
 			\end{tabular}
 		\end{center}
 		\caption{Parameters of the single LIF neuron model with a looming stimulus input. Parameters that were explored are indicated either by a value range such as e.g. for $\mu_s$ or by a set with all explored values inside of curly brackets such as e.g. for $\sigma_s$.}
@@ -634,14 +647,23 @@
 		specific context which might vary in other experimental conditions and certainly in other 
 		species
 		\item furthermore the LIF model makes strong assumptions about the processing power of the 
-		neuron which are likely not true. see for example \cite{Koch2000}, and specifically for the 
+		neuron which are likely not true. see for example \cite{Koch2000}, and specifically for 
+		%the 
 		M-cell \cite{Medan2017}
 		\item in locusts, neurons have been found that specifically code looming stimuli 
 		\cite{Hatsopoulos1995} (?)
+		\item we should keep in mind that the optic tectum is still developing at larval stage 
+		\cite{Avitan2017}
+		\item considering the amount of differences of previous studies that looked into visual 
+		looming stimuli, a more systematic analysis of visually evoked startle responses in 
+		zebrafish is clearly missing
+		\item test citations: \cite{Severi2014}, \cite{Sarvestani2013}, \cite{Romano2015}, 
+		\cite{Parrish2002}, \cite{Moeller1989}, \cite{Howe2013}, \cite{DelBene2010}
 	\end{itemize}
 	\newpage
-	\bibliographystyle{abbrvnat}
-	\bibliography{masterthesisbib}
+	%\bibliographystyle{abbrvnat}
+	%\bibliography{masterthesisbib}
+	\printbibliography[heading=bibintoc]
 	
 	\newpage
 	\appendix

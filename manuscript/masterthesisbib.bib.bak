@@ -1055,8 +1055,8 @@
 }
 
 @Article{Moeller1989,
-  author    = {Møller, J.},
-  title     = {Random tessellations in ℝ d},
+  author    = {M{\o{}}ller, J.},
+  title     = {Random tessellations in {$\mathbb{R}^{d}$}},
   journal   = {Advances in Applied Probability},
   year      = {1989},
   volume    = {21},
@@ -1068,7 +1068,7 @@
 }
 
 @Article{Parrish2002,
-  author   = {Julia K. Parrish and Steven V. Viscido and Daniel Grünbaum},
+  author   = {Julia K. Parrish and Steven V. Viscido and Daniel Gr{\"u}nbaum},
   title    = {Self-Organized Fish Schools: An Examination of Emergent Properties},
   journal  = {The Biological Bulletin},
   year     = {2002},
@@ -1178,7 +1178,7 @@
 }
 
 @Article{Brown2017,
-  author    = {Brown, Andre EX and de Bivort, Benjamin},
+  author    = {Brown, Andre EX and {de Bivort}, Benjamin},
   title     = {The study of animal behaviour as a physical science},
   journal   = {bioRxiv},
   year      = {2017},
@@ -1544,7 +1544,7 @@
 }
 
 @Article{Song2015,
-  author   = {Jianren Song and Konstantinos Ampatzis and Jessica Ausborn and Abdeljabbar El Manira},
+  author   = {Jianren Song and Konstantinos Ampatzis and Jessica Ausborn and Abdeljabbar {El Manira}},
   title    = {A Hardwired Circuit Supplemented with Endocannabinoids Encodes Behavioral Choice in Zebrafish},
   journal  = {Current Biology},
   year     = {2015},
@@ -1841,7 +1841,7 @@
 }
 
 @Article{Tyll2013,
-  author   = {Sascha Tyll and Björn Bonath and Mircea Ariel Schoenfeld and Hans-Jochen Heinze and Frank W. Ohl and Tömme Noesselt},
+  author   = {Sascha Tyll and Bj{\"o}rn Bonath and Mircea Ariel Schoenfeld and Hans-Jochen Heinze and Frank W. Ohl and T{\"o}mme Noesselt},
   title    = {Neural basis of multisensory looming signals},
   journal  = {NeuroImage},
   year     = {2013},
@@ -2126,7 +2126,7 @@
 }
 
 @Article{Oliva2014,
-  author   = {Oliva, Damián and Tomsic, Daniel},
+  author   = {Oliva, Dami{\'a}n and Tomsic, Daniel},
   title    = {Computation of object approach by a system of visual motion-sensitive neurons in the crab Neohelice},
   journal  = {Journal of Neurophysiology},
   year     = {2014},
@@ -2399,7 +2399,7 @@
 }
 
 @Article{Medan2017,
-  author    = {Medan, Violeta and Mäki-Marttunen, Tuomo and Sztarker, Julieta and Preuss, Thomas},
+  author    = {Medan, Violeta and M{\" a}ki-Marttunen, Tuomo and Sztarker, Julieta and Preuss, Thomas},
   title     = {Differential processing in modality-specific Mauthner cell dendrites},
   journal   = {The Journal of Physiology},
   year      = {{2017}},
@@ -2533,7 +2533,8 @@ Animals process multimodal information for adaptive behavioural decisions. In fi
 }
 
 @Article{Pita2015,
-  author    = {Pita, Diana and Moore, Bret A. and Tyrrell, Luke P. and Fernández-Juricic, Esteban},
+  author    = {Pita, Diana and Moore, Bret A. and Tyrrell, Luke P. and Fern{\'a}ndez-Juricic, 
+  Esteban},
   title     = {Vision in two cyprinid fish: implications for collective behavior},
   journal   = {PeerJ},
   year      = {2015},
@@ -2838,7 +2839,7 @@ Visual cues often modulate auditory signal processing, leading to improved sound
 }
 
 @InCollection{Lueckmann2018,
-  author    = {Lueckmann, Jan-Matthis and Goncalves, Pedro J and Bassetto, Giacomo and Öcal, Kaan and Nonnenmacher, Marcel and Macke, Jakob H},
+  author    = {Lueckmann, Jan-Matthis and Goncalves, Pedro J and Bassetto, Giacomo and {\" O}cal, Kaan and Nonnenmacher, Marcel and Macke, Jakob H},
   title     = {Flexible statistical inference for mechanistic models of neural dynamics},
   booktitle = {Advances in Neural Information Processing Systems 30},
   publisher = {Curran Associates, Inc.},
@@ -2847,7 +2848,6 @@ Visual cues often modulate auditory signal processing, leading to improved sound
   volume    = {38},
   pages     = {1289--1299},
   date      = {2017},
-  doi       = {10.1523/jneurosci.2225-17.2018},
   file      = {NIPS Full Text PDF:Lueckmann2017.pdf:application/pdf},
   issn      = {0270-6474},
   timestamp = {2018-03-26},
@@ -2983,7 +2983,7 @@ Most behaviors, even simple innate reflexes, are mediated by circuits of neurons
 }
 
 @Article{Severi2014,
-  author    = {Kristen E. Severi and Ruben Portugues and João C. Marques and Donald M. O’Malley and Michael B. Orger and Florian Engert},
+  author    = {Kristen E. Severi and Ruben Portugues and Jo{\~a}o C. Marques and Donald M. O'Malley and Michael B. Orger and Florian Engert},
   title     = {Neural Control and Modulation of Swimming Speed in the Larval Zebrafish},
   journal   = {Neuron},
   year      = {2014},
@@ -3083,7 +3083,7 @@ Neural circuits in the brain often receive inputs from multiple sources, such as
 }
 
 @Article{DelBene2010,
-  author    = {Del Bene, Filippo and Wyart, Claire and Robles, Estuardo and Tran, Amanda and Looger, Loren and Scott, Ethan K. and Isacoff, Ehud Y. and Baier, Herwig},
+  author    = {{Del Bene}, Filippo and Wyart, Claire and Robles, Estuardo and Tran, Amanda and Looger, Loren and Scott, Ethan K. and Isacoff, Ehud Y. and Baier, Herwig},
   title     = {Filtering of Visual Information in the Tectum by an Identified Neural Circuit},
   journal   = {Science},
   year      = {2010},
@@ -3206,7 +3206,7 @@ Neural circuits in the brain often receive inputs from multiple sources, such as
 }
 
 @Article{Marques2018,
-  author    = {João C. Marques and Simone Lackner and Rita Félix and Michael B. Orger},
+  author    = {Jo{\~a}o C. Marques and Simone Lackner and Rita F{\'e}lix and Michael B. Orger},
   title     = {Structure of the Zebrafish Locomotor Repertoire Revealed with Unsupervised Behavioral Clustering},
   journal   = {Current Biology},
   year      = {2018},
@@ -3224,8 +3224,8 @@ An important concept in ethology is that complex behaviors can be constructed fr
 }
 
 @Article{Romano2015,
-  author    = {Sebastián A. Romano and Thomas Pietri and Verónica Pérez-Schuster and Adrien Jouary and Mathieu Haudrechy and Germán Sumbre},
-  title     = {Spontaneous Neuronal Network Dynamics Reveal Circuit’s Functional Adaptations for Behavior},
+  author    = {Sebasti{\'a}n A. Romano and Thomas Pietri and Ver{\'o}nica P{\'e}rez-Schuster and Adrien Jouary and Mathieu Haudrechy and Germ{\'a}n Sumbre},
+  title     = {Spontaneous Neuronal Network Dynamics Reveal Circuit's Functional Adaptations for Behavior},
   journal   = {Neuron},
   year      = {2015},
   volume    = {85},
@@ -3276,6 +3276,24 @@ Spontaneous neuronal activity is spatiotemporally structured, influencing brain 
   file      = {:Zienkiewicz2015.pdf:PDF},
   timestamp = {2018-04-23},
   url       = {https://doi.org/10.1140/epjst/e2015-50093-5},
+}
+
+@Article{Avitan2017,
+  author    = {Lilach Avitan and Zac Pujic and Jan M{\" o}lter and Matthew Van De Poll and Biao Sun and Haotian Teng and Rumelo Amor and Ethan K. Scott and Geoffrey J. Goodhill},
+  title     = {Spontaneous Activity in the Zebrafish Tectum Reorganizes over Development and Is Influenced by Visual Experience},
+  journal   = {Current Biology},
+  year      = {2017},
+  volume    = {27},
+  number    = {16},
+  pages     = {2407 - 2419.e4},
+  issn      = {0960-9822},
+  abstract  = {Summary
+Spontaneous patterns of activity in the developing visual system may play an important role in shaping the brain for function. During the period 4–9 dpf (days post-fertilization), larval zebrafish learn to hunt prey, a behavior that is critically dependent on the optic tectum. However, how spontaneous activity develops in the tectum over this period and the effect of visual experience are unknown. Here we performed two-photon calcium imaging of GCaMP6s zebrafish larvae at all days from 4 to 9 dpf. Using recently developed graph theoretic techniques, we found significant changes in both single-cell and population activity characteristics over development. In particular, we identified days 5–6 as a critical moment in the reorganization of the underlying functional network. Altering visual experience early in development altered the statistics of tectal activity, and dark rearing also caused a long-lasting deficit in the ability to capture prey. Thus, tectal development is shaped by both intrinsic factors and visual experience.},
+  doi       = {10.1016/j.cub.2017.06.056},
+  file      = {:Avitan2017.pdf:PDF},
+  keywords  = {neural coding, neural assemblies, neural plasticity, visual development, critical period, calcium imaging, graph theory, prey capture, dark rearing, behavior},
+  timestamp = {2018-05-02},
+  url       = {http://www.sciencedirect.com/science/article/pii/S0960982217307935},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
