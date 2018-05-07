@@ -33,6 +33,8 @@
 \usepackage{url}					% Links
 \usepackage{xfrac}					% notw. für schräggestellten Bruch
 \usepackage[margin=10pt,font=scriptsize,labelfont=bf,labelsep=endash]{caption}
+
+% change this factor to change the spacing between rows in tables
 \renewcommand{\arraystretch}{1.3}
 
 % the following code avoids errors that come up if the abstracts in the .bib file contain %-signs
@@ -43,7 +45,6 @@
 		}
 	}
 }
-
 
 \begin{document}
 	\thispagestyle{empty}
@@ -375,40 +376,35 @@
 	We will now come to the simulations of the visual looming stimulus experiment.
 	For this we first describe the experiments that we want to reproduce, especially the specific 
 	conditions and results.
-	This is followed by the results of the simulations using the model in its various formulations 
-	as described in the previous chapter.
+	This is followed by the results of the simulations using the model in the different 
+	formulations that we showed in the previous chapter.
 	Furthermore, we fit the parameters of the full model to experimental data and finally summarize 
 	and discuss our findings.
 	\section{Visual looming stimulus experiments}
 	One of the earliest studies of the kind we want to look at has been conducted by 
-	\cite{Dill1974} where they photographed a black dot on a white background and projected it on 
-	a tracing paper that was taped to the wall of the aquarium and thus creating a virtual looming 
-	stimulus.
+	\cite{Dill1974} where they photographed a black dot on a white background and projected these 
+	photographs on a tracing paper that was taped to the wall of the aquarium and thus creating a 
+	virtual looming stimulus.
 	They also tested a model predator that consisted of a black disk of Plexiglas that was moved by 
 	a motor.
 	In more recent studies computer-generated stimuli are used and therefore the stimulus size 
 	and velocity can be controlled in much more detail.
 	The typical arrangement is a small dish or aquarium in which a single fish can either freely 
 	move or it is head-restrained, i.e. it can only move its tail while the head is fixed. 
-	%TODO:check if this is true for all papers
 	In the studies that we will consider here they used larval zebrafish (\cite{Temizer2015}, 
 	\cite{Dunn2016}, \cite{Bhattacharyya2017}) and in one case they used goldfish 
 	\citep{Preuss2006}.
-	The stimulus is then either projected on the floor, ceiling or wall of the aquarium or a screen 
-	is placed next to the aquarium.
-	% TODO: look up if this is actually the case and add to the table
+	The stimulus is then either projected on the floor, ceiling or side wall of the aquarium or a 
+	screen is placed close to the aquarium.
 	In most studies the stimulus is a black disk or square on a white or blue background.
 	Other stimuli that have been tested, such as a circle with a checkerboard pattern did not show 
 	significant differences but there has been no systematic analysis (\cite{Preuss2006}, 
 	\cite{Dunn2016}).
-	The sizes, i.e. the diameter of the disk or the side length of the square, range from A to B 
-	and the velocities range from C to D. %TODO: fill in values for A,B,C,D
-	The initial virtual distance of the object ranges from A to B, so that the visual angles on the 
-	retina range from C to D. %TODO: fill in values for A,B,C,D
-	%TODO: mention other conditions
-	
-	An overview of the different conditions in the various experiments is given in Table 
-	\ref{tab:looming_exp}.\\
+	The sizes, i.e. the diameter of the disk or the side length of the square, range from 0.3mm to 
+	5cm and the velocities range from 0.2cm/s to 60cm/s.
+	The subtended visual angles on the retina of the fish range from 2\textdegree to at least 
+	100\textdegree.
+	For an overview of all reported conditions in the experiments see Table \ref{tab:looming_exp}.\\
 	\begin{table} [!th]
 		\begin{center}
 			\begin{tabular}{l|c|c|c|c}
@@ -476,30 +472,62 @@
 		For values denoted with a "\dag" we used the diameter 
 		instead of the radius, as it was done in the original studies.
 		Values with an "*" are either 
-		read of figures or inferred from other, reported values. }
+		read of figures or inferred from other, reported values. Chkb. = Checkerboard pattern.}
 		\label{tab:looming_exp}
 	\end{table}
+	%TODO: make appropriate groups for table and/or remove some of them and put the full table into 
+	%appendix
 	For the results of the experiment the time from onset of the stimulus, the distance and the 
 	visual angle are measured at the time when the fish responds, i.e. starts to move away.
-	While \cite{Bhattacharyya2017} found the visual angle at response time (response angle) to 
-	have the same mean value at different stimulus sizes and velocities, other studies report 
-	varying 
-	response angles.\\
-	...
-	We ignore further processing time after the spike of the Mauthner cell 
-	because it is in the order of milliseconds \citep{Preuss2003} and thus 
-	irrelevant with respect to the overall response time which is in the order 
-	of at least hundreds of milliseconds for visual stimuli \citep{Preuss2006}.
+	The visual angle at response time (response angle) has been found to have the same mean value 
+	at different stimulus sizes and velocities in all studies that were done with zebrafish, 
+	although there are substantial differences in the mean value as well as in the variance.
+	This could be explained by the differences in various experimental conditions such as the water 
+	temperature, head restraining or the acclimation time (see Table \ref{tab:looming_exp}).
+	While the study with goldfish \citep{Preuss2006} doesn't report to find a so-called critical 
+	visual angle, the observed response angles (14\textdegree to 29\textdegree) are in a range 
+	that is comparable to e.g. the one found by \cite{Bhattacharyya2017} (35\textdegree $\pm$ 
+	15\textdegree).\\
+	For the simulations of the experiment we closely followed the procedure reported by 
+	\cite{Bhattacharyya2017}.
+	At the beginning of a trial a stimulus size is drawn from a uniform distribution between 10mm 
+	and 25mm.
+	Next, a L/V value is uniformly drawn between 0.1s and 1.2s and the resulting velocity for the 
+	trial stimulus size is calculated.
+	With the trial stimulus size $L_{trial}$ and the trial velocity $v_{trial}$ the visual angle 
+	over time $\theta(t)$ is calculated by:
 	\begin{equation}
-	I(t) = f(\theta (t))
-	\label{eq:input}
-	\end{equation}
-	
-	\begin{equation}
-	\theta (t) = 2\cdot \arctan(\frac{L/2}{distance})
+	\theta (t) = 2\cdot \arctan(\frac{L_{trial}/2}{D_{init} - v_{trial}\cdot t}),
 	\label{eq:theta}
 	\end{equation}
+	where $D_{init}$ is the initial distance which is set to 50mm if not stated otherwise.
 	
+	The visual angle is then transformed by a linear function and the result is the input $I(t)$ 
+	for our neuronal model, described in the previous chapter:
+	\begin{equation}
+	I(t) = f(\theta (t)) = m \cdot \theta(t) + b.
+	\label{eq:input}
+	\end{equation}
+	We take the time of the first spike $t_{spk}$ of the model M-cell after stimulus onset as the 
+	response time of the fish.
+	We ignore further processing time after the spike because it is in the order of milliseconds 
+	\citep{Preuss2003} and thus irrelevant with respect to the overall response time which is in 
+	the order of at least hundreds of milliseconds for visual stimuli \citep{Preuss2006}.
+	Thus the response angle of the simulated trial will be $\theta (t_{spk})$.
+	%TODO: mention other response properties
+	%TODO: mention initial period with constant size
+
+	\begin{figure}
+			\begin{center}
+				\input{tikz_figures/test_tikz_plot.tex}
+				\caption{my caption}	
+			\end{center}
+	\end{figure}
+	
+	\begin{itemize}
+		\item plot theta over time for several lv values
+		\item plot response properties for the ideal case of a precise visual angle threshold
+	\end{itemize}	
 	\section{Stationary model prediction}
 	\begin{equation}
 	I(t) = 10^{-11} c_{exc} f(\theta(t)) = 10^{-11} c_{exc} (m \cdot \theta(t) 
@@ -535,13 +563,6 @@
 	\begin{itemize}
 		\item Visual looming stimulus experiments
 		\begin{itemize}
-			\item review experiments that used a visual looming stimulus:
-			\item what species, arena and display arrangement, stimulus types (speeds, sizes)
-			\item main behavioral results: critical angle?
-			\item we will focus on Bhattacharyya here because we have the data and it's from 
-			zebrafish where we have the fitted parameters from \cite{Koyama2016}
-			\item describe how we model the experiment (what exactly is the input, how do we 
-			calculate response properties)
 			\item plot theta over time for several lv values
 			\item plot response properties for the ideal case of a precise visual angle threshold
 		\end{itemize}
@@ -565,6 +586,8 @@
 		\end{itemize}
 		\item fitting of parameters:
 		\begin{itemize}
+			\item we will only use raw data that we got from \cite{Bhattacharyya2017} bc it's from 
+			zebrafish where we have the fitted parameters from \cite{Koyama2016}
 			\item give brief summary of fitting procedure from \cite{Lueckmann2018}
 			\item describe chosen meta parameters for fitting: layers, neurons per layer, nepochs, 
 			ntraining runs etc.

@@ -16,16 +16,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.1}Visual looming stimulus experiments}{7}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Stationary model prediction}{7}{section.3.2}
+\contentsline {section}{\numberline {3.2}Stationary model prediction}{8}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Chapter outline}{8}{section.3.3}
+\contentsline {section}{\numberline {3.3}Chapter outline}{9}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Coupling of Neuronal Model and Collective Dynamics}{10}{chapter.4}
+\contentsline {chapter}{\numberline {4}Coupling of Neuronal Model and Collective Dynamics}{11}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Discussion}{11}{chapter.5}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Bibliography}{12}{chapter*.4}
+\contentsline {chapter}{\numberline {5}Discussion}{12}{chapter.5}
 \defcounter {refsection}{0}\relax 
 \setcounter {tocdepth}{-1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {.1}Appendix}{15}{section.Alph0.1}
+\contentsline {section}{\numberline {.1}Appendix}{13}{section.Alph0.1}
