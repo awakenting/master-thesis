@@ -4,40 +4,44 @@ import numpy as np
 import matplotlib as mpl
 mpl.use("pgf")
 general_fontsize = 12
-pgf_with_custom_preamble = {
+custon_pgf_rcparams = {
     "font.family": 'serif',
     "font.serif": 'cm',
     'font.size': general_fontsize,
     'xtick.labelsize': general_fontsize,
     'ytick.labelsize': general_fontsize,
     'axes.labelsize': general_fontsize,
+    'legend.fontsize': 10,
+    'legend.borderaxespad': 0.5,
+    'legend.borderpad': 0.4,
+    'legend.columnspacing': 2.0,
+    'legend.edgecolor': '0.8',
+    'legend.facecolor': 'inherit',
+    'legend.fancybox': True,
+    'legend.framealpha': 0.8,
+    'legend.frameon': True,
+    'legend.handleheight': 0.7,
+    'legend.handlelength': 2.0,
+    'legend.handletextpad': 0.8,
+    'legend.labelspacing': 0.5,
+    'legend.loc': 'best',
+    'legend.markerscale': 1.0,
+    'legend.numpoints': 1,
+    'legend.scatterpoints': 1,
+    'legend.shadow': False,
     "text.usetex": True,    # use inline math for ticks
-    "pgf.preamble": [
-        "\\usepackage{units}",  # load additional packages
-        "\\usepackage{metalogo}",
-        "\\usepackage{amsfonts}",
-        "\\usepackage{unicode-math}",  # unicode math setup
-        r"\setmathfont{xits-math.otf}",
-        r"\setmainfont{DejaVu Serif}",  # serif font via preamble
-    ]
 }
-mpl.rcParams.update(pgf_with_custom_preamble)
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-import pandas as pd
-from matplotlib2tikz import save as tikz_save
-
-
-
 import models as md
 
-figure_path = './figures/'
+figure_path = '../figures/results/'
 if not os.path.exists(figure_path):
     os.makedirs(figure_path)
 
 sns.set()
-mpl.rcParams.update(pgf_with_custom_preamble)
+mpl.rcParams.update(custon_pgf_rcparams)
 
 LV_vals = np.array([0.1, 0.4, 0.8, 1.2])
 stim_size_vals = [10, 25]
