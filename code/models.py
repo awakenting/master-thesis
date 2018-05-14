@@ -110,6 +110,61 @@ def jit_ffi_model(tau_m, e_l, r_m, stimulus, noise_exc, noise_inh, v_t, dt, tota
     return time_points, v_m, t_spks, idx_spks, rho_inh
 
 
+def stationary_response_angle(vt, el, rm, rho_null, c_scale, c_rho, m, b):
+    resp_angle = (vt - el + rho_null)/(c_scale * m * (rm - c_rho)) - b/m
+    return resp_angle
+
+
+def calc_response_fully_stationary(params):
+    # sample lv values uniformly between lv_min and lv_max
+    lv = np.random.rand() * (params['lv_max'] - params['lv_min']) + params['lv_min']
+    # sample stimulus sizes (L) uniformly between l_min and l_max
+    # stim_size = np.random.rand()*(params['l_max']-params['l_min']) + params['l_min']
+    stim_size = np.random.randint(params['l_min'], params['l_max'])
+    speed = 1 / (lv / stim_size)
+    t, stims, tstims, dists, t_to_coll, tstim_to_coll = transform_stim(stim_size, speed, params['total_time'],
+                                                                          params['dt'], params['m'], params['b'],
+                                                                          params['init_period'], params['cutoff_angle'],
+                                                                          params['init_distance'])
+
+    stimulus = tstims * 1e-11 * params['exc_scale']
+    sigma_exc = params['noise_std_exc']
+    sigma_inh = params['noise_std_inh']
+    if sigma_exc == 0:
+        noise_exc = np.zeros(len(stimulus))
+    else:
+        noise_exc = np.random.normal(loc=0.0, scale=sigma_exc, size=len(stimulus))
+    if sigma_inh == 0:
+        noise_inh = np.zeros(len(stimulus))
+    else:
+        noise_inh = np.random.normal(loc=0.0, scale=sigma_inh, size=len(stimulus))
+
+    ntime_steps = int((params['total_time'] + params['init_period']) / params['dt'])
+    time_points = np.arange(ntime_steps) * params['dt']
+    v_m = np.zeros(ntime_steps)
+    v_m[0] = params['e_l']
+    if params['vt_std'] == 0:
+        v_t = params['v_t']
+    else:
+        v_t = np.random.normal(loc=params['v_t'], scale=params['vt_std'], size=ntime_steps)
+
+    v_m = params['e_l'] + stimulus * (params['r_m'] - params['rho_scale']) - params['rho_null'] / 1000 - noise_inh + noise_exc
+
+    above_threshold_idc = np.where(v_m > v_t)[0]
+
+    if not len(above_threshold_idc) == 0:
+        first_spike_idx = above_threshold_idc[0]
+        first_spike = time_points[first_spike_idx]
+    else:
+        first_spike = 0
+        first_spike_idx = 0
+    if not first_spike_idx >= len(t_to_coll):
+        resp_in_t_to_coll = t_to_coll[first_spike_idx]
+    else:
+        resp_in_t_to_coll = 0
+    return stims[first_spike_idx], dists[first_spike_idx], first_spike, lv, stim_size, speed, resp_in_t_to_coll
+
+
 def calc_response_lif(params):
     # sample lv values uniformly between lv_min and lv_max
     lv = np.random.rand() * (params['lv_max'] - params['lv_min']) + params['lv_min']
