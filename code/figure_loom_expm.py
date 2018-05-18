@@ -3,7 +3,7 @@ import numpy as np
 
 import matplotlib as mpl
 mpl.use("pgf")
-general_fontsize = 12
+general_fontsize = 16
 custon_pgf_rcparams = {
     "font.family": 'serif',
     "font.serif": 'cm',
@@ -11,7 +11,8 @@ custon_pgf_rcparams = {
     'xtick.labelsize': general_fontsize,
     'ytick.labelsize': general_fontsize,
     'axes.labelsize': general_fontsize,
-    'legend.fontsize': 10,
+    'axes.titlesize': general_fontsize,
+    'legend.fontsize': general_fontsize - 4,
     'legend.borderaxespad': 0.5,
     'legend.borderpad': 0.4,
     'legend.columnspacing': 2.0,
@@ -80,7 +81,7 @@ ax1.set_xlim([-0.1, 6])
 ax1.set_ylim([0, 100])
 ax1.set_xlabel("time [s]")
 ax1.set_ylabel(r"$\theta(t)$ [\textdegree]")
-ax1.legend()
+ax1.legend(loc='lower right')
 
 
 
@@ -125,6 +126,6 @@ ax2.set_xlim([-0.1, 6])
 ax2.set_ylim([0, 100])
 ax2.set_xlabel(r"time [s]")
 ax2.set_ylabel(r"$\theta(t)$ [\textdegree]")
-ax2.legend()
+ax2.legend(loc='lower right')
 #plt.show()
 plt.savefig(os.path.join(figure_path, 'figure_theta_lv_test.pdf'), bbox_inches='tight')

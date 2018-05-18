@@ -3,8 +3,8 @@ import numpy as np
 
 import matplotlib as mpl
 
-mpl.use("pgf")
-general_fontsize = 16
+#mpl.use("pgf")
+general_fontsize = 20
 custon_pgf_rcparams = {
     "font.family": 'serif',
     "font.serif": 'cm',
@@ -12,7 +12,8 @@ custon_pgf_rcparams = {
     'xtick.labelsize': general_fontsize,
     'ytick.labelsize': general_fontsize,
     'axes.labelsize': general_fontsize,
-    'legend.fontsize': 12,
+    'axes.titlesize': general_fontsize,
+    'legend.fontsize': general_fontsize - 2,
     'legend.borderaxespad': 0.5,
     'legend.borderpad': 0.4,
     'legend.columnspacing': 2.0,
@@ -48,7 +49,7 @@ default_params = {'tau_m': 0.023,
                   'e_l': -0.079,
                   'r_m': 10*1e6,
                   'v_t': -0.061,
-                  'init_vm_std': 0.001,
+                  'init_vm_std': 0.000,
                   'vt_std': 0.000,
                   'rho_null': 0,
                   'rho_null_std': 1,
@@ -92,37 +93,38 @@ for exc_std in [0.0005, 0.001, 0.002]:
                                                          ax1_params['rho_null']*1e-3, ax1_params['exc_scale']*1e-11,
                                                          ax1_params['rho_scale'], ax1_params['m'], ax1_params['b'])
 
-    ax1.hist(rstims, bins=30, label='$\sigma_{{m}}$ = {:.1e}'.format(exc_std), density=True, alpha=0.6)
+    ax1.hist(rstims, bins=30, label='$\sigma_{{m}}$ = {:.1e}'.format(exc_std), density=True, alpha=0.8)
 ax1.set_xlabel(r'$\theta_{resp}$ [\textdegree]')
-ax1.set_ylabel('Probability density')
-ax1.set_title('m = ' + str(ax1_params['m']))
-ax1.set_xlim([30, 65])
-ax1.set_ylim([0, 0.6])
+ax1.set_ylabel('Density')
+ax1.set_title('m = {:}, $\sigma_{{t}}$ = {:.1e}'.format(ax1_params['m'], ax1_params['vt_std']))
+#ax1.set_xlim([30, 65])
+#ax1.set_ylim([0, 0.6])
 ax1.vlines(analytical_resp_angle, 0, .2, 'r', label='predicted value\n without noise')
 ax1.legend()
 
 
 ax3_params = default_params.copy()
-ax3_params['noise_std_exc'] = 1*1e-3
-for vt_std in [0.0005, 0.001, 0.002]:
+ax3_params['vt_std'] = 1*1e-3
+for exc_std in [0.0005, 0.001, 0.002]:
     nruns = 1000
     rstims = np.zeros(nruns)
     rdists = np.zeros(nruns)
     reaction_times = np.zeros(nruns)
     speeds = np.zeros(nruns)
     for i in np.arange(nruns):
-        ax3_params['vt_std'] = vt_std
+        ax3_params['noise_std_exc'] = exc_std
         rstims[i], rdists[i], reaction_times[i], lv, stim_size, speeds[i], resp_in_t_to_coll = md.calc_response_fully_stationary(ax3_params)
 
     analytical_resp_angle = md.stationary_response_angle(ax3_params['v_t'], ax3_params['e_l'], ax3_params['r_m'],
                                                          ax3_params['rho_null']*1e-3, ax3_params['exc_scale']*1e-11,
                                                          ax3_params['rho_scale'], ax3_params['m'], ax3_params['b'])
-    hist_label = '$\sigma_{{t}}$ = {:.1e}, $\sigma_{{m}}$ = {:.1e}'.format(vt_std, ax3_params['noise_std_exc'])
-    ax3.hist(rstims, bins=30, label=hist_label, density=True, alpha=0.6)
+    hist_label = '$\sigma_{{m}}$ = {:.1e}'.format(exc_std)
+    ax3.hist(rstims, bins=30, label=hist_label, density=True, alpha=0.8)
 ax3.set_xlabel(r'$\theta_{resp}$ [\textdegree]')
-ax3.set_ylabel('Probability density')
-ax3.set_xlim([30, 65])
-ax3.set_ylim([0, 0.6])
+ax3.set_ylabel('Density')
+ax3.set_title('m = {:}, $\sigma_{{t}}$ = {:.1e}'.format(ax3_params['m'], ax3_params['vt_std']))
+#ax3.set_xlim([30, 65])
+#ax3.set_ylim([0, 0.6])
 ax3.vlines(analytical_resp_angle, 0, .2, 'r', label='predicted value\n without noise')
 ax3.legend()
 
@@ -142,38 +144,39 @@ for exc_std in [0.0005, 0.001, 0.002]:
                                                          ax2_params['rho_null']*1e-3, ax2_params['exc_scale']*1e-11,
                                                          ax2_params['rho_scale'], ax2_params['m'], ax2_params['b'])
 
-    ax2.hist(rstims, bins=30, label='$\sigma_{{m}}$ = {:.1e}'.format(exc_std), density=True, alpha=0.6)
+    ax2.hist(rstims, bins=30, label='$\sigma_{{m}}$ = {:.1e}'.format(exc_std), density=True, alpha=0.8)
 ax2.set_xlabel(r'$\theta_{resp}$ [\textdegree]')
-ax2.set_ylabel('Probability density')
-ax2.set_title('m = ' + str(ax2_params['m']))
-#ax2.set_xlim([30, 65])
-ax2.set_ylim([0, 0.8])
+ax2.set_ylabel('Density')
+ax2.set_title('m = {:}, $\sigma_{{t}}$ = {:.1e}'.format(ax2_params['m'], ax2_params['vt_std']))
+#ax2.set_xlim([10, 45])
+#ax2.set_ylim([0, 0.8])
 ax2.vlines(analytical_resp_angle, 0, .2, 'r', label='predicted value\n without noise')
 ax2.legend()
 
 
 ax4_params = default_params.copy()
 ax4_params['m'] = 1.5
-ax4_params['noise_std_exc'] = 1*1e-3
-for vt_std in [0.0005, 0.001, 0.002]:
+ax4_params['vt_std'] = 1*1e-3
+for exc_std in [0.0005, 0.001, 0.002]:
     nruns = 1000
     rstims = np.zeros(nruns)
     rdists = np.zeros(nruns)
     reaction_times = np.zeros(nruns)
     speeds = np.zeros(nruns)
     for i in np.arange(nruns):
-        ax4_params['vt_std'] = vt_std
+        ax4_params['noise_std_exc'] = exc_std
         rstims[i], rdists[i], reaction_times[i], lv, stim_size, speeds[i], resp_in_t_to_coll = md.calc_response_fully_stationary(ax4_params)
 
     analytical_resp_angle = md.stationary_response_angle(ax4_params['v_t'], ax4_params['e_l'], ax4_params['r_m'],
                                                          ax4_params['rho_null']*1e-3, ax4_params['exc_scale']*1e-11,
                                                          ax4_params['rho_scale'], ax4_params['m'], ax4_params['b'])
-    hist_label = '$\sigma_{{t}}$ = {:.1e}, $\sigma_{{m}}$ = {:.1e}'.format(vt_std, ax4_params['noise_std_exc'])
-    ax4.hist(rstims, bins=30, label=hist_label, density=True, alpha=0.6)
+    hist_label = '$\sigma_{{t}}$ = {:.1e}'.format(exc_std)
+    ax4.hist(rstims, bins=30, label=hist_label, density=True, alpha=0.8)
 ax4.set_xlabel(r'$\theta_{resp}$ [\textdegree]')
-ax4.set_ylabel('Probability density')
-#ax4.set_xlim([30, 65])
-ax4.set_ylim([0, 0.8])
+ax4.set_ylabel('Density')
+ax4.set_title('m = {:}, $\sigma_{{m}}$ = {:.1e}'.format(ax4_params['m'], ax4_params['vt_std']))
+#ax4.set_xlim([10, 45])
+#ax4.set_ylim([0, 0.8])
 ax4.vlines(analytical_resp_angle, 0, .2, 'r', label='predicted value\n without noise')
 ax4.legend()
 
@@ -183,6 +186,6 @@ for ax, letter in zip(axes, letters):
     ax.text(-0.05, 1.05, letter, color='k', weight='bold', fontsize=20, transform=ax.transAxes,
             ha='center', va='center')
 
-#plt.show()
-plt.savefig(os.path.join(figure_path, 'figure_stationary_noisy_params.pdf'), bbox_inches='tight')
+plt.show()
+#plt.savefig(os.path.join(figure_path, 'figure_stationary_noisy_params.pdf'), bbox_inches='tight')
 
