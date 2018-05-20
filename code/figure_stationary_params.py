@@ -42,6 +42,7 @@ if not os.path.exists(figure_path):
     os.makedirs(figure_path)
 
 sns.set()
+sns.set_palette('colorblind')
 mpl.rcParams.update(custon_pgf_rcparams)
 
 vt = -0.061

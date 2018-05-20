@@ -154,8 +154,8 @@ def calc_response_fully_stationary(params):
                                                                           params['init_distance'])
 
     stimulus = tstims * 1e-11 * params['exc_scale']
-    sigma_exc = params['noise_std_exc'] #* np.sqrt(params['dt'])
-    sigma_inh = params['noise_std_inh'] #* np.sqrt(params['dt'])
+    sigma_exc = params['noise_std_exc']
+    sigma_inh = params['noise_std_inh']
     if sigma_exc == 0:
         noise_exc = np.zeros(len(stimulus))
     else:
