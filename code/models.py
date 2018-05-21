@@ -255,8 +255,8 @@ def calc_response_lif(params):
         first_spike = spks[0]
         first_spike_idx = spk_idc[0]
     else:
-        first_spike = 0
-        first_spike_idx = 0
+        first_spike = -1
+        first_spike_idx = -1
     if not first_spike_idx >= len(t_to_coll):
         resp_in_t_to_coll = t_to_coll[first_spike_idx]
     else:
