@@ -3307,7 +3307,6 @@ Spontaneous patterns of activity in the developing visual system may play an imp
   month     = {02},
   abstract  = {Author Summary Calcium imaging of single neurons enables the indirect observation of neuronal dynamics, for example action potential firing. In contrast to the precise timing of spike trains, the calcium trace is temporally rather smeared and measured as a fluorescence trace. Consequently, several methods have been proposed to reconstruct spikes from calcium imaging data. However, a common feature of these methods is that they are not based on the biophysics of how neurons fire spikes and bursts. We propose to introduce well-established biophysical models to create a direct link between neuronal dynamics, e.g. the membrane potential, and fluorescence traces. Using both synthetic and experimental data, we show that this approach not only provides a robust and accurate spike reconstruction but also a reliable inference about the biophysically relevant parameters and variables. This enables novel ways of analyzing calcium imaging experiments in terms of the underlying biophysical quantities.},
   doi       = {10.1371/journal.pcbi.1004736},
-  file      = {:Rahmati2016.PDF:PDF},
   publisher = {Public Library of Science},
   timestamp = {2018-05-23},
   url       = {https://doi.org/10.1371/journal.pcbi.1004736},
