@@ -8,3 +8,4 @@ private/
 *.pkl
 *ipynb_checkpoints*
 .idea/
+*.hdf5
