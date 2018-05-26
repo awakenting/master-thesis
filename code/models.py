@@ -174,7 +174,11 @@ def calc_response_fully_stationary(params):
     else:
         v_t = np.random.normal(loc=params['v_t'], scale=params['vt_std'], size=ntime_steps)
 
-    v_m = params['e_l'] + stimulus * (params['r_m'] - params['rho_scale']) - params['rho_null'] / 1000 - noise_inh + noise_exc
+    rho_null = np.random.lognormal(mean=params['rho_null'], sigma=params['rho_null_std'])
+    # rho_null = np.random.exponential(scale=params['rho_null'])
+    rho_null = rho_null / 1000
+
+    v_m = params['e_l'] + stimulus * (params['r_m'] - params['rho_scale']) - rho_null - noise_inh + noise_exc
 
     above_threshold_idc = np.where(v_m > v_t)[0]
 
