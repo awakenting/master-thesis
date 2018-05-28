@@ -89,7 +89,7 @@ class FFI(BaseSimulator):
         return {'data': data}
 
 
-gendata_path = '../data/generated/'
+gendata_path = '/home/warkentin/Dropbox/Master/thesis/data/generated/'
 if not os.path.exists(gendata_path):
     os.makedirs(gendata_path)
 
@@ -125,25 +125,27 @@ fixed_params = {'tau_m': 0.023,
 param_names = ['rho_null', 'rho_null_std', 'noise_std_exc', 'rho_scale']
 lower_param_bounds = [0, 0.5, 0, 5]
 upper_param_bounds = [5, 5, 5, 10]
+ngenerators = 20
 
 ffim = FFI(dim=len(param_names), fixed_params=fixed_params)
 p = dd.Uniform(lower=lower_param_bounds, upper=upper_param_bounds)
 s = LVQuantiles()
-g = MPGenerator(models=[ffim]*6, prior=p, summary=s)
+g = MPGenerator(models=[ffim]*ngenerators, prior=p, summary=s)
 
 gparams, stats = g.gen(10)
+# we only take the first generated dataset
 gen_dat = stats[0][np.newaxis, :]
 gen_params = gparams[0]
 
 
 def run_fit_with(g, n_hiddens, n_train, n_rounds, epochs, data, seed):
-    inf_snpe = SNPE(generator=g, n_components=1, n_hiddens=n_hiddens, obs=data, verbose=False, seed=seed)
+    inf_snpe = SNPE(generator=g, n_components=1, n_hiddens=n_hiddens, obs=data, verbose=True, seed=seed)
     logs, tds, posteriors = inf_snpe.run(n_train=n_train, n_rounds=n_rounds, epochs=epochs)
     posterior = posteriors[-1]
     return logs, posterior
 
-n_hidden_values = [[1000], [2000], [4000], [330, 330, 330], [200, 200, 200, 200, 200]]
-n_train_values = [[1000], [2000], [4000], [8000]]
+n_hidden_values = [[4000], [330, 330, 330]]
+n_train_values = [[40000], [80000]]
 n_rounds_values = [len(vals) for vals in n_train_values]
 
 data_cols = ['n_hidden', 'n_train', 'n_rounds', 'mean_rho_null', 'mean_rho_null_std', 'mean_noise_std_exc',
@@ -168,11 +170,11 @@ for n_hidden_idx, n_hidden_val in enumerate(n_hidden_values):
             data_dict[col].append(value)
 
 ffi_df = pd.DataFrame(data_dict)
-ffi_df.to_hdf('../data/generated/fitting_metaparams_exploration.hdf5', key='fitting_results', mode='w')
+ffi_df.to_hdf('/home/warkentin/Dropbox/Master/thesis/data/generated/fitting_metaparams_exploration_v3.hdf5', key='fitting_results', mode='w')
 
 gen_params_dict = dict([(param_name, param_val) for param_name, param_val in zip(param_names, gen_params)])
 gen_params_df = pd.DataFrame(gen_params_dict, index=[0])
-gen_params_df.to_hdf('../data/generated/fitting_metaparams_exploration.hdf5', key='ground_truth_params', mode='a')
+gen_params_df.to_hdf('/home/warkentin/Dropbox/Master/thesis/data/generated/fitting_metaparams_exploration_v3.hdf5', key='ground_truth_params', mode='a')
 
 for wk in g.workers:
     wk.terminate()

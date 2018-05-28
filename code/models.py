@@ -91,6 +91,7 @@ def jit_ffi_model(tau_m, e_l, r_m, stimulus, noise_exc, noise_inh, v_t, dt, tota
     v_m[0] = np.random.normal(loc=e_l, scale=init_vm_std)
     v_t = np.random.normal(loc=v_t, scale=vt_std, size=ntime_steps)
     rho_inh = np.zeros(ntime_steps)
+    rho_inh[0] = rho_null
     t_spks = []
     idx_spks = []
     # integration:
@@ -183,15 +184,17 @@ def calc_response_fully_stationary(params):
     above_threshold_idc = np.where(v_m > v_t)[0]
 
     if not len(above_threshold_idc) == 0:
-        first_spike_idx = above_threshold_idc[0]
+        out_of_init_period_idc = above_threshold_idc[above_threshold_idc*params['dt'] > params['init_period']]
+        first_spike_idx = out_of_init_period_idc[0]
         first_spike = time_points[first_spike_idx]
     else:
-        first_spike = 0
-        first_spike_idx = 0
+        first_spike = -1
+        first_spike_idx = -1
     if not first_spike_idx >= len(t_to_coll):
         resp_in_t_to_coll = t_to_coll[first_spike_idx]
     else:
         resp_in_t_to_coll = 0
+
     return stims[first_spike_idx], dists[first_spike_idx], first_spike, lv, stim_size, speed, resp_in_t_to_coll
 
 

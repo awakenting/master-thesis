@@ -89,7 +89,7 @@ class FFI(BaseSimulator):
         return {'data': data}
 
 
-gendata_path = '../data/generated/'
+gendata_path = '/home/warkentin/Dropbox/Master/thesis/data/generated/'
 if not os.path.exists(gendata_path):
     os.makedirs(gendata_path)
 
@@ -125,15 +125,16 @@ fixed_params = {'tau_m': 0.023,
 param_names = ['rho_null', 'rho_null_std', 'noise_std_exc', 'rho_scale']
 lower_param_bounds = [0, 0.5, 0, 5]
 upper_param_bounds = [5, 5, 5, 10]
+ngenerators = 20
 
 ffim = FFI(dim=len(param_names), fixed_params=fixed_params)
 p = dd.Uniform(lower=lower_param_bounds, upper=upper_param_bounds)
 s = LVQuantiles()
-g = MPGenerator(models=[ffim]*6, prior=p, summary=s)
+g = MPGenerator(models=[ffim]*ngenerators, prior=p, summary=s)
 
 
 def run_fit_with(g, n_hiddens, n_train, n_rounds, epochs, data, seed):
-    inf_snpe = SNPE(generator=g, n_components=1, n_hiddens=n_hiddens, obs=data, verbose=False, seed=seed)
+    inf_snpe = SNPE(generator=g, n_components=1, n_hiddens=n_hiddens, obs=data, verbose=True, seed=seed)
     logs, tds, posteriors = inf_snpe.run(n_train=n_train, n_rounds=n_rounds, epochs=epochs)
     posterior = posteriors[-1]
     return logs, posterior
@@ -145,10 +146,10 @@ data_cols = ['true_rho_null', 'true_rho_null_std', 'true_noise_std_exc', 'true_r
 data_dict = dict([(col_name, []) for col_name in data_cols])
 
 
-nhidden = [1000]
-ntrain = [1000]
+nhidden = [330, 330, 330]
+ntrain = [40000]
 nparam_sets = 3
-nreps = 3
+nreps = 2
 
 gparams, stats = g.gen(nparam_sets)
 
@@ -171,7 +172,7 @@ for dat_idx in range(nparam_sets):
             data_dict[col].append(value)
 
 fit_df = pd.DataFrame(data_dict)
-fit_df.to_hdf('../data/generated/fitting_validation_error.hdf5', key='fitting_results', mode='w')
+fit_df.to_hdf('/home/warkentin/Dropbox/Master/thesis/data/generated/fitting_validation_error_v4.hdf5', key='fitting_results', mode='w')
 
 for wk in g.workers:
     wk.terminate()

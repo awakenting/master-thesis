@@ -3,7 +3,7 @@ import numpy as np
 
 import matplotlib as mpl
 
-#mpl.use("pgf")
+mpl.use("pgf")
 general_fontsize = 20
 custon_pgf_rcparams = {
     'font.family': 'serif',
@@ -48,23 +48,32 @@ sns.set_palette('colorblind')
 sns_colors = sns.color_palette()
 mpl.rcParams.update(custon_pgf_rcparams)
 
-fit_df = pd.read_hdf('../data/generated/fitting_validation_error_v2.hdf5', key='fitting_results')
+fit_df = pd.read_hdf('../data/generated/fitting_validation_error_v4.hdf5', key='fitting_results')
+fit_df2 = pd.read_hdf('../data/generated/fitting_validation_error_v3.hdf5', key='fitting_results')
+fit_df = fit_df.append(fit_df2, ignore_index=True)
 
+vmin = np.min(fit_df['true_rho_null'])
+vmax = np.max(fit_df['true_rho_null'])
+plot_cmap = plt.cm.get_cmap('viridis', 6)
+sm = plt.cm.ScalarMappable(cmap=plot_cmap, norm=mpl.colors.Normalize(vmin=vmin, vmax=vmax))
 
 def plot_true_vs_estimate(param_name, ax, xmin=0, xmax=5):
     jitter = np.random.rand(len(fit_df)) * 0.2 - 0.1
-    ax.errorbar(fit_df['true_' + param_name] + jitter, fit_df['mean_' + param_name], yerr=fit_df['std_' + param_name],
-                fmt='.', capsize=18, barsabove=True, capthick=3, lw=3, ms=18)
+    for idx in range(len(fit_df)):
+        ax.errorbar(fit_df['true_' + param_name][idx] + jitter[idx], fit_df['mean_' + param_name][idx], yerr=fit_df['std_' + param_name][idx],
+                    fmt='.', color=sm.to_rgba(fit_df['true_rho_null'][idx]), capsize=12, barsabove=True, capthick=3, lw=3, ms=18)
     ax.plot([xmin, xmax], [xmin, xmax], 'k')
     ax.set_ylim([xmin, xmax])
 
 
 fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(16, 12))
-fig.subplots_adjust(wspace=0.35, hspace=0.3)
+fig.subplots_adjust(wspace=0.25, hspace=0.3, right=0.85)
 ax1 = axes[0, 0]
 ax2 = axes[0, 1]
 ax3 = axes[1, 0]
 ax4 = axes[1, 1]
+
+cbar_axes = fig.add_axes([0.9, 0.25, 0.04, 0.5])
 
 plot_true_vs_estimate('rho_null', ax=ax1)
 ax1.set_xlabel(r'true $\mu_{\rho_{0}}$')
@@ -82,5 +91,15 @@ plot_true_vs_estimate('noise_std_exc', ax=ax4)
 ax4.set_xlabel(r'true $\sigma_{m}$')
 ax4.set_ylabel(r'posterior mean')
 
-plt.show()
-plt.savefig(os.path.join(figure_path, 'figure_fit_validation_v2.pdf'), bbox_inches='tight')
+sm.set_array([])
+cbar = plt.colorbar(sm, cax=cbar_axes)
+cbar.set_label(r'true $\mu_{\rho_{0}}$ value')
+
+axes = [ax1, ax2, ax3, ax4]
+letters = ['A', 'B', 'C', 'D']
+for ax, letter in zip(axes, letters):
+    ax.text(-0.05, 1.10, letter, color='k', weight='bold', fontsize=20, transform=ax.transAxes,
+            ha='center', va='center')
+
+#plt.show()
+plt.savefig(os.path.join(figure_path, 'figure_fit_validation.pdf'), bbox_inches='tight')
