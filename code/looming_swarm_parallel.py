@@ -7,7 +7,7 @@ from pypet import pypetconstants
 from pypet.utils.explore import cartesian_product
 
 def store_outdata(traj, outdata):
-    keys_to_store = ['pos', 'uw', 'startle']
+    keys_to_store = ['pos', 'uw', 'startle', 'vis_angles', 'v_m']
     for key in keys_to_store:
         outdata_array = np.array(outdata[key])
         traj.f_add_result('outdata.$.' + key, outdata_array, comment='outdata')
@@ -27,12 +27,6 @@ def run_sim(traj):
                               noisep=traj.noisep, noisev=traj.noisev,
                               amplitude_startle=traj.amplitude_startle,
                               duration_startle=traj.duration_startle,
-                              threshold_startle=traj.threshold_startle,
-                              noise_startle=traj.noise_startle,
-                              gamma_startle=traj.gamma_startle,
-                              only_positive_startle=traj.only_positive_startle,
-                              vis_input_const=traj.vis_input_const,
-                              dist_pow=traj.dist_pow,
                               r_m=traj.r_m,
                               tau_m=traj.tau_m,
                               e_l=traj.e_l,
@@ -55,15 +49,15 @@ def run_sim(traj):
 
 
 # Create an environment that handles running
-filename = os.path.join(os.path.expanduser('~/Documents/swarmstartle_results/hdf5'), 'looming_swarm.hdf5')
+filename = os.path.join(os.path.expanduser('~/Documents/swarmstartle_results/hdf5'), 'looming_swarm_fitted_model.hdf5')
 env = Environment(trajectory='looming_swarm',
                   filename=filename,
                   overwrite_file=True,
                   file_title='looming_swarm_simulation',
                   comment='The first exploration',
-                  git_repository='../SwarmStartle/',
-                  git_message='automatic commit by pypet:',
-                  git_fail=False,
+                  #git_repository='../SwarmStartle/',
+                  #git_message='automatic commit by pypet:',
+                  #git_fail=False,
                   multiproc=True,
                   ncores=6,
                   use_pool=True,  # Our runs are inexpensive we can get rid of overhead
@@ -107,25 +101,19 @@ traj.f_add_parameter('int_type', 'matrix', comment='the interaction type')
 traj.f_add_parameter('startle', True, comment='whether fish should be able to startle or not')
 traj.f_add_parameter('amplitude_startle', 5.0, comment='amplitude of the startling response')
 traj.f_add_parameter('duration_startle', 1.0, comment='the duration of the startling response')
-traj.f_add_parameter('threshold_startle', 1.0, comment='the threshold at which startling is intiated')
-traj.f_add_parameter('noise_startle', 0.02, comment='the noise of the noisy input to the startling potential')
-traj.f_add_parameter('gamma_startle', 1.0, comment='the strength of the leak current in the LIF model')
-traj.f_add_parameter('only_positive_startle', False, comment='whether the startling potential should stay positive')
-traj.f_add_parameter('cutoff_neg_rel_velocity', True, comment='whether to set negative relative velocities to zero input for the startling potential')
-traj.f_add_parameter('vis_input_const', 1.0, comment='the strength of the visual input')
-traj.f_add_parameter('dist_pow', 3, comment='the exponent of the distance in the visual input calculation')
 
 traj.f_add_parameter('r_m', 10*1e6, comment='membrane resistance in Ohm')
-traj.f_add_parameter('tau_m', 0.010, comment='membrane time constant in seconds')
+traj.f_add_parameter('tau_m', 0.023, comment='membrane time constant in seconds')
 traj.f_add_parameter('e_l', -0.079, comment='membrane resting potential in Volt')
 traj.f_add_parameter('v_t', -0.061, comment='firing threshold in Volt')
-traj.f_add_parameter('vt_std', 0.001, comment='standard deviation of normal distribution around v_t in Volt')
+traj.f_add_parameter('vt_std', 0.000, comment='standard deviation of normal distribution around v_t in Volt')
 traj.f_add_parameter('tau_rho', 0.001, comment='time constant of inhibitory population activity in seconds')
-traj.f_add_parameter('rho_scale', 9.6*1e6, comment='scaling factor of visual input for inhibitory population')
+traj.f_add_parameter('rho_scale', 8.16*1e6, comment='scaling factor of visual input for inhibitory population')
 traj.f_add_parameter('exc_scale', 30, comment='general scaling factor of visual input')
-traj.f_add_parameter('noise_std_exc', 0.010, comment='standard deviation of noise for M-cell')
-traj.f_add_parameter('noise_std_inh', 0.005, comment='standard deviation of noise for inhibitory population')
-traj.f_add_parameter('rho_null', 0.010, comment='default activity level of inhibitory population')
+traj.f_add_parameter('noise_std_exc', 0.0027, comment='standard deviation of noise for M-cell')
+traj.f_add_parameter('noise_std_inh', 0.000, comment='standard deviation of noise for inhibitory population')
+traj.f_add_parameter('rho_null', 3.62, comment='default activity level of inhibitory population')
+traj.f_add_parameter('rho_null_std', 0.77, comment='default activity level of inhibitory population')
 traj.f_add_parameter('vis_input_m', 3, comment='slope of the linear transformation of the visual angle')
 traj.f_add_parameter('vis_input_b', 0, comment='offset of the linear transformation of the visual angle')
 traj.f_add_parameter('vis_input_method', 'max', comment='how to combine the visual input from all neighbors')
@@ -135,7 +123,8 @@ traj.f_add_parameter('vis_input_k', 3, comment='number of neighbors to consider 
 traj.f_explore(cartesian_product({'seed': np.arange(200, 203).tolist(),
                                   'speed0': np.linspace(0.5, 3.0, 5).tolist(),
                                   'noisep': np.linspace(0.01, 0.2, 5).tolist(),
-                                  'vis_input_method': ['max', 'mean', 'knn_mean', 'mean_deviate']
+                                  'vis_input_method': ['max', 'mean', 'knn_mean', 'mean_deviate',
+                                                       'knn_mean_deviate']
                                   }))
 
 # Run the simulation

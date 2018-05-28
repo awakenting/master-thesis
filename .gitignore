@@ -9,3 +9,4 @@ private/
 *ipynb_checkpoints*
 .idea/
 *.hdf5
+code/logs/
