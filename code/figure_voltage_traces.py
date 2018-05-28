@@ -84,6 +84,7 @@ fig, axes = plt.subplots(4, 2, figsize=(12, 16))
 plt.subplots_adjust(hspace=0.5, wspace=0.3, bottom=0.2, left=0.12, right=0.94)
 
 column_titles = ['Slow stimulus', 'Fast stimulus']
+starting_times = (np.array([4, 0.6])/default_params['dt']).astype(int)
 
 for stim_idx, (stim_size, speed_idx) in enumerate(zip([10, 25], [5, 0])):
     speed = speeds[speed_idx]
@@ -142,13 +143,13 @@ for stim_idx, (stim_size, speed_idx) in enumerate(zip([10, 25], [5, 0])):
         stat_first_spike_idx = out_of_init_period_idc[0]
         stat_first_spike = time[stat_first_spike_idx]
 
-    plot_time_mask = slice(0, first_spike_idx)
+    plot_time_mask = slice(starting_times[stim_idx], first_spike_idx)
     plot_time = time[plot_time_mask]
 
-    stat_inh_plot_time_mask = slice(0, stat_inh_spk_idc[0])
+    stat_inh_plot_time_mask = slice(starting_times[stim_idx], stat_inh_spk_idc[0])
     stat_inh_plot_time = time[stat_inh_plot_time_mask]
 
-    stat_plot_time_mask = slice(0, stat_first_spike_idx)
+    stat_plot_time_mask = slice(starting_times[stim_idx], stat_first_spike_idx)
     stat_plot_time = time[stat_plot_time_mask]
 
     plot_lw = 2.5
@@ -156,9 +157,9 @@ for stim_idx, (stim_size, speed_idx) in enumerate(zip([10, 25], [5, 0])):
     axes[0, stim_idx].plot(stat_inh_plot_time, stims[stat_inh_plot_time_mask])
     axes[0, stim_idx].set_title(column_titles[stim_idx])
     axes[0, stim_idx].set_ylabel(r'$\theta$ (t) [\textdegree]')
-    axes[0, stim_idx].set_yticks(np.arange(20, 90, step=10))
-    axes[0, stim_idx].set_yticklabels(np.arange(20, 90, step=10))
-    axes[0, stim_idx].set_ylim([10, 70])
+    axes[0, stim_idx].set_yticks(np.arange(40, 90, step=10))
+    axes[0, stim_idx].set_yticklabels(np.arange(40, 90, step=10))
+    axes[0, stim_idx].set_ylim([30, 70])
 
     axes[1, stim_idx].plot(plot_time, rho_inh[plot_time_mask], lw=plot_lw)
     axes[1, stim_idx].plot(stat_inh_plot_time, stat_inh_rho_inh[stat_inh_plot_time_mask], lw=plot_lw)
@@ -177,6 +178,8 @@ for stim_idx, (stim_size, speed_idx) in enumerate(zip([10, 25], [5, 0])):
     axes[3, stim_idx].plot(plot_time, v_m[plot_time_mask]*1000, lw=plot_lw, label='full model')
     axes[3, stim_idx].plot(stat_inh_plot_time, stat_inh_v_m[stat_inh_plot_time_mask]*1000, lw=plot_lw, label='stat. inh. model')
     axes[3, stim_idx].plot(stat_plot_time, stat_v_m[stat_plot_time_mask]*1000, lw=plot_lw, label='fully stat. model')
+    axes[3, stim_idx].hlines(default_params['v_t']*1000, stat_inh_plot_time[0], stat_inh_plot_time[-1], lw=2,
+                             linestyles=':', label='$V_t$')
     axes[3, stim_idx].set_xlabel('Time [s]')
     axes[3, stim_idx].set_ylabel('$V_m$ [mV]')
     if not len(spks) == 0:
@@ -199,7 +202,7 @@ for stim_idx, (stim_size, speed_idx) in enumerate(zip([10, 25], [5, 0])):
         con.set_annotation_clip(False)
         axes[3, stim_idx].add_artist(con)
 
-        axes[0, stim_idx].hlines(stims[cspk_idx], 0, cspk, lw=2, linestyles=':', colors=sns_colors[i])
+        axes[0, stim_idx].hlines(stims[cspk_idx], plot_time[0], cspk, lw=2, linestyles=':', colors=sns_colors[i])
 
 #plt.show()
 plt.savefig(os.path.join(figure_path, 'figure_voltage_traces.pdf'), bbox_inches='tight')
