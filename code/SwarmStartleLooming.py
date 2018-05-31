@@ -40,6 +40,7 @@ class AgentData(object):
         self.allow_startling = np.zeros(N, dtype=bool)
         self.force_startle = np.zeros((N, dim))
         self.timer_startle = np.zeros(N)
+        self.timer_refractory = np.zeros(N)
         self.phiDes_startle = np.zeros(N)
         self.v_m = np.ones(N)
         self.v_t = None
@@ -180,6 +181,7 @@ class AgentParams(object):
                  noisev=0.0, noisep=0.1,
                  amplitude_startle=50.0,
                  duration_startle=0.2,
+                 duration_refractory=1,
                  blocked_escape_angle=np.pi * 1.0,
                  r_m=10 * 1e6,
                  tau_m=0.023,
@@ -229,6 +231,7 @@ class AgentParams(object):
         if paraSystem.startle:
             self.amplitude_startle = amplitude_startle
             self.duration_startle = duration_startle
+            self.duration_refractory = duration_refractory
             self.blocked_escape_angle = blocked_escape_angle
             self.r_m = r_m
             self.tau_m = tau_m
@@ -291,6 +294,7 @@ def InitAgents(agentData, paraSystem, paraAgents):
     if paraSystem.startle:
         agentData.allow_startling[:] = paraSystem.startle
         agentData.timer_startle = np.zeros(N)
+        agentData.timer_refractory = np.zeros(N)
         sigma_exc = paraAgents.noise_std_exc * np.sqrt(paraSystem.dt)
         sigma_inh = paraAgents.noise_std_inh * np.sqrt(paraSystem.dt)
         agentData.noise_exc = np.random.normal(loc=0, scale=sigma_exc, size=(N, steps + 1))
@@ -820,7 +824,11 @@ def ActivationStartle(agentData, paraAgents, step):
     """
 
     agentData.timer_startle[agentData.v_m > agentData.v_t[:, step]] = paraAgents.duration_startle
+    agentData.timer_refractory[agentData.v_m > agentData.v_t[:, step]] = paraAgents.duration_refractory
     agentData.v_m[agentData.v_m > agentData.v_t[:, step]] = paraAgents.e_l
+
+    # membrane potential is clipped to the resting potential for the refractory period
+    agentData.v_m[agentData.timer_refractory >= 0.0] = paraAgents.e_l
 
     condition_new_startle = (agentData.timer_startle > 0.0) & (np.sum(agentData.force_startle) == 0) \
                             & agentData.allow_startling
@@ -841,8 +849,9 @@ def ActivationStartle(agentData, paraAgents, step):
 def UpdateStartle(agentData, paraSystem, paraAgents, edges=None, distmatrix=None, step=None):
     """ Update internal variable (neuronal model dynamics)
     """
-    # decrease startle duration
+    # decrease startle and refractory duration
     agentData.timer_startle[agentData.timer_startle >= 0.0] -= paraSystem.dt
+    agentData.timer_refractory[agentData.timer_refractory >= 0.0] -= paraSystem.dt
     # update passive part of neuronal dynamics
     agentData.UpdateDynamicVars(paraSystem.dt, step)
 
@@ -853,6 +862,7 @@ def UpdateStartle(agentData, paraSystem, paraAgents, edges=None, distmatrix=None
     ActivationStartle(agentData, paraAgents, step)
     # deactivate individuals
     agentData.startle[agentData.timer_startle <= 0.0] = 0
+    agentData.startle[agentData.timer_refractory <= 0.0] = 0
     agentData.force_startle[agentData.timer_startle <= 0.0] = np.array([0., 0.])
 
     return

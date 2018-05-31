@@ -27,6 +27,7 @@ def run_sim(traj):
                               noisep=traj.noisep, noisev=traj.noisev,
                               amplitude_startle=traj.amplitude_startle,
                               duration_startle=traj.duration_startle,
+                              duration_refractory=traj.duration_refractory,
                               r_m=traj.r_m,
                               tau_m=traj.tau_m,
                               e_l=traj.e_l,
@@ -49,7 +50,7 @@ def run_sim(traj):
 
 
 # Create an environment that handles running
-filename = os.path.join(os.path.expanduser('~/Documents/swarmstartle_results/hdf5'), 'looming_swarm_fitted_model.hdf5')
+filename = os.path.join(os.path.expanduser('~/Documents/swarmstartle_results/hdf5'), 'looming_swarm_fitted_model_high_resolution.hdf5')
 env = Environment(trajectory='looming_swarm',
                   filename=filename,
                   overwrite_file=True,
@@ -83,7 +84,7 @@ traj.f_add_parameter('dt', 0.001, comment='The size of the time step')
 traj.f_add_parameter('seed', 999, comment='the seed value for numpy.random')
 traj.f_add_parameter('print_startles', False, comment='whether startling events should be printed')
 
-traj.f_add_parameter('alpha', 0.8, comment='factor that determines how fast the speed will relax to speed0')
+traj.f_add_parameter('alpha', 1.0, comment='factor that determines how fast the speed will relax to speed0')
 traj.f_add_parameter('speed0', 1.0, comment='the default speed of the fish in terms of bodylength/second')
 traj.f_add_parameter('noisep', 0.1, comment='the noise on the swimming direction')
 traj.f_add_parameter('noisev', 0.1, comment='the noise on the swimming speed')
@@ -95,12 +96,13 @@ traj.f_add_parameter('attstrength', 0.3, comment='attraction strength')
 traj.f_add_parameter('reprange', 1.0, comment='repulsion range')
 traj.f_add_parameter('algrange', 5.0, comment='alignment range')
 traj.f_add_parameter('attrange', 25.0, comment='attraction range')
-traj.f_add_parameter('output', 0.5, comment='the interval in which output data is stored')
+traj.f_add_parameter('output', 0.05, comment='the interval in which output data is stored')
 traj.f_add_parameter('int_type', 'matrix', comment='the interaction type')
 
 traj.f_add_parameter('startle', True, comment='whether fish should be able to startle or not')
-traj.f_add_parameter('amplitude_startle', 5.0, comment='amplitude of the startling response')
-traj.f_add_parameter('duration_startle', 1.0, comment='the duration of the startling response')
+traj.f_add_parameter('amplitude_startle', 50.0, comment='amplitude of the startling response')
+traj.f_add_parameter('duration_startle', 0.070, comment='the duration of the startling response')
+traj.f_add_parameter('duration_refractory', 1.0, comment='the refractory period for startling')
 
 traj.f_add_parameter('r_m', 10*1e6, comment='membrane resistance in Ohm')
 traj.f_add_parameter('tau_m', 0.023, comment='membrane time constant in seconds')
