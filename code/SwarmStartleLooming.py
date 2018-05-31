@@ -357,7 +357,7 @@ def SaveOutData(s, agentData, outdata, paraSystem):
 def UpdateTotalSocialForces(agentData, paraSystem, paraAgents):
     """ Update resulting social force in the agentData class
     """
-    if paraSystem.int_type == 'voronoi':
+    if paraSystem.int_type == 'voronoi' or paraSystem.int_type == 'voronoi_matrix':
         agentData.NormalizeByCount()
     else:
         agentData.NormalizeByWeightedCount()
@@ -643,6 +643,53 @@ def CalcInteractionVoronoi(agentData, paraSystem, paraAgents):
 
     return edges
 
+def CalcInteractionVoronoiMatrix(agentData, paraSystem, paraAgents):
+    """ Calculate effective social force using the Voronoi neighbourhood """
+    from scipy.spatial import Delaunay
+    tri = Delaunay(agentData.pos)
+    edges = UniqueEdgesFromTriangulation(tri)
+
+    voronoi_mask = np.zeros((paraSystem.N, paraSystem.N))
+    for e in edges:
+        if e[0] != e[1]:
+            voronoi_mask[e[0], e[1]] = 1
+            voronoi_mask[e[1], e[0]] = 1
+
+    distmatrix, dX, dY = CalcDistVecMatrix(agentData.pos, paraSystem.L, paraSystem.BC)
+    dVX, dVY = CalcVelDiffVecMatrix(agentData.vel)
+    # repulsion
+    factor_M = CalcFactorMatrix(distmatrix, agentData.reprange, agentData.repsteepness)
+    FX, FY = CalcForceVecMatrix(factor_M, dX, dY, distmatrix)
+    voronoi_FX = FX * voronoi_mask
+    voronoi_FY = FY * voronoi_mask
+    voronoi_factor_M = factor_M * voronoi_mask
+    agentData.force_rep[:, 0] = np.nansum(voronoi_FX, axis=1)
+    agentData.force_rep[:, 1] = np.nansum(voronoi_FY, axis=1)
+    agentData.neighbors_rep = np.sum(voronoi_mask, axis=1, keepdims=True)
+    agentData.weighted_neighbors_rep = CalcWeightedNeighborsFromMatrix(voronoi_factor_M)
+    # alignment
+    factor_M = CalcFactorMatrix(distmatrix, agentData.algrange, agentData.algsteepness)
+    FX, FY = CalcAlgVecMatrix(factor_M, dVX, dVY)
+    voronoi_FX = FX * voronoi_mask
+    voronoi_FY = FY * voronoi_mask
+    voronoi_factor_M = factor_M * voronoi_mask
+    agentData.force_alg[:, 0] = np.nansum(voronoi_FX, axis=1)
+    agentData.force_alg[:, 1] = np.nansum(voronoi_FY, axis=1)
+    agentData.neighbors_alg = np.sum(voronoi_mask, axis=1, keepdims=True)
+    agentData.weighted_neighbors_alg = CalcWeightedNeighborsFromMatrix(voronoi_factor_M)
+    # attraction
+    factor_M = CalcFactorMatrix(distmatrix, agentData.attrange, agentData.attsteepness)
+    FX, FY = CalcForceVecMatrix(factor_M, dX, dY, distmatrix)
+    voronoi_FX = FX * voronoi_mask
+    voronoi_FY = FY * voronoi_mask
+    voronoi_factor_M = factor_M * voronoi_mask
+    agentData.force_att[:, 0] = -np.nansum(voronoi_FX, axis=1)
+    agentData.force_att[:, 1] = -np.nansum(voronoi_FY, axis=1)
+    agentData.neighbors_att = np.sum(voronoi_mask, axis=1, keepdims=True)
+    agentData.weighted_neighbors_att = CalcWeightedNeighborsFromMatrix(voronoi_factor_M)
+
+    return edges
+
 
 def CalcInteractionGlobal(agentData, paraSystem, paraAgents):
     """ Calculate effective social forces using brute force N^2 iteration """
@@ -897,6 +944,8 @@ def SingleRun(paraSystem, paraAgents, agentData=None):
             distmatrix = CalcInteractionMatrix(agentData, paraSystem)
         elif paraSystem.int_type == 'voronoi':
             edges = CalcInteractionVoronoi(agentData, paraSystem, paraAgents)
+        elif paraSystem.int_type == 'voronoi_matrix':
+            edges = CalcInteractionVoronoiMatrix(agentData, paraSystem, paraAgents)
 
         # update startle dynamics
         if paraSystem.startle:

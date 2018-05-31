@@ -33,7 +33,7 @@ repsteep = -20
 
 output = 0.05
 
-int_type = 'matrix'
+int_type = 'voronoi_matrix'
 startle = True
 
 amplitude_startle = 50.0
@@ -69,11 +69,11 @@ paraFish = sw.AgentParams(paraSystem, speed0=speed0, alpha=alpha,
                           )
 
 #outData, agentData = sw.RunAnimate(paraSystem, paraFish)
-outData, agentData = sw.RunAnimateWithStartlePotential(paraSystem, paraFish, startleAgent=1)
+#outData, agentData = sw.RunAnimateWithStartlePotential(paraSystem, paraFish, startleAgent=1)
 
 #starttime = time.time()
 
-#outData, agentData = sw.SingleRun(paraSystem, paraFish)
+outData, agentData = sw.SingleRun(paraSystem, paraFish)
 
 startles = np.array(outData['startle'])
 
