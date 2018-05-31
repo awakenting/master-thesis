@@ -38,7 +38,7 @@ def load_result(filename, vis_input_method):
 
 
 filename = os.path.join(os.path.expanduser('/extra/swarmstartle_results'),
-                        'looming_swarm_fitted_model.hdf5')
+                        'looming_swarm_fitted_model_high_resolution.hdf5')
 
 figure_path = '../figures/results/'
 if not os.path.exists(figure_path):
@@ -55,28 +55,30 @@ for vis_method in ['max', 'mean', 'knn_mean', 'mean_deviate', 'knn_mean_deviate'
     pol = np.mean(np.mean(time_res['pol'], axis=-1), axis=-1)
     coh = np.mean(np.mean(time_res['coh'], axis=-1), axis=-1)
 
-    norms = [colors.LogNorm(vmin=1e-3, vmax=1e1), colors.Normalize(vmin=1, vmax=5),
+    norms = [colors.LogNorm(vmin=1e-3, vmax=2e1), colors.Normalize(vmin=1, vmax=5),
              colors.Normalize(vmin=0, vmax=1)]
+    plot_cmap = plt.cm.get_cmap('viridis', 12)
     res_names = ['startle frequency', 'cohesion', 'polarization']
+    titles = ['startle frequency', 'average NN distance', 'polarization']
     speeds = unique_vals['speed0']
     noises = unique_vals['noisep']
     for res_idx, result_mat in enumerate([st_freqs, coh, pol]):
         ax = plt.Subplot(fig, grid[0, res_idx])
-        img = ax.imshow(result_mat[:, :], interpolation='none',
+        img = ax.imshow(result_mat[:, :], interpolation='none', cmap=plot_cmap,
                         origin='lower', aspect='equal', norm=norms[res_idx])
         ax.set_yticks(np.arange(len(speeds)))
         ax.set_yticklabels(np.round(speeds, decimals=2))
         ax.set_xticks(np.arange(len(noises), step=2))
         ax.set_xticklabels(np.round(noises[0::2], decimals=2))
         if ax.is_first_row():
-            ax.set_title(res_names[res_idx], fontsize=12, fontweight='bold')
+            ax.set_title(titles[res_idx], fontsize=12, fontweight='bold')
         if ax.is_last_row():
             ax.set_xlabel('Noise on swimming direction', fontsize=12)
         if ax.is_first_col():
             ax.set_ylabel('Mean speed\n[Bodylengths per seconds]', fontsize=12)
         fig.add_subplot(ax)
         plt.colorbar(img, ax=ax, shrink=0.3)
-        fig.savefig(os.path.join(figure_path, 'looming_swarm_full_run_all_measures_periodic_init_burn_vis_method=' + vis_method + '.pdf'), bbox_inches='tight')
+        fig.savefig(os.path.join(figure_path, 'highres_looming_swarm_full_run_all_measures_periodic_init_burn_vis_method=' + vis_method + '.pdf'), bbox_inches='tight')
         plt.close(fig)
 
 
