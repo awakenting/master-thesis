@@ -21,7 +21,7 @@ def load_result(filename, target_rep_range, target_int_type):
     filter_func = lambda rep_range, int_type: rep_range == target_rep_range and int_type == target_int_type
 
     result_specs = {'names': ['startle_freq'],
-                    'funcs': [cba.calcStartlingFrequencyWithBurning],
+                    'funcs': [cba.calcMedianStartlingFrequency],
                     'input_variables': [['results.outdata.crun.startle', 'par.total_time',
                                          'par.output']]}
     time_result_specs = {'names': ['pol', 'coh'],
@@ -55,7 +55,8 @@ for target_int_type in ['voronoi_matrix', 'matrix']:
     for rep_range_idx, rep_range in enumerate([1.0, 1.5, 2.0, 2.5]):
         res, time_res, ranges, unique_vals, lengths = load_result(filename, rep_range, target_int_type)
 
-        st_freqs = np.median(res['startle_freq'], axis=-1)
+        # take mean over different seed values:
+        st_freqs = np.mean(res['startle_freq'], axis=-1)
         st_freqs[st_freqs == 0] = 1e-10
         pol = np.mean(np.mean(time_res['pol'], axis=-1), axis=-1)
         coh = np.mean(np.mean(time_res['coh'], axis=-1), axis=-1)
@@ -93,7 +94,7 @@ for target_int_type in ['voronoi_matrix', 'matrix']:
                 ax.set_ylabel('Mean speed\n[Bodylengths per seconds]', fontsize=12)
             fig.add_subplot(ax)
             plt.colorbar(img, ax=ax, shrink=0.7)
-            fig.savefig(os.path.join(figure_path, 'looming_swarm_no_speed_noise_int_type=' + target_int_type + '.pdf'), bbox_inches='tight')
+            fig.savefig(os.path.join(figure_path, 'looming_swarm_median_no_speed_noise_int_type=' + target_int_type + '.pdf'), bbox_inches='tight')
             plt.close(fig)
 
 #plt.show()
