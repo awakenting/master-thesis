@@ -175,7 +175,10 @@ def calc_response_fully_stationary(params):
     else:
         v_t = np.random.normal(loc=params['v_t'], scale=params['vt_std'], size=ntime_steps)
 
-    rho_null = np.random.lognormal(mean=params['rho_null'], sigma=params['rho_null_std'])
+    if params['rho_null_std'] == 0:
+        rho_null = params['rho_null']
+    else:
+        rho_null = np.random.lognormal(mean=params['rho_null'], sigma=params['rho_null_std'])
     # rho_null = np.random.exponential(scale=params['rho_null'])
     rho_null = rho_null / 1000
 
