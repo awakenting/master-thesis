@@ -1,3 +1,9 @@
+
+
+[![DOI](https://zenodo.org/badge/119857704.svg)](https://zenodo.org/badge/latestdoi/119857704)
+
+
+
 ## A neuronal model for visually evoked escape responses in schooling fish
 This repository contains everything related to my master thesis.
 
