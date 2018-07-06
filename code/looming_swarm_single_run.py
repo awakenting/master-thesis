@@ -4,17 +4,18 @@ import matplotlib
 matplotlib.use('TKAgg')
 
 import SwarmStartleLooming as sw
+import collective_behavior_analysis as cba
 import numpy as np
 import matplotlib.pyplot as plt
 
 np.random.seed(200)
 # Initialize Parameters
-N = 10
+N = 40
 L = 50
-total_time = 50.0
+total_time = 100.0
 dt = 0.001
 
-speed0 = 1.5
+speed0 = 1.125
 alpha = 1
 noisep = 0.01
 noisev = 0.0
@@ -33,7 +34,7 @@ repsteep = -20
 
 output = 0.05
 
-int_type = 'voronoi_matrix'
+int_type = 'matrix'
 startle = True
 
 amplitude_startle = 50.0
@@ -56,8 +57,8 @@ paraFish = sw.AgentParams(paraSystem, speed0=speed0, alpha=alpha,
                           v_t=-0.061,
                           vt_std=0.000,
                           tau_rho=0.001,
-                          rho_null=3.6,
-                          rho_null_std=0.7,
+                          rho_null=22,
+                          rho_null_std=0,
                           rho_scale=8.16 * 1e6,
                           exc_scale=30,
                           noise_std_exc=0.0027,
@@ -68,16 +69,20 @@ paraFish = sw.AgentParams(paraSystem, speed0=speed0, alpha=alpha,
                           vis_input_k=3
                           )
 
-#outData, agentData = sw.RunAnimate(paraSystem, paraFish)
+outData, agentData = sw.RunAnimate(paraSystem, paraFish)
 #outData, agentData = sw.RunAnimateWithStartlePotential(paraSystem, paraFish, startleAgent=1)
 
 #starttime = time.time()
 
-outData, agentData = sw.SingleRun(paraSystem, paraFish)
+#outData, agentData = sw.SingleRun(paraSystem, paraFish)
 
 startles = np.array(outData['startle'])
 
+print(np.array(startles).sum()/total_time)
 
+pol = cba.calcPolarization(np.array(outData['uw']))
+mean_pol = np.mean(pol)
+print('polarization: '+ str(mean_pol))
 #endtime = time.time()
 #print('Total time needed: ' + str(int((endtime - starttime))) + ' seconds or '
 #      + str(int((endtime - starttime) / 60)) + ' min')
@@ -286,7 +291,7 @@ plt.figure()
 #plt.plot(conv_coh, label='convex hull')
 plt.plot(nn_coh, label='nearest neighbour')
 #plt.plot(ii_coh, label='inter-individual')
-plt.vlines(starts, 0, 400, colors='r')
+#plt.vlines(starts, 0, 400, colors='r')
 plt.legend()
 plt.show()
 

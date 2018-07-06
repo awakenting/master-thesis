@@ -50,7 +50,7 @@ def run_sim(traj):
 
 
 # Create an environment that handles running
-filename = os.path.join(os.path.expanduser('~/Documents/swarmstartle_results/hdf5'), 'looming_swarm_fitted_model_high_resolution.hdf5')
+filename = os.path.join(os.path.expanduser('~/Documents/swarmstartle_results/hdf5'), 'looming_swarm_fitted_model_fixed_rho_null_explore.hdf5')
 env = Environment(trajectory='looming_swarm',
                   filename=filename,
                   overwrite_file=True,
@@ -87,7 +87,7 @@ traj.f_add_parameter('print_startles', False, comment='whether startling events 
 traj.f_add_parameter('alpha', 1.0, comment='factor that determines how fast the speed will relax to speed0')
 traj.f_add_parameter('speed0', 1.0, comment='the default speed of the fish in terms of bodylength/second')
 traj.f_add_parameter('noisep', 0.1, comment='the noise on the swimming direction')
-traj.f_add_parameter('noisev', 0.1, comment='the noise on the swimming speed')
+traj.f_add_parameter('noisev', 0.0, comment='the noise on the swimming speed')
 traj.f_add_parameter('BC', 0, comment='boundary condition, 1 means repelling boundaries and 0 means periodic boundaries')
 traj.f_add_parameter('IC', 10, comment='initial condition, 10 means that intial position are restricted to a smaller area')
 traj.f_add_parameter('repstrength', 1.0, comment='repulsion strength')
@@ -114,19 +114,19 @@ traj.f_add_parameter('rho_scale', 8.16*1e6, comment='scaling factor of visual in
 traj.f_add_parameter('exc_scale', 30, comment='general scaling factor of visual input')
 traj.f_add_parameter('noise_std_exc', 0.0027, comment='standard deviation of noise for M-cell')
 traj.f_add_parameter('noise_std_inh', 0.000, comment='standard deviation of noise for inhibitory population')
-traj.f_add_parameter('rho_null', 3.62, comment='default activity level of inhibitory population')
-traj.f_add_parameter('rho_null_std', 0.77, comment='default activity level of inhibitory population')
+traj.f_add_parameter('rho_null', 20.6, comment='default activity level of inhibitory population')
+traj.f_add_parameter('rho_null_std', 0.0, comment='default activity level of inhibitory population')
 traj.f_add_parameter('vis_input_m', 3, comment='slope of the linear transformation of the visual angle')
 traj.f_add_parameter('vis_input_b', 0, comment='offset of the linear transformation of the visual angle')
-traj.f_add_parameter('vis_input_method', 'max', comment='how to combine the visual input from all neighbors')
+traj.f_add_parameter('vis_input_method', 'knn_mean_deviate', comment='how to combine the visual input from all neighbors')
 traj.f_add_parameter('vis_input_k', 3, comment='number of neighbors to consider if vis_input_method is "knn_mean"')
 
 # Explore the parameters with a cartesian product
 traj.f_explore(cartesian_product({'seed': np.arange(200, 203).tolist(),
                                   'speed0': np.linspace(0.5, 3.0, 5).tolist(),
                                   'noisep': np.linspace(0.01, 0.2, 5).tolist(),
-                                  'vis_input_method': ['max', 'mean', 'knn_mean', 'mean_deviate',
-                                                       'knn_mean_deviate']
+                                  'int_type': ['matrix', 'voronoi_matrix'],
+                                  'vis_input_method': ['max', 'knn_mean', 'knn_mean_deviate']
                                   }))
 
 # Run the simulation
