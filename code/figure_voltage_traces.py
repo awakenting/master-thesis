@@ -61,7 +61,7 @@ default_params = {'tau_m': 0.023,
                   'dt': 0.0001,
                   'total_time': 5,
                   'init_period': 0.2,
-                  'noise_std_exc': 1*1e-3,
+                  'noise_std_exc': 0*1e-3,
                   'noise_std_inh': 0*1e-3,
                   'cutoff_angle': 180,
                   'm': 1,
@@ -167,7 +167,6 @@ for stim_idx, (stim_size, speed_idx) in enumerate(zip([10, 25], [5, 0])):
     axes[1, stim_idx].plot(plot_time, stimulus[plot_time_mask]*default_params['r_m'], lw=plot_lw, label='I(t)')
     axes[1, stim_idx].set_ylabel(r'Inputs')
     axes[1, stim_idx].legend()
-
 
     axes[2, stim_idx].plot(plot_time, stimulus[plot_time_mask]*default_params['r_m'] - rho_inh[plot_time_mask], lw=plot_lw, label=r'$\rho$(t) full model')
     axes[2, stim_idx].plot(stat_inh_plot_time, stimulus[stat_inh_plot_time_mask]*default_params['r_m'] - stat_inh_rho_inh[stat_inh_plot_time_mask], lw=plot_lw, label=r'$\rho$(t) stat. inh. model')
