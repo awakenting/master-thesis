@@ -859,11 +859,11 @@ def CalcStartleInfluenceMatrix(agentData, paraAgents, paraSystem):
     agentData.rho += paraSystem.dt * (paraAgents.rho_scale * stimulus) / paraAgents.tau_rho
     agentData.v_m += paraSystem.dt * (paraAgents.r_m * stimulus - agentData.rho) / paraAgents.tau_m
 
-    dist_phi = np.arctan2(dX, dY) + np.pi * 1.0
+    dist_phi = np.arctan2(dY, dX) + np.pi * 1.0
     dist_phi = np.mean(dist_phi, axis=1)
     open_escape_range = np.pi * 2.0 - paraAgents.blocked_escape_angle
     escape_range_mid = open_escape_range / 2.0
-    agentData.phiDes_startle = (dist_phi + np.random.rand(paraSystem.N) * open_escape_range - escape_range_mid)
+    agentData.phiDes_startle = (dist_phi + np.random.rand(paraSystem.N) * open_escape_range + np.pi - escape_range_mid)
 
 
 def ActivationStartle(agentData, paraAgents, step):
@@ -977,7 +977,7 @@ def SingleRunVoronoi(paraSystem, paraAgents, agentData=None):
 
         # update startle dynamics
         if paraSystem.startle:
-            UpdateStartle(agentData, paraSystem, paraAgents, edges=edges, distmatrix=distmatrix)
+            UpdateStartle(agentData, paraSystem, paraAgents, edges=edges, distmatrix=distmatrix, step=s)
 
         UpdateTotalSocialForces(agentData, paraSystem, paraAgents)
         UpdateCoordinates(agentData, paraSystem, paraAgents)
@@ -1036,7 +1036,7 @@ def RunAnimate(paraSystem, paraAgents, agentData=None, doblit=False):
             edges = CalcInteractionVoronoi(agentData, paraSystem, paraAgents)
 
         if paraSystem.startle:
-            UpdateStartle(agentData, paraSystem, paraAgents, edges=edges, distmatrix=distmatrix)
+            UpdateStartle(agentData, paraSystem, paraAgents, edges=edges, distmatrix=distmatrix, step=s)
         UpdateTotalSocialForces(agentData, paraSystem, paraAgents)
         UpdateCoordinates(agentData, paraSystem, paraAgents)
 
@@ -1236,7 +1236,7 @@ def SingleRunWithStartlePotential(paraSystem, paraAgents, agentData=None, startl
 
         # update startle dynamics
         if paraSystem.startle:
-            UpdateStartle(agentData, paraSystem, paraAgents, edges=edges, distmatrix=distmatrix)
+            UpdateStartle(agentData, paraSystem, paraAgents, edges=edges, distmatrix=distmatrix, step=s)
 
         # update social forces and coordinates
         UpdateTotalSocialForces(agentData, paraSystem, paraAgents)
