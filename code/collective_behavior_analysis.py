@@ -17,6 +17,20 @@ def calcStartlingFrequencyWithBurning(startles, total_time, output, time_to_burn
     startle_freq = np.sum(np.take(startles, unburned_indices, axis=0)) / (total_time - time_to_burn)
     return startle_freq
 
+def calcMedianStartlingFrequency(startles, total_time, output, time_to_burn=100):
+    """
+    Calculates the startling frequency while burning an initial time segment.
+
+    :param startles: shape=(n_output_timesteps, nagents)
+        An array with booleans for each agent and time point.
+    :return:
+    """
+    first_unburned_idx = int(time_to_burn/output)
+    unburned_indices = np.arange(first_unburned_idx, int(total_time/output))
+    agent_startle_freq = np.sum(np.take(startles, unburned_indices, axis=0), axis=0) / (total_time - time_to_burn)
+    median_startle_freq = np.median(agent_startle_freq)
+    return median_startle_freq
+
 def calcStartlingFrequency(startles, total_time):
     """
     Calculates the startling frequency.
@@ -122,7 +136,7 @@ def calcCascadeSizes(startles):
     return np.array(cascade_sizes), np.array(cascade_lengths)
 
 
-def CalcDistVecMatrix(pos):
+def CalcDistVecMatrix(pos, L, BC):
     """ Calculate N^2 distance matrix (d_ij)
 
         Returns:
@@ -137,18 +151,49 @@ def CalcDistVecMatrix(pos):
     dY = np.subtract(Y, Y.T)
     dX_period = np.copy(dX)
     dY_period = np.copy(dY)
-
+    if BC == 0:
+        dX_period[dX > +0.5 * L] -= L
+        dY_period[dY > +0.5 * L] -= L
+        dX_period[dX < -0.5 * L] += L
+        dY_period[dY < -0.5 * L] += L
     distmatrix = np.sqrt(dX_period ** 2 + dY_period ** 2)
     return distmatrix, dX_period, dY_period
 
 
-def calcCohesion(pos, method='nearest'):
+def PeriodicDist(x, y, L=10.0, dim=2):
+    """ Returns the distance vector of two position vectors x,y
+        by tanking periodic boundary conditions into account.
+
+        Input parameters: L - system size, dim - number of dimensions
+    """
+    distvec = (y - x)
+    distvec_periodic = np.copy(distvec)
+    distvec_periodic[distvec < -0.5 * L] += L
+    distvec_periodic[distvec > 0.5 * L] -= L
+
+    return distvec_periodic
+
+
+def calc_periodic_mass_center(pos, arena_size):
+    periodic_center = np.zeros(2)
+    norm_term = 2*np.pi/arena_size
+    for dim_idx in range(2):
+        circ_coords = np.zeros((pos.shape[0], 2))
+        circ_coords[:, 0] = np.cos((pos[:, dim_idx] * norm_term)) / norm_term
+        circ_coords[:, 1] = np.sin((pos[:, dim_idx] * norm_term)) / norm_term
+        mean_circ_coords = np.mean(circ_coords, axis=0)
+        mean_angle = np.arctan2(-mean_circ_coords[1], -mean_circ_coords[0]) + np.pi
+        periodic_center[dim_idx] = mean_angle/norm_term
+    return periodic_center
+
+
+def calcCohesion(pos, L, BC, method='nearest'):
     from scipy.spatial import ConvexHull
     ntimesteps = pos.shape[0]
     coh = np.empty(ntimesteps)
     for t in np.arange(ntimesteps):
         if method == 'nearest':
-            dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :])
+            dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :], L, BC)
             np.fill_diagonal(dist_mat, np.inf)
             min_dists = np.min(dist_mat, axis=0)
             current_cohesion = np.mean(min_dists)
@@ -156,8 +201,14 @@ def calcCohesion(pos, method='nearest'):
             hull = ConvexHull(pos[t, :, :])
             # volume is referring to a 3D setting so in a 2D case it gives the area
             current_cohesion = hull.volume
+        elif method == 'convexhull_periodic':
+            cmass_center = calc_periodic_mass_center(pos[t, :, :], L)
+            center_distvecs = PeriodicDist(cmass_center, pos[t, :, :], L)
+            hull = ConvexHull(center_distvecs)
+            # volume is referring to a 3D setting so in a 2D case it gives the area
+            current_cohesion = hull.volume
         elif method == 'inter':
-            dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :])
+            dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :], L, BC)
             np.fill_diagonal(dist_mat, np.nan)
             mean_dists = np.nanmean(dist_mat, axis=0)
             current_cohesion = np.mean(mean_dists)
@@ -169,17 +220,17 @@ def calcCohesion(pos, method='nearest'):
 
 def get_calcCohesion(method='nearest'):
     if method == 'nearest':
-        def cohesion_func(pos):
+        def cohesion_func(pos, L, BC):
             ntimesteps = pos.shape[0]
             coh = np.empty(ntimesteps)
             for t in np.arange(ntimesteps):
-                dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :])
+                dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :], L, BC)
                 np.fill_diagonal(dist_mat, np.inf)
                 min_dists = np.min(dist_mat, axis=0)
                 coh[t] = np.mean(min_dists)
             return coh
     elif method == 'convexhull':
-        def cohesion_func(pos):
+        def cohesion_func(pos, L, BC):
             from scipy.spatial import ConvexHull
             ntimesteps = pos.shape[0]
             coh = np.empty(ntimesteps)
@@ -189,16 +240,138 @@ def get_calcCohesion(method='nearest'):
                 coh[t] = hull.volume
             return coh
     elif method == 'inter':
-        def cohesion_func(pos):
+        def cohesion_func(pos, L, BC):
             ntimesteps = pos.shape[0]
             coh = np.empty(ntimesteps)
             for t in np.arange(ntimesteps):
-                dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :])
+                dist_mat, dx, dy = CalcDistVecMatrix(pos[t, :, :], L, BC)
                 np.fill_diagonal(dist_mat, np.nan)
                 mean_dists = np.nanmean(dist_mat, axis=0)
                 coh[t] = np.mean(mean_dists)
             return coh
     return cohesion_func
+
+
+def calcStartlePositionOriented(uw, pos, startles, L, output_step, burn_period=50, cohesion_measures=None):
+    burn_period_steps = int(burn_period / output_step)
+    ntimesteps = pos.shape[0]
+    all_dists = np.array([])
+    all_distvecs = None
+    startle_dists = np.array([])
+    startle_distvecs = None
+    for t in np.arange(burn_period_steps, ntimesteps):
+        cmass_center = calc_periodic_mass_center(pos[t, :, :], L)
+        center_distvecs = PeriodicDist(cmass_center, pos[t, :, :], L)
+        if cohesion_measures is not None:
+            center_distvecs = center_distvecs / cohesion_measures[t]
+
+        mean_uw = np.mean(uw[t, :, :], axis=0)
+        mean_uw_unit = mean_uw / np.linalg.norm(mean_uw)
+        relative_ypos = center_distvecs[:, 0] * mean_uw_unit[0] + center_distvecs[:, 1] * mean_uw_unit[1]
+
+        orth_mean_uw_unit = np.array([mean_uw_unit[1], - mean_uw_unit[0]])
+        relative_xpos = center_distvecs[:, 0] * orth_mean_uw_unit[0] + center_distvecs[:, 1] * orth_mean_uw_unit[1]
+
+        relative_pos = np.concatenate((relative_xpos[:, np.newaxis], relative_ypos[:, np.newaxis]), axis=1)
+
+        center_dists = np.sqrt(center_distvecs[:, 0] ** 2 + center_distvecs[:, 1] ** 2)
+
+        startle_idc = np.where(startles[t, :])[0]
+        nonstartle_mask = np.ones(len(startles[t, :]), dtype=np.bool)
+        nonstartle_mask[startle_idc] = 0
+        if startle_idc.size == 0:
+            continue
+        else:
+            startle_dists = np.concatenate((startle_dists, center_dists[startle_idc]))
+            if startle_distvecs is None:
+                startle_distvecs = relative_pos[startle_idc]
+            else:
+                startle_distvecs = np.concatenate((startle_distvecs, relative_pos[startle_idc]))
+
+        all_dists = np.concatenate((all_dists, center_dists[nonstartle_mask]))
+        if all_distvecs is None:
+            all_distvecs = relative_pos[nonstartle_mask]
+        else:
+            all_distvecs = np.concatenate((all_distvecs, relative_pos[nonstartle_mask]))
+    return all_dists, all_distvecs, startle_dists, startle_distvecs
+
+
+def calcStartleAngle(uw, pos, startles, L, output_step, burn_period=50):
+    burn_period_steps = int(burn_period / output_step)
+    ntimesteps = pos.shape[0]
+    all_angles = np.array([])
+    startle_angles = np.array([])
+    for t in np.arange(burn_period_steps, ntimesteps):
+        cmass_center = calc_periodic_mass_center(pos[t, :, :], L)
+        center_distvecs = PeriodicDist(cmass_center, pos[t, :, :], L)
+
+        mean_uw = np.mean(uw[t, :, :], axis=0)
+        mean_uw_unit = mean_uw / np.linalg.norm(mean_uw)
+
+        mean_uw_angle = np.arctan2(mean_uw_unit[1], mean_uw_unit[0]) + np.pi
+        angles = mean_uw_angle - (np.arctan2(center_distvecs[:, 1], center_distvecs[:, 0]) + np.pi)
+
+        startle_idc = np.where(startles[t, :])[0]
+        nonstartle_mask = np.ones(len(startles[t, :]), dtype=np.bool)
+        nonstartle_mask[startle_idc] = 0
+        if startle_idc.size == 0:
+            continue
+        else:
+            startle_angles = np.concatenate((startle_angles, angles[startle_idc]))
+
+        all_angles = np.concatenate((all_angles, angles[nonstartle_mask]))
+    return all_angles, startle_angles
+
+
+def calcStartleOrientation(uw, pos, startles, L, output_step, burn_period=50):
+    burn_period_steps = int(burn_period / output_step)
+    ntimesteps = pos.shape[0]
+    all_orientations = np.array([])
+    all_frontness = np.array([])
+    startle_orientations = np.array([])
+    startle_frontness = np.array([])
+    for t in np.arange(burn_period_steps, ntimesteps):
+        startle_idc = np.where(startles[t, :])[0]
+        nonstartle_mask = np.ones(len(startles[t, :]), dtype=np.bool)
+        nonstartle_mask[startle_idc] = 0
+        if startle_idc.size == 0:
+            continue
+        else:
+            cmass_center = calc_periodic_mass_center(pos[t, :, :], L)
+            center_distvecs = PeriodicDist(cmass_center, pos[t, :, :], L)
+
+            mean_uw = np.mean(uw[t, :, :], axis=0)
+            mean_uw_unit = mean_uw / np.linalg.norm(mean_uw)
+            frontness_vals = center_distvecs[:, 0] * mean_uw_unit[0] + center_distvecs[:, 1] * mean_uw_unit[1]
+            orientations = uw[t, :, 0] * mean_uw_unit[0] + uw[t, :, 1] * mean_uw_unit[1]
+
+            uw_angles = np.arctan2(uw[t, :, 1], uw[t, :, 0])
+            mean_uw_angle = np.arctan2(mean_uw_unit[1], mean_uw_unit[0])
+            orientation_angles = np.pi - np.abs(np.abs(uw_angles - mean_uw_angle) - np.pi)
+            orientation_angles = orientation_angles / np.pi * 180
+
+            all_orientations = np.concatenate((all_orientations, orientation_angles[nonstartle_mask]))
+            all_frontness = np.concatenate((all_frontness, frontness_vals[nonstartle_mask]))
+
+            startle_orientations = np.concatenate((startle_orientations, orientation_angles[startle_idc]))
+            startle_frontness = np.concatenate((startle_frontness, frontness_vals[startle_idc]))
+    return startle_orientations, startle_frontness, all_orientations, all_frontness
+
+
+def get_startle_times(startles, output_step, burn_period=50):
+    burn_period_steps = int(burn_period / output_step)
+    ntimesteps = startles.shape[0]
+    startle_times = np.array([])
+    for t in np.arange(burn_period_steps, ntimesteps):
+        startle_idc = np.where(startles[t, :])[0]
+        nonstartle_mask = np.ones(len(startles[t, :]), dtype=np.bool)
+        nonstartle_mask[startle_idc] = 0
+        if startle_idc.size == 0:
+            continue
+        else:
+            current_startle_times = np.ones(len(startle_idc)) * (t / output_step)
+            startle_times = np.concatenate((startle_times, current_startle_times))
+    return startle_times
 
 
 def getPositions(pos):
