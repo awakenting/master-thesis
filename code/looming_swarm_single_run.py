@@ -3,7 +3,7 @@ import matplotlib
 
 matplotlib.use('TKAgg')
 
-import SwarmStartleLooming as sw
+import swarm_looming_startle as sw
 import collective_behavior_analysis as cba
 import numpy as np
 import matplotlib.pyplot as plt
