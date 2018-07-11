@@ -40,7 +40,7 @@ def load_result(filename, target_rep_range, target_int_type):
 filename = os.path.join(os.path.expanduser('/extra/swarmstartle_results'),
                         'looming_swarm_fitted_model_high_resolution_rep_range_no_speed_noise.hdf5')
 
-figure_path = '../figures/results/'
+figure_path = '../../figures/results/'
 if not os.path.exists(figure_path):
     os.makedirs(figure_path)
 

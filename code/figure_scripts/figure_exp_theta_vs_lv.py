@@ -39,7 +39,7 @@ import seaborn as sns
 import scipy.io as sio
 import pandas as pd
 
-figure_path = '../figures/results/'
+figure_path = '../../figures/results/'
 if not os.path.exists(figure_path):
     os.makedirs(figure_path)
 
@@ -47,7 +47,7 @@ sns.set()
 sns.set_palette('colorblind')
 mpl.rcParams.update(custon_pgf_rcparams)
 
-data = sio.loadmat('../data/external/LVsVersusSubtendedAngle.mat')
+data = sio.loadmat('../../data/external/LVsVersusSubtendedAngle.mat')
 clean_dict = {'lv': np.squeeze(data['LVs']), 'resp_angle': np.squeeze(data['subtendedAngleAtResponse'])}
 df = pd.DataFrame(clean_dict)
 

@@ -37,7 +37,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import models as md
 
-figure_path = '../figures/results/'
+figure_path = '../../figures/results/'
 if not os.path.exists(figure_path):
     os.makedirs(figure_path)
 

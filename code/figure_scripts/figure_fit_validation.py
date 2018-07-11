@@ -38,7 +38,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
-figure_path = '../figures/results/'
+figure_path = '../../figures/results/'
 if not os.path.exists(figure_path):
     os.makedirs(figure_path)
 
@@ -47,8 +47,8 @@ sns.set_palette('colorblind')
 sns_colors = sns.color_palette()
 mpl.rcParams.update(custon_pgf_rcparams)
 
-fit_df = pd.read_hdf('../data/generated/fitting_validation_error_v4.hdf5', key='fitting_results')
-fit_df2 = pd.read_hdf('../data/generated/fitting_validation_error_v3.hdf5', key='fitting_results')
+fit_df = pd.read_hdf('../../data/generated/fitting_validation_error_v4.hdf5', key='fitting_results')
+fit_df2 = pd.read_hdf('../../data/generated/fitting_validation_error_v3.hdf5', key='fitting_results')
 fit_df = fit_df.append(fit_df2, ignore_index=True)
 
 vmin = np.min(fit_df['true_rho_null'])

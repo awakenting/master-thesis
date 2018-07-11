@@ -43,10 +43,6 @@ from pypet.trajectory import Trajectory
 
 import collective_behavior_analysis as cba
 
-figure_path = '../figures/results/'
-if not os.path.exists(figure_path):
-    os.makedirs(figure_path)
-
 sns.set()
 sns.set_palette('colorblind')
 sns_colors = sns.color_palette()
@@ -81,7 +77,7 @@ def load_result(filename):
 filename = os.path.join(os.path.expanduser('/extra/swarmstartle_results'),
                         'looming_swarm_fitted_model_fixed_rho_null_kmd_matrix.hdf5')
 
-figure_path = '../figures/results/'
+figure_path = '../../figures/results/'
 if not os.path.exists(figure_path):
     os.makedirs(figure_path)
 
