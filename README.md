@@ -35,6 +35,8 @@ If you use [Anaconda](https://docs.anaconda.com/anaconda/install/), you can just
 
 Cite the code: [![DOI](https://zenodo.org/badge/119857704.svg)](https://zenodo.org/badge/latestdoi/119857704)
 
+Do you want to do the same for your code? See [this guide](https://guides.github.com/activities/citable-code/).
+
 
 Cite the generated data: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1310934.svg)](https://doi.org/10.5281/zenodo.1310934) (from model fitting and collective behavior simulations)
 
