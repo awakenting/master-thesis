@@ -1,7 +1,7 @@
 import os
 import time
 import numpy as np
-import SwarmStartleLooming as sw
+import swarm_looming_startle as sw
 from pypet import Environment
 from pypet import pypetconstants
 from pypet.utils.explore import cartesian_product
