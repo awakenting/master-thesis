@@ -41,7 +41,14 @@ import matplotlib.colors as colors
 from matplotlib import gridspec
 from pypet.trajectory import Trajectory
 
-import collective_behavior_analysis as cba
+from .. import analysis_collective as cba
+
+figure_path = './figures/results/'
+if not os.path.exists(figure_path):
+    os.makedirs(figure_path)
+
+filename = os.path.join(os.path.expanduser('/extra/swarmstartle_results'),
+                        'looming_swarm_fitted_model_fixed_rho_null_explore.hdf5')
 
 sns.set()
 sns.set_palette('colorblind')
@@ -74,14 +81,6 @@ def load_result(filename, target_vismethod, target_int_type):
                                                                                filter_params,
                                                                                filter_func)
     return res, time_res, ranges, unique_vals, lengths
-
-
-filename = os.path.join(os.path.expanduser('/extra/swarmstartle_results'),
-                        'looming_swarm_fitted_model_fixed_rho_null_explore.hdf5')
-
-figure_path = '../../figures/results/'
-if not os.path.exists(figure_path):
-    os.makedirs(figure_path)
 
 target_int_type = 'matrix'
 

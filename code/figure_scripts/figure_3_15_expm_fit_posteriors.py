@@ -40,7 +40,7 @@ import pandas as pd
 
 from delfi.utils import viz
 
-figure_path = '../../figures/results/'
+figure_path = './figures/results/'
 if not os.path.exists(figure_path):
     os.makedirs(figure_path)
 
@@ -49,7 +49,7 @@ sns.set_palette('colorblind')
 sns_colors = sns.color_palette()
 mpl.rcParams.update(custon_pgf_rcparams)
 
-expm_fit_df = pd.read_hdf('../../data/generated/fitting_expm_data.hdf5', key='fitting_results')
+expm_fit_df = pd.read_hdf('./data/generated/fitting_expm_data.hdf5', key='fitting_results')
 
 expfit_posterior = expm_fit_df['posterior_object'][0]
 

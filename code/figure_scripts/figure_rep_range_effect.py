@@ -3,10 +3,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 from matplotlib import gridspec
-from matplotlib.transforms import blended_transform_factory
-from itertools import product
+
 from pypet.trajectory import Trajectory
-import collective_behavior_analysis as cba
+
+from .. import analysis_collective as cba
+
+figure_path = '../../figures/results/'
+if not os.path.exists(figure_path):
+    os.makedirs(figure_path)
+
+filename = os.path.join(os.path.expanduser('/extra/swarmstartle_results'),
+                        'looming_swarm_fitted_model_high_resolution_rep_range_no_speed_noise.hdf5')
 
 
 def load_result(filename, target_rep_range, target_int_type):
@@ -35,16 +42,6 @@ def load_result(filename, target_rep_range, target_int_type):
                                                                                filter_params,
                                                                                filter_func)
     return res, time_res, ranges, unique_vals, lengths
-
-
-filename = os.path.join(os.path.expanduser('/extra/swarmstartle_results'),
-                        'looming_swarm_fitted_model_high_resolution_rep_range_no_speed_noise.hdf5')
-
-figure_path = '../../figures/results/'
-if not os.path.exists(figure_path):
-    os.makedirs(figure_path)
-
-
 
 
 for target_int_type in ['voronoi_matrix', 'matrix']:

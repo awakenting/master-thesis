@@ -1,6 +1,4 @@
-import os
 import numpy as np
-import matplotlib.pyplot as plt
 from pypet.trajectory import Trajectory
 
 
@@ -372,10 +370,6 @@ def get_startle_times(startles, output_step, burn_period=50):
             current_startle_times = np.ones(len(startle_idc)) * (t / output_step)
             startle_times = np.concatenate((startle_times, current_startle_times))
     return startle_times
-
-
-def getPositions(pos):
-    return pos
 
 
 def value_to_idx(val_range, unique_values, run_idx):

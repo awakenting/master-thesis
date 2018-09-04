@@ -3,9 +3,9 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import pandas as pd
-import models as md
+from .. import model_neuronal as md
 
-figure_path = '../../figures/results/'
+figure_path = './figures/results/'
 if not os.path.exists(figure_path):
     os.makedirs(figure_path)
 

@@ -38,12 +38,11 @@ custon_pgf_rcparams = {
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-from matplotlib import gridspec
 from pypet.trajectory import Trajectory
 
-import collective_behavior_analysis as cba
+from .. import analysis_collective as cba
 
-figure_path = '../../figures/results/'
+figure_path = './figures/results/'
 if not os.path.exists(figure_path):
     os.makedirs(figure_path)
 

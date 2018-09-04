@@ -41,11 +41,12 @@ import pandas as pd
 
 from pypet.trajectory import Trajectory
 
-import collective_behavior_analysis as cba
+from .. import analysis_collective as cba
 
-figure_path = '../../figures/results/'
+figure_path = './figures/results/'
 if not os.path.exists(figure_path):
     os.makedirs(figure_path)
+
 
 sns.set()
 sns.set_palette('colorblind')
@@ -54,7 +55,6 @@ mpl.rcParams.update(custon_pgf_rcparams)
 
 filename = os.path.join(os.path.expanduser('/extra/swarmstartle_results'),
                         'looming_swarm_fitted_model_fixed_rho_null_kmd_matrix.hdf5')
-
 traj = Trajectory(filename=filename)
 
 # Now we want to load all stored data.
