@@ -1,0 +1,32 @@
+\chapter{Discussion}
+    In the previous chapter, we presented a model for collective behavior that we coupled with the neuronal model that we fitted in chapter 3.
+    We characterized the simulated behavior of the fish school by the startling frequency, cohesion and polarization and how these properties changed with differences in the mean speed of the agents and the noise on the swimming direction.
+    This was followed by an analysis of the spatial position within the group that startling agents had at the time of startle initiation and finally we compared the results of different methods for the computation of visual input.\\
+    The first effect that we found was that the direction noise strongly increases the startling frequency (Figures \ref{fig:swarm_heatmaps} and \ref{fig:swarm_comparison}).
+    We expected this because higher noise makes it more likely that two agents get onto a collision course which resembles the looming stimulus situation and where the visual angle increases quickly enough to evoke the startle response in either or both agents.
+    There was one exception, in the case of the KMEAN method and at the lowest speed the startling frequency is highest when the direction noise is lowest (Figure \ref{fig:swarm_comparison} B, bottom row of the heatmap).
+    One reason for this exception might be that the agents are not very mobile in this parameter regime, meaning that they change their direction so often that they are mostly staying in one place and thus do not encounter many other agents.
+    This is supported by the low polarization and the high nearest-neighbor distance.
+    Now the question is why this is not the case for the MAX method and here, the explanation might be that because in the MAX method one close neighbor is enough to evoke the startle response while the KMEAN method requires three close neighbors at the same time.
+    Further analysis is needed to answer this question.\\
+    Next, we also saw an increase of the startling frequency at higher speeds which is again plausible because more collisions can happen and the social forces might be too slow to change the trajectories of two agents on a collision course which would not be the case at slower speeds.
+    This effect hold for all visual input methods that we tested here.\\
+    If we look at the relationship between the startling frequency and the two order measures cohesion and polarization it appears that higher startle frequencies go together with higher nearest-neighbor distances but we can not tell from the current analysis if this is a causal relationship.
+    It will probably be necessary to analyze the precise sequence of events during each simulation in order to reveal a causal structure.
+    Here, it might also be interesting to see, first if there really is a periodicity as we observed it in Figure \ref{fig:swarm_over_time} and second if this can tell us something about the interaction between startling frequency, cohesion and polarization.\\
+    If we look at the absolute values of the startle frequency we can say that for this parameter regime the model with the KMD method is the most realistic because its startle frequencies are the only ones that come close to those found in experiments (see beginning of the previous chapter.
+    With regards to the experiment from \cite{Rosenthal2015} there are more results that we can compare with our collective behavior model.
+    First, we could analyze startling cascades and compare the distribution of sizes with those in the experiment.
+    Furthermore, we could check if also in our model the cascade size correlates with the local clustering coefficient.\\
+    There are several ways to make the model more realistic.
+    One obvious way is to use a more realistic neuronal model for which we already discussed potential extensions in chapter 3.
+    For the collective behavior model itself, one assumption that is very likely to not be true in nature is that of the sphere shape of our agents.
+    The fact that \cite{Rosenthal2015} found that the subtended visual angle is an important factor for the influence that a startling agent has on its neighbors indicates that it might be important to consider the elongated shape of fish in our model.
+    Another promising extension would be to consider computations of the visual input that are based on the actual visual scene.
+    Here we took a shortcut by assuming the visual angles of the neighboring agents were already computed somehow and we only analyzed how to combine them.
+    Finally, it has been shown that the individuals differ in there decision-making behavior based on their social status \citep{Miller2017} and there are further trait differences in zebrafish \citep{Khan2017}.
+    This could be implemented on the neuronal level via different resting activity levels of the inhibitory population.\\
+    In conclusion, we developed a biologically motivated neuronal model that can reproduce experimental behavior.
+    We coupled the neuronal model with a collective behavior model and found a parameter regime in which the startle frequency is similar to frequencies that were found in experiments.
+    But for both models, many possible extensions exist and therefore many open questions remain to be answered.
+

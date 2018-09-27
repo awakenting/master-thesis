@@ -1,0 +1,96 @@
+\chapter{Single Mauthner Cell Model - Theory}
+	In this chapter we will explain the theoretical aspects of the neuronal model for a single 
+	Mauthner Cell.
+	By 'single' Mauthner cell we only mean that we are considering the mechanisms of the 
+	surrounding circuit involving one of the two existing Mauthner cells instead of both.
+	We will start with the description of the full model and continue with two reductions that 
+	assume a separation of timescales and thus provide stationary approximations of the model.
+	\section{Full neuronal model}
+	The full neuronal model of a single Mauthner cell consists of a rate-based model for the 
+	population of inhibitory interneurons that provide the feed-forward inhibition and a LIF model 
+	for the M-cell itself.
+	Both the inhibitory population and the M-cell get their input from a single source.
+	In our case this input will represent the visual information coming from the optic tectum which 
+	will be described in more detail in the next chapter.
+	The time evolution of the activity $\rho$ of the inhibitory population is described by the 
+	following equation:
+	\begin{equation}
+	\tau _{\rho} \frac{d\rho}{dt} = - (\rho(t) - \rho_{0}) + c_{\rho} I(t) + 
+	\eta _{\rho},
+	\label{eq:inhib}
+	\end{equation}
+	where $\tau _{_\rho}$ is the time constant, $\rho _{0}$ is the resting activity of the 
+	population, $c_{\rho}$ is a scaling factor, $I(t)$ is the time dependent input and $\eta 
+	_{\rho}$ is a Gaussian noise term.
+    While we assume that the resting activity $\rho_{0}$ is constant during a single trial of an experiment, we sample its value during a single trial from a random distribution that we further specify in the next chapter.\\
+	For the M-cell we use a LIF model where the time evolution of the membrane potential $V_m$ is 
+	described by the following equation:
+	\begin{equation}
+	\tau _m \frac{dV_m}{dt} = - (V(t) - E_{L}) + R_{m} I(t) - \rho (t) +  \eta 
+	_m,
+	\label{eq:mcell}
+	\end{equation}
+	where $\tau_{m}$ is the membrane time constant, $E_L$ is the resting potential, $R_m$ is the 
+	membrane resistance and $\eta_{m}$ is again a Gaussian noise term.
+	The M-cell thus gets the direct visual input $I(t)$ and is inhibited by $\rho(t)$.
+	If the membrane potential $V_m$ crosses a threshold $V_t$ an action potential is artificially 
+	produced and the membrane potential is reset to the resting potential $E_L$.
+	Additional to the noise terms in equations \ref{eq:inhib} and \ref{eq:mcell} we will also 
+	consider fluctuations of the firing threshold $V_t$:
+	\begin{equation}
+	V_t (t) = V_t + \eta_t(t),
+	\label{eq:thrs}
+	\end{equation}
+	where $\eta_t$ is a Gaussian noise term.\\
+	The basic parameters of the LIF model, i.e. $E_L$, $R_m$, $\tau_m$ and $V_t$, have been fitted to experimental data in a previous study by \cite{Koyama2016} using recordings from four larval zebrafish at four days post-fertilization(dpf).
+	For the details of the fitting procedure see their methods section.\\
+	One important property of this dynamic system are the time scales on which the described activity is going on.
+	Since we know that the synapses at the inhibitory interneurons are electric, at least for the auditory input, the time constant, and therefore the relevant time scale, of $\rho$ is in the order of milliseconds.
+	As we will see later on, in the experiments that we want to reproduce the changes in the input over time are on much bigger time scales of at least hundreds of milliseconds.
+	This fact motivates the reduction in the next section where we approximate the activity of the inhibitory population by an adiabatic ansatz assuming a separation of time scales.
+	\section{Stationary Approximation of Inhibitory Population}\label{approx inhibition}
+	Here we reduce the model by approximating the activity of the inhibitory population by its 
+	stationary solution.
+	This approximation is the more accurate the higher the difference is between the time scale of the dynamics of the inhibitory population and the time scale of the input.
+	If we use $\tau_{\rho}$ as the time scale of the inhibitory population and denote $\tau_{in}$ as the time scale of the input, the approximation becomes equivalent for the limit $\tau_{\rho}/ \tau_{in} \rightarrow 0$.
+	In the model, this means that equation \ref{eq:inhib} becomes:
+	\begin{equation}
+	\hat{\rho} (t) = \rho_{0} + c_{\rho} I(t) + \eta_{\rho}.
+	\label{eq:inhib_approx}
+	\end{equation}
+	Now we can replace $\rho (t)$ in equation \ref{eq:mcell} and get:
+	\begin{equation}
+	\tau _m \frac{dV_m}{dt} = - (V(t) - E_{L}) + I(t)(R_{m} - c_{\rho}) - \rho_{0} - 
+	\eta_{\rho} +  \eta _m.
+	\label{eq:mcell_approx1}
+	\end{equation}
+	In the resulting LIF model the input is now weighted by the difference between the scaling 
+	factor $c_{\rho}$ and the membrane resistance $R_m$.
+	If we ignore the noise terms for a moment and assume that $\rho_{0}=0$, this means that the 
+	input can only excite the M-cell and therefore evoke an action potential if $c_{\rho} < R_m$.
+	Increasing $\rho_{0}$ would effectively increase the firing threshold $V_t$.
+	\section{Stationary Approximation of Full Model}\label{approx full model}
+	As a next step we can further approximate the LIF model in equation \ref{eq:mcell_approx1} by 
+	its stationary solution:
+	\begin{equation}
+	\hat{V}_m(t) = E_{L} + I(t)(R_{m} - c_{\rho}) - \rho_{0} - 
+	\eta_{\rho} +  \eta _m.
+	\end{equation}
+	If we set all noise to zero we can derive an expression for the input at which the membrane 
+	potential reaches the threshold $V_{t}$:
+	\begin{equation}
+	\hat{V}_m(t) \overset{!}{=} V_t
+	\end{equation}
+	\begin{equation}
+	\Leftrightarrow E_{L} + I(t)(R_{m} - c_{\rho}) - \rho_{0} 
+	\overset{!}{=} V_t
+	\end{equation}
+	\begin{equation}
+	\Leftrightarrow I(t)
+	\overset{!}{=} \frac{V_t - E_{L} + \rho_{0}}{(R_{m} - c_{\rho})}
+	\label{eq:crit_input}
+	%TODO: look up solution for simple LIF equation even if it's only for linear input
+	%TODO: say that this is comparable to first-passage time problems such as in the 
+	%drift-diffusion model for decision making(maybe cite ratcliff2002 or so)
+	\end{equation}
+%----------------------------------------------------------------------------------------

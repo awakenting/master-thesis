@@ -9,7 +9,7 @@
 \usepackage[toc,page]{appendix}				% more control over appendices
 \usepackage[english]{babel} 				% Anpassung für mehrsprachige Dokumente
 \usepackage[utf8]{inputenc}				% for german characters like "ä, ö, ü"
-\usepackage[safeinputenc=true,backend=biber,style=authoryear,natbib=true,maxbibnames=5,maxcitenames=1,uniquelist=false]{biblatex}
+\usepackage[abbreviate=true,safeinputenc=true,backend=biber,style=authoryear,natbib=true,maxbibnames=5,maxcitenames=1,uniquelist=false]{biblatex}
 %\renewcommand*{\multinamedelim}{\semicolon\addspace}
 \addbibresource{masterthesisbib.bib}
 \usepackage[usenames, dvipsnames]{color}					% Nutzung von Farben
@@ -25,11 +25,12 @@
 \usepackage{pgfplots}
 \usepackage{mdwlist}					% kompaktere Auflistungen
 \usepackage{microtype}	 				% Optischer Randausgleich
+\usepackage{multicol}
 \usepackage{subcaption}					% Subfigure/-tabellen
 \usepackage{scrpage2}
 \usepackage{tabularx}					% Textsetzung in Tabellen in p-Spalten
 \usepackage{textcomp}					% Besondere Textzeichen
-\usepackage{ulem}					% Unterstreichung
+\usepackage[normalem]{ulem}					% Unterstreichung
 \usepackage{url}					% Links
 \usepackage{xfrac}					% notw. für schräggestellten Bruch
 \usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
@@ -47,34 +48,10 @@
 }
 
 \begin{document}
-	\thispagestyle{empty}
-	\begin{center}
-		\Large
-		\textbf{A Neuronal Model for Visually Evoked Startle Responses in Schooling Fish}\\
-		
-		\vspace*{1cm}
-		\normalsize
-		Master thesis\\
-		
-		\vspace{3cm}
-		by\\
-		Andrej Warkentin \\
-		Bernstein Center for Computational Neuroscience - Berlin
-		
-		\vspace{2cm}
-		Supervisors:\\
-		Dr. Pawel Romanczuk\\
-		Bernstein Center for Computational Neuroscience - Berlin\\
-		Prof. Dr. Henning Sprekeler\\
-		Technische Universit\"{a}t Berlin
-		
-	\end{center}
-	\pagebreak 
-	% Title Page
-	\title{masterthesis}
-	
-	% Inhaltsverzeichnis =====================================
-	\thispagestyle{empty}
+\pagenumbering{roman}
+\include{titlepage}
+\include{declaration}
+
 	\tableofcontents		% Inhaltsverzeichnis erstellen
 	\newpage
 	%\cleardoublepage	% min. eine Freiseite
@@ -114,6 +91,7 @@
 	S-start \citep{Domenici2011}\footnote{It should be noted here that not all C-starts are escape 
 	responses because they can also be involved in e.g. prey capture but we will ignore other roles 
 	in the following.}.
+    C-starts can be further divided into short-latency (SLC) and long-latency C-starts (LLC) (\cite{Burgess2007}, \cite{Domenici2010}).
 	This thesis will focus on the C-start behavior of fish.\\
 	The C-start behavior in fish has been extensively studied and one of the main reasons for this 
 	is that a pair of neurons that play a major role in the initiation of the C-start, have large 
@@ -121,42 +99,35 @@
 	They are called Mauthner cells (M-cells), named after Ludwig Mauthner who first found and 
 	described their axons \citep{Mauthner1859}.\\
 	Before going into the details of the M-cell circuit we will give a brief overview of the 
-	nervous 
-	system of fish to provide some context.
+	nervous system of fish to provide some context.
 	Since we will later focus on visually evoked C-starts we will go into more detail when it comes 
 	to the visual pathways in the brain.
-	The overall structure of the nervous system of fish is very similar to mammals.
+    For all of the following, one should keep in mind that there is a great variety of fish species that live in very different environments so that one can expect large deviations from the description below when looking at a single species.\\
+	The overall structure of the central nervous system of fish is very similar to mammals.
 	Starting at the caudal end there is the spinal cord with descending motor pathways and the 
 	ascending sensory pathways.
 	The spinal cord goes over into the hindbrain region with the medulla and the cerebellum.
 	This is followed by the midbrain which comprises the rostral part of the brainstem and a roof 
-	region, the tectum \cite{the chapter in encyclopedia of fish physiology}.
-	The remaining forebrain consists of the diencephalon and the telencephalon.
-	%TODO: add appropriate references
-	%TODO: say what is different in mammals/humans
-	%TODO: mention somewhere that there are big differences among fish because there are so many 
-	%species
+	region, the tectum.
+	The remaining forebrain consists of the diencephalon and the telencephalon \citep{Butler2011}.
 	In terms of sensory organs fish are equipped with the same senses as mammals and additionally 
 	have the lateral line organ that senses lower frequency signals around the body such as e.g. 
 	water flow and in some cases organs that can sense electrical fields.\\
-	%TODO: some transitional sentence to introduce the visual system
-	Going from outside to inside, the eyes, again similar to mammals, consist of the cornea, the 
-	lens surrounded by the iris and the retina followed by the photoreceptors which build the most 
-	inside layer.
+    The visual system and the eyes in particular are again similar to mammals.
+	Going from outside to inside, the eyes consist of the cornea, the lens surrounded by the iris and the retina followed by the photoreceptors which build the most inside layer \citep{Kroeger2011}.
+    There is additionally aqueous humor between cornea and lens and a more viscous, almost solid humor between lens and retina.
 	In contrast to mammals the pupils of fish are not responsive to the amount of light in the 
 	environment.
 	Fish mostly have rods and three different cones although across species there are up to seven 
-	different types of cones.
+	different types of cones \citep[Chapter~7]{Cronin2017}.
 	The retina has different types of neurons that build different layers.
-	The output neurons of the retina are the ganglion cells which show different kinds of tuning 
-	and whose axons build the optic nerve when they exit the eye.
-	%TODO: cite paper about tuning of retinal ganglion cells
+	The output neurons of the retina are the ganglion cells which show different kinds of tuning \citep{Antinucci2018}
+	and whose axons build the optic nerve when they exit the eye \citep{Levine2011}.
 	Although most fish don't have a fovea as we know it from humans there are retinal areas of 
 	higher ganglion cell and photoreceptor densities \citep{Pita2015}.
 	Most of the ganglion cell axons cross sides and end up in the optic tectum which is the 
-	equivalent to the mammalian superior colliculus.
-	While in humans much of the visual information goes further to the primary visual cortex in 
-	fish the optic tectum is the main site of processing of visual information.
+	homolog of the mammalian superior colliculus.
+	While in humans the main path of visual processing is thought to go through the primary visual cortex and after that to higher visual areas, in fish the optic tectum seems to be the main site of processing of visual information.
 	Similar to cortical areas it is comprised of different layers, also receiving input from other 
 	senses and other brain areas such as the telencephalon.
 	The output of the optic tectum goes, among other regions, to the reticular nuclei in the 
@@ -166,7 +137,7 @@
 	It receives multisensory input which is divided between the two dendritic branches.
 	The lateral dendrite receives auditory and lateral line input whereas the ventral dendrite 
 	receives visual input via the optic tectum mentioned before.
-	While this means that the visual input is highly processed by the networks in retina and optic 
+	While this means that the visual input is highly processed by the neuronal networks in retina and optic 
 	tectum before it arrives at the M-cell the auditory input comes directly from the auditory 
 	nerve.
 	This might be one of the reasons why the physiology of the auditory input has been studied in 
@@ -181,13 +152,11 @@
 	initiating the startle response.
 	But this is not the only function of these interneurons because they also inhibit the 
 	contralateral M-cell as well as their contralateral counterparts \citep{Koyama2016}.\\
-	This microcircuit is probably responsible for the decision of which direction to escape to.
+	As \cite{Koyama2016} conclude, this microcircuit is probably responsible for the decision of which direction to escape to.
 	To illustrate why this connectivity makes sense in this decision-making context, let us 
 	consider an auditory stimulus coming from the left side:
-	It will inhibit the M-cell on the right side, inhibit the interneurons on the right side and 
-	excite the M-cell on the left side.
-	Effectively, we have an increased inhibition of the right M-cell, decreased inhibition of the 
-	left M-cell and increased excitation of the left M-cell.
+	It will inhibit the M-cell on the right side, inhibit the interneurons on the right side, excite the M-cell on the left side and also inhibit it.
+	Effectively, we have an increased inhibition of the right M-cell and an increased excitation of the left M-cell.
 	Because the axons of the M-cells cross sides, an action potential of the M-cell on the left 
 	side will lead to a contraction of muscles on the right side, resulting in movements of head 
 	and tail away from the stimulus on the left side.\\
@@ -198,11 +167,9 @@
 	action potential.
 	The axon of the M-cell is unusually big as well which results in a fast signal transmission 
 	when an action potential is initiated and thus allows for fast reactions.
-	The axon is also connected to interneurons that provide feedback inhibition to both M-cells.
+	The axon is also connected to so-called Cranial Relay Neurons (CRN) that putatively excite interneurons that provide feedback inhibition to both M-cells (\cite{Koyama2011}, \cite{Hale2016}).
 	This is thought to prevent repetitive firing of the M-cell that fired in the first place and 
 	also to prevent the contralateral M-cell to fire shortly after.
-	%TODO: check if axons are connected directly to interneurons
-	%TODO: check what cranial relay neurons do and put it here
 	Apart from this feedback inhibition the axon goes through the whole spinal chord with 
 	colaterals that go to the motor neurons on the contralateral side.
 	And also at this level we have again interneurons that putatively have the role of inhibiting a 
@@ -210,44 +177,37 @@
 	\citep{Song2015}.\\
 	The exact role of the M-cells and the surrounding circuit in the C-start behavior is still a 
 	subject of study.
-	The current state of research suggests that the M-cell is sufficient and necessary to evoke 
+	The current state of research suggests that the M-cell is indispensable and inducing for the 
 	the first phase of short-latency C-starts.
-	%TODO: find reference and explain difference between short and long-latency c-starts
 	Nevertheless, if the M-cell is ablated the fish are still able to perform long-latency C-starts 
 	(\cite{Lacoste2015}, \cite{Dunn2016}).
-	Furthermore, there is another population of neurons, that, if ablated, increase the latency of 
-	C-starts in a similar manner as the ablation of the M-cell does \citep{Lacoste2015}.\\
-	In the first part of this thesis we will make first steps towards a mechanistic understanding 
-	of 
-	functional role of the M-cell circuit for the C-start behavior.
+	Furthermore, there is another population of neurons, the Spiral Fiber Neurons (SFNs), that, if ablated, increase the latency of C-starts in a similar manner as the ablation of the M-cell does \citep{Lacoste2015}.
+    Their axons are targeting the initial axon segment of the M-cell but their input is so far unknown to the best of our knowledge.\\
+	In the first part of this thesis we aim to make first steps towards a mechanistic understanding 
+	of functional role of the M-cell circuit for the C-start behavior.
 	For this, we will greatly simplify the physiological properties of the M-cell and use a Leaky 
 	Integrate-and-Fire (LIF) model to capture the relevant dynamics.
-	We did not choose the more realistic Hodgkin-Huxley like model type that takes into account 
-	different ion currents because we were not interested in the action potential shape but rather 
-	in 
-	the action potential timing dependent on the input.
-	%TODO: maybe add reference to \cite{Brette2015}
+	We did not choose the supposedly more realistic\footnote{Although, \cite{Brette2015} argues that Integrate-and-Fire models are more realistic if one looks at spike initiation and only compares single-compartment models.}  Hodgkin-Huxley-like model type that takes into account different ion currents because we were not interested in the action potential shape but rather in the action potential timing dependent on the input.
 	The simpler LIF model also allowed for more efficient simulation which was also useful for the 
-	integration of the neuronal model in the collective behavior model in the second part.
+	integration of the neuronal model in the collective behavior model in the second part.\\
 	For the input of the M-cell we will assume that the visual input, coming from the optic tectum, 
 	is the result of a feature extraction of the visual scene.
+    Evidence, that the startle response can be evoked visually has been shown in several experiments that use a visual looming stimulus and which we will describe in more detail in Chapter \ref{ch:expm}.
 	Taken together, this will allow us to link parameters of the neuronal model to behavioral 
-	response properties and to compare and fit this to experimental data.\\
-	%TODO: mention looming stimulus experiments
+	response properties and to fit the model to experimental data.\\
 	%TODO: describe previous work in "modeling the mauthner system"
-	%TODO: mention rosenthal paper as motivation for the second part of the thesis
-	While the first part of the thesis is concerned with the behavior of single fish, for many fish 
-	species the natural environment is more likely to live in a group together with many other fish.
-	Such groups of fish that move around together are called shoals if they are rather 
-	uncoordinated and schools if they move in a highly ordered manner.
-	This collective behavior is not well understood yet and in the second part of this thesis we 
-	want to analyze how the startle response interacts with it.
+	While the first part of the thesis is concerned with the behavior of single fish, for many fish species the natural environment is more likely to live in a group together with many other fish.
+	Such groups of fish that move around together are called \textit{shoals} if they are rather uncoordinated and \textit{schools} if they move in a highly ordered manner.
+    How fish schools achieve this high degree of coordination even during complex maneuvers e.g. when a predator attacks has been of great interest.
+    In a previous study, \cite{Rosenthal2015} analyzed how the spontaneous startling of a single fish would spread in the school and found that the local structure of the visual network is predictive of how much the startling would spread.
+    In this context we were interested how our fitted model for the visual initiation of a startle response would fit into the collective behavior.
 	In more detail, we were interested in the following questions:
 	Can the startle response be evoked spontaneously in the fish school e.g. when neighboring fish 
 	come too close too fast?
+    Is the probability to startle dependent on the position and orientation of the fish within the school?
 	Does the startling of a single fish spread in the school?
 	How do these effects depend on the properties of the school?\\
-	In order to address these questions we will use an agent-based model that describes the 
+	In order to address these questions we used an agent-based model that describes the 
 	interactions between fish by so-called social forces.
 	Typically, there are the three forces repulsion, alignment and attraction and they can work 
 	either on neighbors within a specific range (metric interaction) or only on topological 
@@ -259,9 +219,14 @@
 	parameters of the social forces.
 	While in one mode the collective would be uncoordinated but stay loosely together, it would 
 	move highly polarized and cohesive in another parameter regime or show a kind of milling 
-	behavior in a third mode.
-	%TODO: explain what we will do with this collective model
-	%TODO: sum up and outline the remaining thesis
+	behavior in a third mode.\\
+    In this work we added on top of the social forces the fitted neuronal model from the first part so that if the model M-cell of an agent reaches its threshold during the simulation, the agent performs a stereotyped startle response.
+    In this situation we don't have a single looming stimulus that we could directly transform into the visual input for each agent but instead the visual field is much more dynamic, consisting of many neighboring agents at different distances.
+    Therefore, we analyzed and compared several ways in which an agent could in principal process its visual field resulting in different visual inputs for the neuronal model.\\
+    To summarize, in the next chapter we will formulate the neuronal model followed by a chapter where we describe the experiments that we want to reproduce and how we fit the model to the experimental data.
+    We continue with a description of the model for the collective behavior and how we integrated the neuronal model.
+    This is followed by an analysis of the startling patterns in the collective behavior and finally, we discuss the overall results.
+    
 	\chapter{Single Mauthner Cell Model - Theory}
 	In this chapter we will explain the theoretical aspects of the neuronal model for a single 
 	Mauthner Cell.
@@ -286,6 +251,7 @@
 	where $\tau _{_\rho}$ is the time constant, $\rho _{0}$ is the resting activity of the 
 	population, $c_{\rho}$ is a scaling factor, $I(t)$ is the time dependent input and $\eta 
 	_{\rho}$ is a Gaussian noise term.
+    While we assume that the resting activity $\rho_{0}$ is constant during a single trial of an experiment, we sample its value during a single trial from a random distribution that we further specify in the next chapter.\\
 	For the M-cell we use a LIF model where the time evolution of the membrane potential $V_m$ is 
 	described by the following equation:
 	\begin{equation}
@@ -301,32 +267,21 @@
 	Additional to the noise terms in equations \ref{eq:inhib} and \ref{eq:mcell} we will also 
 	consider fluctuations of the firing threshold $V_t$:
 	\begin{equation}
-	V_t (t) = V_t + \eta_t,
+	V_t (t) = V_t + \eta_t(t),
 	\label{eq:thrs}
 	\end{equation}
 	where $\eta_t$ is a Gaussian noise term.\\
-	The basic parameters of the LIF model, i.e. $E_L$, $R_m$, $\tau_m$ and $V_t$, have been fitted 
-	to experimental data in a previous study by \cite{Koyama2016} using recordings from four 
-	%larval 
-	zebrafish at four days post-fertilization(dpf).
+	The basic parameters of the LIF model, i.e. $E_L$, $R_m$, $\tau_m$ and $V_t$, have been fitted to experimental data in a previous study by \cite{Koyama2016} using recordings from four larval zebrafish at four days post-fertilization(dpf).
 	For the details of the fitting procedure see their methods section.\\
-	One important property of this dynamic system are the time scales on which the described 
-	activity is going on.
-	Since we know that the synapses at the inhibitory interneurons are electric, at least for the 
-	auditory input, the time constant, and therefore the relevant time scale, of $\rho$ is in the 
-	order of milliseconds.
-	As we will see later on, in the experiments that we want to reproduce the changes in the input 
-	over time are on much bigger time scales of at least hundreds of milliseconds.
-	This fact motivates the reduction in the next section where we approximate the activity of the 
-	inhibitory population by the stationary solution.
-	\section{Stationary Approximation of Inhibitory Population}
+	One important property of this dynamic system are the time scales on which the described activity is going on.
+	Since we know that the synapses at the inhibitory interneurons are electric, at least for the auditory input, the time constant, and therefore the relevant time scale, of $\rho$ is in the order of milliseconds.
+	As we will see later on, in the experiments that we want to reproduce the changes in the input over time are on much bigger time scales of at least hundreds of milliseconds.
+	This fact motivates the reduction in the next section where we approximate the activity of the inhibitory population by an adiabatic ansatz assuming a separation of time scales.
+	\section{Stationary Approximation of Inhibitory Population}\label{approx inhibition}
 	Here we reduce the model by approximating the activity of the inhibitory population by its 
 	stationary solution.
-	This approximation is the more accurate the higher the difference is between the time scale of 
-	the dynamics of the inhibitory population and the time scale of the input.
-	If we use $\tau_{\rho}$ as the time scale of the inhibitory population and denote $\tau_{in}$ 
-	as the time scale of the input, the approximation becomes equivalent for the limit 
-	$\tau_{\rho}/ \tau_{in} \rightarrow 0$.
+	This approximation is the more accurate the higher the difference is between the time scale of the dynamics of the inhibitory population and the time scale of the input.
+	If we use $\tau_{\rho}$ as the time scale of the inhibitory population and denote $\tau_{in}$ as the time scale of the input, the approximation becomes equivalent for the limit $\tau_{\rho}/ \tau_{in} \rightarrow 0$.
 	In the model, this means that equation \ref{eq:inhib} becomes:
 	\begin{equation}
 	\hat{\rho} (t) = \rho_{0} + c_{\rho} I(t) + \eta_{\rho}.
@@ -343,7 +298,7 @@
 	If we ignore the noise terms for a moment and assume that $\rho_{0}=0$, this means that the 
 	input can only excite the M-cell and therefore evoke an action potential if $c_{\rho} < R_m$.
 	Increasing $\rho_{0}$ would effectively increase the firing threshold $V_t$.
-	\section{Stationary Approximation of Full Model}
+	\section{Stationary Approximation of Full Model}\label{approx full model}
 	As a next step we can further approximate the LIF model in equation \ref{eq:mcell_approx1} by 
 	its stationary solution:
 	\begin{equation}
@@ -367,12 +322,8 @@
 	%TODO: say that this is comparable to first-passage time problems such as in the 
 	%drift-diffusion model for decision making(maybe cite ratcliff2002 or so)
 	\end{equation}
-	\begin{itemize}
-		\item maybe discuss relation to first-passage time problems
-	\end{itemize}
 
-
-	\chapter{Single Mauthner Cell Model - Numerical experiments}
+	\chapter{Single Mauthner Cell Model - Numerical experiments}\label{ch:expm}
 	We will now come to the simulations of the visual looming stimulus experiment.
 	For this we first describe the experiments that we want to reproduce, especially the specific 
 	conditions and results.
@@ -400,6 +351,14 @@
     Another parameter that is often reported is the ratio of stimulus size and velocity, L/V, which indicates the time needed to cover a distance of a length equal to the stimulus size.
 	The subtended visual angles on the retina of the fish range from 2\textdegree to at least 
 	100\textdegree.
+    In Figure \ref{fig:expm_setup} you can see the experimental setup and the stimuli from the study of \cite{Bhattacharyya2017}.
+    \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=0.8\textwidth]{bhattacharyya_exp_setup.jpeg}
+    	\end{center}
+    	\caption{\textbf{Experimental setup and stimulus from \cite{Bhattacharyya2017}}. The fish is placed in an inner dish which is located in an larger dish. The stimulus is projected on the wall of the larger dish and the reaction of the fish is recorded from above. Adapted from Figure 1 in \cite{Bhattacharyya2017}.}
+    	\label{fig:expm_setup}
+    \end{figure}
 	For an overview of all reported conditions in the experiments see Table \ref{tab:looming_exp}.\\
 	\begin{table} [!th]
 		\begin{center}
@@ -471,8 +430,7 @@
 		read of figures or inferred from other, reported values. Chkb. = Checkerboard pattern.}
 		\label{tab:looming_exp}
 	\end{table}
-	%TODO: make appropriate groups for table and/or remove some of them and put the full table into 
-	%appendix
+	%TODO: make appropriate groups for table and/or remove some of them and put the full table into appendix
 	For the results of the experiment the time from onset of the stimulus (latency), the distance and the 
 	visual angle are measured at the time when the fish responds, i.e. starts to move away.
 	The visual angle at response time (response angle) has been found to have the same mean value 
@@ -480,9 +438,17 @@
 	although there are substantial differences in the mean value as well as in the variance.
 	This could be explained by the differences in various experimental conditions such as the water 
 	temperature, head restraining or the acclimation time (see Table \ref{tab:looming_exp}).
-	While the study with goldfish \citep{Preuss2006} does not report to find a so-called critical visual angle, the observed response angles (14\textdegree to 29\textdegree) are in a range 
-	that is comparable to e.g. the one found by \cite{Bhattacharyya2017} (35\textdegree $\pm$ 
-	15\textdegree).\\
+	While the study with goldfish \citep{Preuss2006} does not report to find a so-called critical visual angle, the observed response angles (14\textdegree{} to 29\textdegree) are in a range 
+  	that is comparable to e.g. the one found by \cite{Bhattacharyya2017} (35\textdegree{} $\pm$ 
+	15\textdegree).
+    The distribution of response angles in dependence of the L/V values of all studies considered here is shown in Figure \ref{fig:expm_theta_lv}.\\
+    \begin{figure}[!h]
+    	\begin{center}
+			\includegraphics[width=0.8\textwidth]{figure_expm_theta_vs_lv.pdf}
+    	\end{center}
+    	\caption{Experimental response angles against L/V values.}
+    	\label{fig:expm_theta_lv}
+    \end{figure}
 	For the simulations of the experiment we closely followed the procedure reported by 
 	\cite{Bhattacharyya2017}.
 	At the beginning of a trial a stimulus size is drawn from a uniform distribution between 10 mm and 25 mm.
@@ -517,7 +483,7 @@
     For an example with $\theta_{crt}=35$ and $D_{init}=50$ these idealized response properties are illustrated in Figure \ref{fig:ideal_resp_props}, where we chose the same axes as in Figure 1 of \cite{Bhattacharyya2017} for easy comparison.\\
 	In our simulations the visual angle is next transformed by a linear function and the result is the input $I(t)$ for our neuronal model, described in the previous chapter:
 	\begin{equation}
-	I(t) = f(\theta (t)) = m \cdot \theta(t) + b.
+	I(t) = f(\theta (t)) = c_{scale}(m \cdot \theta(t) + b).
 	\label{eq:input}
 	\end{equation}
 	In order to calculate the response properties we take the time of the first spike $t_{spk}$ of the model M-cell after stimulus onset as the response time of the fish.
@@ -525,7 +491,7 @@
 	Thus the response angle of the simulated trial will be $\theta (t_{spk})$.
 	%TODO: mention initial period with constant size
 	
-    \begin{figure}[!h]
+    \begin{figure}[H]
     	\begin{center}
 			\includegraphics[width=\textwidth]{figure_theta_lv_test.pdf}
     	\end{center}
@@ -533,87 +499,258 @@
     	\label{fig:theta_lv}
     \end{figure}
     
-    \begin{figure}[!h]
+    \begin{figure}[H]
     	\begin{center}
-			\includegraphics[width=\textwidth]{figure_ideal_resp.pdf}
+			\includegraphics[width=\textwidth]{figure_ideal_resp_v2.pdf}
     	\end{center}
-    	\caption{Response properties for a critical angle $\theta_{crt}=35$ and initial distance $D_{init}=50 mm$.  For all plots L was sampled between 10 mm and 25 mm and L/V was sampled between 0.1 s and 1.2 s. Red lines show minimal and maximal values calculated using Equations \ref{eq:resp_time}, \ref{eq:resp_dist} and \ref{eq:resp_ttc}. \textbf{A} The response distance only depends on L and thus has the same range for all L/V values. \textbf{B} Response times linearly increase with L/V and the slope increases for smaller L. \textbf{C} Absolute time-to-collision linearly increases with L/V and the slope only depends on $\theta_{crt}$.}
+    	\caption{Response properties for a critical angle $\theta_{crt}=35$ and initial distance $D_{init}=50$ mm.  For all plots L was sampled between 10 mm and 25 mm and L/V was sampled between 0.1 s and 1.2 s. Red lines show minimal and maximal values that were calculated using equations \ref{eq:resp_time}, \ref{eq:resp_dist} and \ref{eq:resp_ttc}. \textbf{A} The response distance only depends on L and thus has the same range for all L/V values. \textbf{B} Response times linearly increase with L/V and the slope increases for smaller L. \textbf{C} Absolute time-to-collision linearly increases with L/V and the slope only depends on $\theta_{crt}$.}
     	\label{fig:ideal_resp_props}
     \end{figure}
 		
-	\section{Stationary model prediction}
-	\begin{equation}
-	I(t) = 10^{-11} c_{exc} f(\theta(t)) = 10^{-11} c_{exc} (m \cdot \theta(t) 
-	+ b)
+	\section{Stationary Approximation of Full Model}
+    For the stationary approximation of the full model in section \ref{approx full model} we derived an analytical solution for the input at which the M-cell fires if there is no noise in the system (see equation \ref{eq:crit_input}).
+    Since we defined the time of the first spike of the M-cell as the time at which the fish responds this approximated model therefore has a deterministic response angle.
+    Using our definition of the input in the visual looming stimulus experiment from equation \ref{eq:input} we find the following expression for the response angle:
+    \begin{equation}
+	I(t) = f(\theta(t)) \overset{!}{=} \frac{V_t - E_{L} + \rho_{0}}{(R_{m} - c_{\rho})}
+	\label{eq:crit_theta_start}
 	\end{equation}
-	Inserting values for the fixed parameters $E_{L}=-79$ mV, $R_{m}=10$ 
-	M$\Omega$ 
-	and $V_{t}=-61$ mV:
-	\begin{equation}
-	-0.079 + 10^{7} I(t) - c_{\rho} 10^{7} I(t) - \rho_{0} \overset{!}{=} -0.061
+    \begin{equation}
+	\Leftrightarrow \theta \overset{!}{=} \frac{V_t - E_{L} + \rho_{0}}{c_{scale}\cdot m \cdot (R_{m} - c_{\rho})} - \frac{b}{m}
+	\label{eq:crit_theta_end}
 	\end{equation}
-	
-	\begin{equation}
-	\Leftrightarrow 10^{7} I(t) - c_{\rho} 10^{7} I(t) - \rho_{0} 
-	\overset{!}{=} 0.018
+	Because we fix the parameters $E_{L}=-79$ mV, $R_{m}=10$ M$\Omega$ and $V_{t}=-61$ mV, the remaining free parameters for this model are $\rho_{0}$, $c_{\rho}$, $c_{scale}$, $m$ and $b$.
+    The response angle linearly increases with $\rho_{0}$ and linearly decreases with $b$.
+    The influence of $b$ is scaled by $m$ and for $\rho_{0}$ the increase is scaled by the product of $(R_{m} - c_{\rho})$, $c_{scale}$ and $m$.
+    Furthermore, the response angle is reversely proportional to $c_{scale}$ and $m$.
+    If $c_{\rho} > R_{m}$ the model predicts a negative response angle because this would mean that the effective input for the M-cell is negative.
+    As this is unrealistic we constraint $c_{\rho}$ to be strictly smaller than $R_{m}$.
+    For the allowed range the response angle increases with increasing $c_{\rho}$ and the increases become larger as $c_{\rho}$ approaches $R_{m}$.
+    For a simplified case where we fix $b=0$ and $c_{scale}=3\cdot10^{-10}$, the effect of the remaining free parameters on the response angle is shown in Figure \ref{fig:effect_stationary_params}.\\
+    If we now look at the effects of adding noise to the system, first we have to specify the random distribution for the resting activity of the inhibitory population $\rho_0$.
+    Motivated by the rarely occurring but very high response angles in the data of \cite{Bhattacharyya2017} (see Figure \ref{fig:expm_theta_lv}) we chose the log-normal distribution that is parametrized by the mean $\mu_{\rho_{0}}$ and the standard deviation $\sigma_{\rho_{0}}$ of the normal distribution it is derived from:
+    \begin{equation}
+	 ln(P_{0}) \sim \mathcal{N}(\mu_{\rho_{0}},\,\sigma_{\rho_{0}}^{2}).
+	\label{eq:rho_null}
 	\end{equation}
-	
-	\begin{equation}
-	\Leftrightarrow 10^{-4} c_{exc} f(\theta(t)) (1 - c_{\rho}) - \rho_{0} 
-	\overset{!}{=} 0.018
-	\end{equation}
-	
-	\begin{equation}
-	\Leftrightarrow f(\theta(t)) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
-	{c_{exc}(1 - c_{\rho})}
-	\end{equation}
-	
-	\begin{equation}
-	\Leftrightarrow \theta(t) \overset{!}{=} \frac{180 + \rho_{0}10^{4}} 
-	{m \cdot c_{exc}(1 - c_{\rho})} - \frac{b}{m}
-	\end{equation}
-	\section{Chapter outline}
-	\begin{itemize}
-		\item results for the minimal model aka the noiseless, stationary solution:
-		\begin{itemize}
-			\item we know expression for critical input from equation \ref{eq:crit_input}
-			\item if we insert our expression for the visual looming stimulus we get this critical 
-			angle as a function of the free parameters: show equation
-			\item optional: what happens if we use sigmoid function instead of linear?
-		\end{itemize}
-		\item results for simple LIF model where inhibitory population activity is approximated:
-		\begin{itemize}
-			\item show response properties (only 2 or 3 as the others are redundant) and their 
-			dependence on free parameters: 
-			\item also always include stationary solution from previous section for comparison
-			\item also show preuss data
-		\end{itemize}
-		\item results for full model:
-		\begin{itemize}
-			\item show effect of additional parameter $\tau_{\rho}$
-		\end{itemize}
-		\item fitting of parameters:
-		\begin{itemize}
-			\item we will only use raw data that we got from \cite{Bhattacharyya2017} bc it's from 
-			zebrafish where we have the fitted parameters from \cite{Koyama2016}
-			\item give brief summary of fitting procedure from \cite{Lueckmann2018}
-			\item describe chosen meta parameters for fitting: layers, neurons per layer, nepochs, 
-			ntraining runs etc.
-			\item show fitting results
-		\end{itemize}
-		\item discussion of results:
-		\begin{itemize}
-			\item summarize results
-			\item mention stimulus time scales
-			\item unifying theory that combines bhattacharyya data and preuss data?!
-			\item do fitted parameters make sense?
-		\end{itemize}
-	\end{itemize}
+    The main difference from a normal distribution is that the log-normal distribution has much higher probabilities for high values, also called a "fat tail" and this will allow the model to account for the rare but high response angles.\\
+    For the stationary model, all sources of noise that we consider here: membrane potential, firing threshold, inhibitory population activity and the resting activity of the inhibitory population, all have qualitatively the same linear effect on the response angle that is exemplified by the effect of $\rho_0$ in Figure \ref{fig:effect_stationary_params} C.
+    This means that the distribution of response angles will closely follow the noise distribution.
+    For the Gaussian noise on the membrane potential the response angles are approximately normally distributed and the mean and variance of the distribution depend on the variance of the added noise.
+    The mean response angle decreases with increasing variance and the variance of the distribution increases with increasing variance of the noise (Figure \ref{fig:effect_noise_stationary} A1 and B1).
+    Combining two sources of noise increases these effects (Figure \ref{fig:effect_noise_stationary} A2 and B2).\\
+    Note, that the decrease of the mean response angle is due to the noise being instantaneous in our case, which effectively models fast threshold fluctuations with extremely short relaxation times.
+    If we look at noise on the threshold for an example, this means that at each point in time, there is a high probability that the threshold is much lower than its average value which effectively lowers the threshold on average.
+    If, on the other hand, the threshold was described by a stochastic process with a large relaxation time we could say that the threshold would be constant for the time of a single trial and the value would be a sample from the distribution.
+    In Figure \ref{fig:static_vs_dynamic_noise} we compare these two extreme cases and see that for the "constant" noise, the mean value of the response angle distribution does not change (Figure \ref{fig:static_vs_dynamic_noise} B).\\
+    For the log-normally distributed noise on the resting activity of the inhibitory population the response angles again follow the noise distribution (Figure \ref{fig:effect_rho_null_stationary}).
+    At higher variances there are trials in which the inhibition is so strong that the M-cell does not fire at all within the trial time (bars at 180\textdegree{} in Figure \ref{fig:effect_rho_null_stationary}).
+    \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=\textwidth]{figure_stationary_params.pdf}
+    	\end{center}
+    	\caption{\textbf{Effect of parameters on response angle in the noise-free, stationary model.}  For $b=0$ and $c_{scale}=3\cdot10^{-10}$. \textbf{A} Response angle increases exponentially with the scaling of the input for the inhibitory population. For two different values of the membrane resistance $R_{m}$. \textbf{B} Response angle decreases exponentially with the slope of the linear transformation of the visual angle. \textbf{C} Response angle increases linearly with higher resting activity of the inhibitory population.}
+    	\label{fig:effect_stationary_params}
+    \end{figure}
+    
+    \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=\textwidth]{figure_stationary_noisy_params.pdf}
+    	\end{center}
+    	\caption{\textbf{Response angle distributions for membrane potential and threshold noise.} For $b=0$, $c_{scale}=3\cdot10^{-10}$, $\rho_{0}=0$, $c_{\rho}=0.9\cdot 10^{7}$. Increasing the variance of the noise decreases the mean response angle and increases the variance of the distribution of response angles. This is independent of the value of the response angle without noise (\textbf{A} vs. \textbf{B}). The effects of two noise sources together add up in a nonlinear way (\textbf{A1} vs. \textbf{A2} and \textbf{B1} vs. \textbf{B2}).}
+    	\label{fig:effect_noise_stationary}
+    \end{figure}
+    
+    \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=\textwidth]{figure_stationary_rho_null_noise.pdf}
+    	\end{center}
+    	\caption{\textbf{Response angle distributions for noise of the resting activity of the inhibitory population.} For $b=0$, $c_{scale}=3\cdot10^{-10}$, $c_{\rho}=0.9\cdot 10^{7}$. Sampling the resting activity of the inhibitory population from a log-normal distribution generally increases the response angle. For a small variance the response angle distribution is similar to a Gaussian distribution. Increasing the variance reduces the mode of the distribution but introduces a long tail of higher response angles. The bar at 180 \textdegree{} represents trials for which the M-cell did not fire. These effects are independent of the value of the response angle without noise(\textbf{A} vs. \textbf{B}). Adding threshold noise shifts the distribution towards smaller response angles as observed in Figure \ref{fig:effect_noise_stationary} and minimally changes the shape of the distribution (\textbf{A2} and \textbf{B2}.}
+    	\label{fig:effect_rho_null_stationary}
+    \end{figure}
+    
+    \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=\textwidth, height=0.25\textheight]{figure_static_vs_dynamic_noise.pdf}
+    	\end{center}
+    	\caption{\textbf{Instantaneous versus constant noise.} While instantaneous noise (\textbf{A}) also decreases the mean response angle, constant noise (\textbf{B}) only affects the variance of the resulting response angle distribution.}
+    	\label{fig:static_vs_dynamic_noise}
+    \end{figure}
+
+    \section{Stationary approximation of Inhibitory Population}
+    In the model of section \ref{approx inhibition}, equation \ref{eq:inhib_approx} we only approximated the activity of the inhibitory population.
+    In comparison with the previous section the only difference is that the membrane potential $V_{m}$ now follows the differential equation and thus integrates the input on a time scale that is set by the membrane time constant $\tau_m$ which has been found to be 23 ms in the study of \cite{Koyama2016}.
+    For the fastest stimuli (small L/V values) this leads to a deviation from the stationary solution of the previous section (Figure \ref{fig:station_inh_resp_angle}).
+    In these cases the response angle is bigger than the response angle predicted by the stationary solution because the input is integrated with a delay so that by the time the membrane potential reaches the threshold, the visual angle already increased beyond the critical value that we would expect from the stationary solution.
+    As expected, the deviation increases as the L/V values become smaller (and therefore faster for the same stimulus size).
+    The deviation also increases for a bigger $\tau_m$ and decreases for a smaller $\tau_m$, further supporting the notion that the deviation stems from the slower time scale.
+        
+    \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=\textwidth]{figure_station_inh_resp_angle.pdf}
+    	\end{center}
+    	\caption{\textbf{Response angles deviate from stationary solution for fast stimuli.} The response angle for the model with LIF dynamics and a stationary approximation of the inhibitory population activity is plotted against the L/V value of the stimulus using the same range of stimulus sizes L as in \cite{Bhattacharyya2017} (10 - 25 mm) but a larger range of L/V values. For the largest L/V values, the response angle closely matches the fully stationary solution and decreasing L/V leads to higher response angles than the stationary solution with a difference of about 25\% for the smallest L/V value and $\tau_{m}$ = 23 ms in \textbf{A}. Increasing the membrane time constant increases the deviations. The effect holds for different response angle levels (\textbf{A} and \textbf{B}).}
+    	\label{fig:station_inh_resp_angle}
+    \end{figure}
+    
+    \section{Full neuronal model}
+    Coming back to the full neuronal model as described by equations \ref{eq:inhib}, \ref{eq:mcell} and \ref{eq:thrs} we have now additionally the time scale that the inhibitory population works on.
+    This again leads to deviations from the stationary solution but for the inhibitory population the response angle decreases for faster stimuli because the inhibition lacks behind the excitation of the membrane potential.
+    Effectively, this results in the same qualitative pattern that we saw in the previous section but with a decreased amount of deviation because the delays from the membrane time constant and the inhibitory population time constant compensate each other partially (compare Figure \ref{fig:full_model_resp_angle} and \ref{fig:station_inh_resp_angle}).
+    But this only holds if we set the time constant of the inhibitory population $\tau_{\rho}$ to 1.
+    We did this because studies of the auditory pathway suggest that the synapses of the feed-forward inhibition are electrical and therefore operate on a fast time scale.
+    As this is not necessarily true for the visual pathway we also analyzed slower time scales for the inhibitory population and find that already for $\tau_{\rho}$ = 5 ms (and fixing $\tau_m$ = 23 ms) the deviation from the stationary response angle flips and we now have smaller response angles (Figure \ref{fig:full_model_effect_tau_inh}).\\
+    These differences in the time delays between the different models are illustrated for a single trial with a slow and with a fast stimulus in Figure \ref{fig:voltage_traces}.
+    For the slow stimulus (left column) all three model versions show similar voltage traces (bottom row) and therefore result in similar response angles.
+    For the fast stimulus (right column) we see that in the full neuronal model the inhibitory input is slightly smaller than in the other two models where the inhibitory population activity is approximated by the stationary solution (blue line vs. green and orange in the second row from the top).
+    This leads to a higher total effective input for the M-cell (blue line is higher in the third row from the top) and thus the membrane potential reaches the firing threshold earlier (bottom row) which means that the response angle is smaller than in the other two models (first row).
+    On the other hand, for the stationary inhibition model the effective input for the M-cell is the same as in the fully stationary model (green and orange lines in the third row from the top) but due to the LIF dynamics with the membrane time constant the input is integrated with a delay so that the membrane voltage reaches the threshold later (bottom row) and thus the response angle is higher (top row).
+    \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=\textwidth]{figure_full_model_resp_angle.pdf}
+    	\end{center}
+    	\caption{\textbf{Full model response angles deviate less from stationary solution.} The response angle for the full neuronal model is plotted against the L/V value of the stimulus using the same range of stimulus sizes L as in \cite{Bhattacharyya2017} (10 - 25 mm) but a larger range of L/V values. We see the same qualitative pattern as in Figure \ref{fig:station_inh_resp_angle} but here the deviations are less pronounced with a difference of only about 10\% for the smallest L/V value and $\tau_{m}$ = 23 ms in \textbf{A}. Increasing the membrane time constant increases the deviations. The effect holds for different response angle levels (\textbf{A} and \textbf{B}).}
+    	\label{fig:full_model_resp_angle}
+    \end{figure}
+    
+    \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=\textwidth]{figure_full_model_resp_angle_tau_inh.pdf}
+    	\end{center}
+    	\caption{\textbf{Higher inhibitory time constants decrease the response angle.} Same setup as in Figure \ref{fig:full_model_resp_angle} but with $\tau_m$ = 23 ms and variable $\tau_{\rho}$. Increasing $\tau_{\rho}$ leads to lower response angles and at $\tau_{\rho}$ = 5 ms to response angles that are lower than the stationary solution. The effect holds for different response angle levels (\textbf{A} and \textbf{B}).}
+    	\label{fig:full_model_effect_tau_inh}
+    \end{figure}
+    
+     \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=\textwidth]{figure_voltage_traces.pdf}
+    	\end{center}
+    	\caption{\textbf{Single trial comparison of the different models for a slow and a fast stimulus.} Each of the two columns shows from top to bottom 1) the visual angle of the stimulus, 2) the excitatory and the inhibitory input for the M-cell, 3) the effective input for the M-cell and 4) the membrane voltage of the M-cell. While the models show very similar traces for the slow stimulus (left column), a fast stimulus leads to bigger differences in the resulting response angle.}
+        %TODO: edit caption
+    	\label{fig:voltage_traces}
+    \end{figure}
+    
+    \section{Parameter fitting}
+    In order to find out which parameter values account best for the observed response angles we fitted the full neuronal model to the data of \cite{Bhattacharyya2017} (see Figure \ref{fig:expm_theta_lv}).
+    We used only this dataset because we have the response angles and the sampled L/V values for all trials instead of only the mean values of the response angle.
+    Furthermore, since the study was done with zebrafish, we could use the fitted parameter values from \cite{Koyama2016} to constraint the model.\\
+    For the fitting, we used the recently published library \textit{Delfi}, developed by \cite{Lueckmann2018}.
+    The library implements several inference algorithms, from which we used the Sequential Neural Posterior Estimation (SNPE).
+    Briefly, the algorithm uses a Mixture-Density Network (MDN) as a density estimator that approximates the true posterior distribution of the model parameters given the observed data.
+    This is achieved by sequentially training the parameters of the MDN with data that is generated by the model using model parameters that are sampled from the current prior distribution.
+    After such a training round the prior is updated to be the current estimated posterior distribution and this is repeated until the estimated posterior converges to the true posterior which can be evaluated by the importance-weighted log loss.
+    For further details see \cite{Lueckmann2018} and the documentation of \textit{Delfi} (version 0.4.1) at \href{http://www.mackelab.org/delfi/}{http://www.mackelab.org/delfi/}.\\
+    The parameters of the algorithm consist of the number of hidden layers of the neuronal network, the number of neurons for each layer, the number of rounds, the number of training trials for each round and the number training epochs.
+    Here we used three hidden layers with 330 neurons each and trained for a single round of 40000 training trials with 100 epochs.\\
+    In order to efficiently learn the mapping between the data and the posterior distribution we reduced the dimensionality of the raw data, which consisted of pairs of L/V values and response angles for 246 trials, by computing five quantile values (10\%, 30\%, 50\%, 70\% and 90\%) of the response angles in six bins for the L/V values resulting in 30 data points.
+    How this reduction looks like for the data of \cite{Bhattacharyya2017} is shown in Figure \ref{fig:expm_data_to_quantiles}.\\
+    \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=\textwidth]{figure_data_to_quant.pdf}
+    	\end{center}
+    	\caption{\textbf{Data summary statistic for the fitting algorithm.} The range of L/V values (0.1 to 1.2) is divided in 6 bins and for each bin the 10\%, 30\%, 50\%, 70\% and 90\% quantiles are computed. The resulting quantile values are shown for the dataset of \cite{Bhattacharyya2017}.}
+    	\label{fig:expm_data_to_quantiles}
+    \end{figure}
+    Out of the remaining 14 parameters after fixing the electrophysiological parameters of the M-cell at the values from \cite{Koyama2016}, we only fitted $\mu_{\rho_{0}}$, $\sigma_{\rho_{0}}$, $c_{\rho}$, and $\eta_{m}$.
+    The remaining parameters are the trial time, the initial resting time, the simulation time step, the input scaling factor, the noise variances for the firing threshold and the inhibitory population, the time constant of the inhibitory population, the slope and offset of the linear transformation of the input and finally the cutoff angle.
+    We fixed to 5 s and 2 s, resembling the corresponding times in the experiment.
+    The simulation time step was set to 1 ms, which is enough to capture all relevant dynamics in the simulation.
+    Setting the input scaling to $3 \cdot 10^{-10}$, the slope of the linear transformation to 3 and the offset to zero sets the baseline response angle to a medium value.
+    We used a cutoff angle of 180\textdegree{} which is the maximal visual angle that is physically possible.
+    We further assume a reasonable amount of noise with a standard deviation of 5 mV on the activation of the inhibitory population and set the time constant for the inhibitory population to 1 ms motivated by electrical synapses as described before.\\
+    Since the algorithm uses Bayesian inference we need to define priors for the parameters that we want to fit.
+    We chose uniform distributions for all parameters and the ranges were generally choses such that the model can result in very different patterns of response angle distributions but not too extreme.
+    For the two parameters of the distribution of $\rho_0$ we chose the ranges 0 to 5 and 0.5 to 5 for the mean and variance respectively.
+    This allows for for almost normally distributed values if both parameters are small or very skewed distributions if the variance is higher (see also Figure \ref{fig:effect_rho_null_stationary}).
+    The range for the noise of the membrane potential is 0 to 5 which allows for practically no noise to very noise membrane potential traces.
+    Finally, the prior for the inhibitory input scaling $c_{\rho}$ is a uniform distribution that goes from $5\cdot 10^{6}$ to $10\cdot 10^{6}$ where $5\cdot 10^{6}$ would correspond to very weak feed-forward inhibition and $10\cdot 10^6$ would mean that the inhibition fully compensates the excitation from the input.
+    An overview of the fixed parameter values, the free parameters and their priors is given in Table \ref{tab:neuroparams}.\\
+    As a first step we analyzed how well the fitting procedure would perform on model-generated data.
+    We find that the algorithm performance differs between the model parameters but the overall performance is reasonable.
+    On a positive note, the fitting results seem to be rather robust since the repetitions that we ran for each ground truth parameter set led to very similar fitted distributions (see the similarity between line "pairs" in each subplot in Figure \ref{fig:fit_validation}).
+    The worst result among the single parameters is found for the variance of the membrane noise $\sigma_m$ where the fitted posterior means have all similar values regardless of the true parameter value and also high variances, indicating high probabilities for a wide range of values for $\sigma_m$ (Figure \ref{fig:fit_validation} D).
+    For the mean of the distribution for $\rho_{0}$ the true values mostly lie within the standard deviation of the posterior distribution although here as well, the variances of the posteriors are rather high (Figure \ref{fig:fit_validation} A).
+    The results for the variance of he distribution for $\rho_0$ are mixed.
+    In two cases the posterior means almost perfectly match the true values but in three other cases the true values are underestimated by the posterior (Figure \ref{fig:fit_validation} B).
+    Similarly, for the scaling factor of the input for the inhibitory population $c_{\rho}$, the posterior matches the true values rather good in two to three cases but deviates from the true value in the remaining cases (Figure \ref{fig:fit_validation} C).\\
+    \begin{figure}[H]
+    	\begin{center}
+			\includegraphics[width=\textwidth]{figure_fit_validation.pdf}
+    	\end{center}
+    	\caption{\textbf{Validation of fitting procedure.} For datasets that were generated by the model itself the posterior mean and standard deviation after fitting are shown. The posteriors have in general large variances. The parameters $\mu_{\rho_{0}}$, $\sigma_{\rho_{0}}$ and $c_{\rho}$ show the right tendency where larger true values correspond with larger posterior means. The fitted posteriors for the parameter $\sigma_{m}$ have all very similar mean values indicating that this parameter is not recoverable with the current parameter setting of the fitting procedure.}
+    	\label{fig:fit_validation}
+    \end{figure}
+    In the next step we fitted the full neuronal model to the experimental data from \cite{Bhattacharyya2017}.
+    The posterior distribution of the fit is shown in Figure \ref{fig:fit_expm_post}.
+    As we have already seen in the parameter recovery from above, the posterior mean for the variance of the membrane noise lies in the middle of the prior range and has a high variance.
+    This indicates that the exact value of $\sigma_m$ has no big influence on the resulting distribution of data.
+    For the remaining parameters we find a rather narrow peak at $\mu_{\rho_0}$ = 3.6, $\sigma_{\rho_0}$ = 0.8 and $c_{\rho}$ = 8.2.
+    How the data from the model with these fitted parameters compares to the experimental data is shown in Figure \ref{fig:fit_expm_comparison}.
+    If we compare data for the same amount of trials as in the experiment we see a good match, especially for the lower range of response angles (Figure \ref{fig:fit_expm_comparison} A) whereas the model seems to have a higher density of response angles above 60\textdegree{} than in the experiment which is also reflected by the higher deviations for the 90\% quantiles in Figure \ref{fig:fit_expm_comparison} B.
+    The higher accuracy for the lower range of response angles makes sense because there are more data points in this range so that the summary statistics are more informed in this range.
+    \begin{figure}[H]
+    \begin{center}
+    \includegraphics[width=\textwidth]{figure_expm_fit_posterior.pdf}
+    \end{center}
+    \caption{\textbf{The posterior distribution of the fitted parameters.} The distribution of $\sigma_{\rho_0}$ is the most narrow, indicating high certainty of the fitted mean value. In contrast, $\sigma_{m}$ has much wider distribution, speaking for little influence on the resulting fit. The covariances between $\mu_{\rho_0}$ on the one hand and $\sigma_{\rho_0}$ and $c_{\rho}$ on the other hand show negative correlations, i.e. for smaller values of $\mu_{\rho_0}$ it is more likely for $\sigma_{\rho_0}$ and $c_{\rho}$ to have higher values.}
+    \label{fig:fit_expm_post}
+    \end{figure}
+    
+    \begin{figure}[H]
+    \begin{center}
+    \includegraphics[width=\textwidth]{figure_expm_fit_comparison.pdf}
+    \end{center}
+    \caption{\textbf{Comparison of experimental data with data generated from the fitted model.} \textbf{A} Response angle data from \cite{Bhattacharyya2017} in blue and data from the same amount of trials generated by the fitted model in green are shown. While the two closely match for the lower range of response angles (20\textdegree{} - 60\textdegree{}), the model seems to generate more response angles in the range of 60\textdegree{} to 100\textdegree{} although this could look very different for different set of trials. \textbf{B} The quantiles of the experimental data and the average quantiles of 100 repetitions from the model. The first three to four model quantiles closely match the experimental data with some differences between the different bins. The last quantile shows larger deviations from the experiment.}
+    \label{fig:fit_expm_comparison}
+    \end{figure}
+    \section{Discussion}
+    In this chapter, we briefly reviewed experiments on startle responses evoked by looming visual stimuli, showed effects of the model parameters when we simulate the looming stimulus experiment for the different levels of approximations of the model dynamics and finally fitted a subset of model parameters to experimental data.\\
+    The looming stimulus experiments that we considered here have many differences in their experimental conditions such as e.g. the arena setup including the position of the display and also the range of stimulus parameters L and V (see Table \ref{tab:looming_exp}).
+    This is also reflected in the differences that we see for the measured response angles plotted against L/V although one should note that for the studies by \cite{Dunn2016} and \cite{Preuss2006} the shown data points are only the mean values so we don't know the underlying distribution (see Figure \ref{fig:expm_theta_lv}).
+    It would therefore be desirable to have a more systematic study of startle responses evoked by a looming stimulus.
+    Especially interesting to see would be experiments with higher stimulus velocities (or smaller L/V values) than were used in \cite{Bhattacharyya2017} because only for these stimuli the dynamics of the Leaky Integrate-and-Fire model and of the inhibitory population activity become relevant and we see deviations from stationary model versions (see e.g. Figure \ref{fig:full_model_effect_tau_inh}).
+    If we consider for example the data from \cite{Temizer2015} it could be argued that the response angles tend to go down for smaller L/V values if we compare them to the response angles from \cite{Bhattacharyya2017} and in our model this could speak for a bigger time constant of the inhibitory population where we also see decreasing response angles for smaller L/V values (Figure \ref{fig:full_model_effect_tau_inh}).
+    On the other hand, the differences might as well be explained by different experimental conditions and thus a study that examines a wider range of L/V values would be necessary to test this hypothesis.
+    Furthermore, these considerations only hold under the assumption that our model is indeed approximating the true underlying mechanism that is responsible for the startle response initiation which we cannot say with much confidence as of now.\\
+    This leads us to possible limitations of the model.
+    The first point to mention here is the form of the visual input which we modeled as a linear transformation of the visual angle.
+    Even if we accept that the visual angle is computed somehow it might well be that it undergoes a different, possibly nonlinear transformation before it reaches the the hindbrain such as e.g. a sigmoidal function.
+    Regarding the computation of the visual angle there have been studies that show looming-sensitive neurons in locusts \citep{Hatsopoulos1995}, barn owls \citep{Mysore2010} and in bluegill sunfish as well as goldfish \citep{Gallagher2006} where for the barn owl and the two fish species they were found in the optic tectum.
+    Ideally, we would have evidence for looming-sensitive neurons in the optic tectum of zebrafish and, even more important, recordings that show the activity during a looming stimulus in the presynaptic neurons of the M-cell.
+    Such experiments have not been conducted so far to the best of our knowledge.
+    Another thing to keep in mind in this context is, that the optic tectum of the larval zebrafish is still developing and this development has recently been shown to be affected by visual experience \citep{Avitan2017}.
+    So it would also be interesting to investigate possible differences between larval and adult zebrafish.
+    In all studies that we considered here, larval zebrafish were used.\\
+    In the last part of this chapter we fitted the full neuronal model to the experimental data from \cite{Bhattacharyya2017} using an Approximate Bayesian Computation approach where a Mixture-Density-Network was employed to learn the mapping between response angle data and parameters of the posterior distribution of the model parameters.
+    The results of the validation (Figure \ref{fig:fit_validation}) of the fitting procedure are not convincing yet as we saw large deviations from the ground truth parameters.
+    Nevertheless, when we fitted the model to the experimental data, the model-generated data strongly resembles the experimental data (Figure \ref{fig:fit_expm_comparison}).
+    Furthermore, there are several ways to improve the fitting procedure.
+    One way would be to optimize the parameters of the fitting procedure such as the number of rounds, the number of generated training data per round, different architectures of the MDN and the number of components of the MDN.
+    The parameters that we used here were the result of a small preliminary exploration that was limited by time constraints so that a more systematic exploration will likely lead to improvements.\\
+    There are several possible extensions based on the presented work so far.
+    In a first category of extensions we can use more and different kinds of data to further constraint and test the model.
+    As an example, the fish are not always reacting with a startle response to a looming stimulus and the response probability has been found to differ for different L/V values by \cite{Bhattacharyya2017} and \cite{Temizer2015}.
+    Such trials without a response also happen in our model and thus the response probability could be included in the fitting procedure.
+    Another additional data set would be experiments where the visual angle of the stimulus follows other trajectories, e.g. a linearly increasing visual angle which has been already studied by \cite{Dunn2016}.
+    Here it would also be interesting to compare the fitted parameters with those that were fitted to experiments with hyperbolically increasing visual angles as we did in this work and to see if both kinds of experiments result in the same fitted model parameters.
+    To further constraint the model, one could use electrophysiological data in order to e.g. get an estimate of the amount of noise in the membrane potential.
+    It should also be considered that the values for the electrophysiological model parameteres that were fitted by \cite{Koyama2016} might change for different experimental conditions and it would help to have several independent estimates of those parameters.\\
+    Apart from using additional data, further work could also extend the neuronal model.
+    One possible way would be to use a multi-compartment model for the Mauthner cell where the lateral dendrite, the ventral dendrite, the soma and the axon cap are obvious candidates for compartments in such a model.
+    This would also make sense as a recent study found differential processing properties for the two main dendritic branches of the M-cell \citep{Medan2017}.
+    The axon cap is another segment of interest as it is targeted by the excitatory input from the spiral fiber neurons \citep{Lacoste2015} and it is also the site of electrical inhibition \citep{Weiss2008}.\\
+    A second way to extend the model would be to consider both M-cells that exist in the fish hindbrain.
+    This would open up another set of interesting questions, e.g. how the fish would react to two stimuli coming from both sides leading to a competition between the two M-cells.
+    How this competition might work has already been hypothesized by \cite{Koyama2016} but they only considered stimuli from one side and they did not use their model to explain response angle data.\\
+    %TODO: check if this previous sentence is true
+    An advantage of the fitting procedure that we used is that we can simply plug in these extended models to fit the same data.
+    Furthermore, the Bayesian framework in principle also allows for model comparisons (see e.g. \href{https://github.com/janfb/mcabc}{https://github.com/janfb/mcabc} for an implementation) so that we are able to answer whether the supposedly more realistic models are also more likely to produce the observed data.
 	\begin{table} [!th]
 		\begin{center}
 			\begin{tabular}{l|c|p{7cm}}
 				%\hline
-				\textbf{Parameter} & \textbf{Value (unit)} & \textbf{Comment} \\
+                \multicolumn{3}{c}{\rule{0pt}{4ex}\textbf{Fixed Parameters}}\\
+                \textbf{Parameter} & \textbf{Value (unit)} & \textbf{Comment} \\
 				\hline
 				$E_L$ & -79 mV & Resting potential\\
 				$R_M$ & 10 MOhm & Membrane resistance\\
@@ -621,88 +758,312 @@
 				$V_t$ & -61 mV & Mean spiking threshold\\
 				$dt$ & 0.001 s & Integration time step\\
 				$T$ & 5 s & Total time\\
-				$sd_{thr}$ & 1 mV & Standard deviation of spiking threshold noise\\
-				$sd_{I}$ & 5 mV & Standard deviation of input noise\\
-				$sd_{init}$ & 1 mV & Standard deviation of initial condition noise\\
-				$m$ & 1 \textdegree/s  & Slope of linear transformation\\
+                $T_{init}$ & 2 s & Initial time of constant stimulus size\\
+                $c_{scale}$ & $3 \cdot 10^{-10}$ & Scaling from visual angle to input current\\
+				$\sigma_{t}$ & 0 mV & Standard deviation of spiking threshold noise\\
+				$\sigma_{\rho}$ & 5 mV & Standard deviation of noise from inhibitory population\\
+                $\tau_{\rho}$ & 1 ms & Time constant of the inhibitory population\\
+				$m$ & 3  & Slope of linear transformation\\
 				$b$ & 0 \textdegree & Offset of linear transformation\\
+                $\theta_{cutoff}$ & 180 \textdegree & Cutoff visual angle\\
+            \end{tabular}
+            
+            \begin{tabular}{l|c|c|p{6.1cm}}
+                \multicolumn{4}{c}{\rule{0pt}{4ex}\textbf{Fitted Parameters}}\\
+                \textbf{Parameter} & \textbf{Prior} & \textbf{Posterior} & \textbf{Comment} \\
+				\hline
+				$\mu_{\rho_0}$ & 0 - 5 & 3.6 & Mean of $\rho_0$ distribution\\
+                $\sigma_{\rho_0}$ & 0.5 - 5 & 0.8 & Variance of $\rho_0$ distribution\\
+                $\sigma_{m}$ & 0 - 5 & 2.7 & Standard deviation of noise from membrane potential\\
+                $c_{\rho}$ & 5 - 10 & 8.2 & Input scaling for inhibitory population activity\\
 				%\hline
 			\end{tabular}
 		\end{center}
-		\caption{Parameters of the single LIF neuron model with a looming stimulus input. Parameters that were explored are indicated either by a value range such as e.g. for $\mu_s$ or by a set with all explored values inside of curly brackets such as e.g. for $\sigma_s$.}
+		\caption{Fixed and fitted parameters of the full neuron model.}
 		\label{tab:neuroparams}
 	\end{table}
-	%\chapter{Two Mauthner Cells Model}
 	\chapter{Coupling of Neuronal Model and Collective Dynamics}
-	\begin{itemize}
-		\item description behavioral experiments:
-		\begin{itemize}
-			\item schooling behavior in general has been analyzed
-			\item startling in schools has not been studied so much (except maybe 
-			\cite{Fischer2015})
-			\item but there is study by \cite{Rosenthal2015}
-			\item summarize experiment and findings
-		\end{itemize}
-		\item description schooling model:
-		\begin{itemize}
-			\item movement equations, social forces (take from lab report)
-			\item describe coupling: every agent integrates visual info (how will be described in 
-			next section)
-			\item decision: on what level should we implement the variability of rho null? over 
-			time or across fish? we chose across fish here, assuming they are in different internal 
-			states, maybe also with different characters (cite paper about dominance 
-			\cite{Khan2017}, \cite{Miller2017}, \cite{Neumeister2010}, \cite{Park2018})
-		\end{itemize}
-		\item how to integrate visual info/couple input from different neighbors
-		\begin{itemize}
-			\item mention ensemble statistics (see paper that pawel sent me)
-			\item what we will look at: global mean/max/deviate, knn mean/deviate
-		\end{itemize}
-		\item simulation results:
-		\begin{itemize}
-			\item show startle frequency, density and polarization for the different integration 
-			strategies
-			\item show effect of school position on startle probability
-			\item show cascade sizes as function 1)input scaling 2) school structure, order, density
-			
-		\end{itemize}
-	\end{itemize}
+    \section{Collective Behavior Experiments}
+    The mechanisms that underly the dynamics of collective behavior as we observe it in many species like birds or fish have been of great interest.
+    Theoretical work that has been developed to explain the observed behavior often relies on agent-based models with local interaction rules (\cite{Couzin2002}, \cite{Vicsek1995}).
+    Recently, \cite{Strandburg-Peshkin2013} investigated the nature of these local interactions by performing an experiment with a fish school of 70 fish where a part of the group has been trained to move to a stimulus so that they could function as leaders of the group from which the information about the stimulus would spread during the experiment.
+    By comparing different models to explain the spread of information in the group, which was approximated by the measured response times of the individuals, they found that a model that was based on visual input was supported the most by the observed data.\\
+    In another experiment, \cite{Rosenthal2015} found that visual input also plays a crucial role in the spread of startle responses in a fish school.
+    For this, they analyzed spontaneously occurring startle events in a fish school of roughly 150 golden shiners and looked at the factors that were most predictive of a fish to startle after the initial startle event.
+    The two most predictive features that they found were the logarithmic distance to visible neighbors and the rank of subtended angular area of the initially startling fish on the retina of the focal fish \citep{Rosenthal2015}.
+    Note, that due to the elongated body shape of the fish and the location of the eyes on the side, the subtended angular area is different from the distance alone because for example, a neighboring fish that is in front of the focal fish might be closer but it will cover a smaller part of the visual field than compared to a neighboring fish on the side.
+    In the case of several neighbors, occlusions will also influence the ranking of the subtended angular areas.
+    Based on these features \cite{Rosenthal2015} constructed an interaction network of the fish school and found that the local weighted clustering coefficient at the moment of an initial startle is informative of the size of the following cascade of startles.\\
+    The first aspect of the startle behavior of the fish school that we were interested in was the frequency of spontaneously occurring startles.
+    In the experiment of \cite{Rosenthal2015} the total number of 138 such startle events was acquired from recordings of 5 different groups over 53 minutes each so that the startling frequency of the group is around $8\cdot 10^{-3}$ startles per second and around $5\cdot 10^{-5}$ for an individual fish.
+    A similar experiment that was done with 40 instead of 150 golden shiners found that the spontaneous startling frequency is around $5\cdot 10^{-4}$ to $1\cdot 10^{-3}$ for a single fish (Matt Grobis, Couzin Lab, private communication) and thus an order of magnitude higher than in the experiment of \cite{Rosenthal2015}.
+    A possible explanation for the lower startling frequency in the bigger fish school might be a decreased responsiveness that is caused by the presence of other fish as it has been found in Guppies \citep{Fischer2015}.
+    \section{Collective Behavior Model}\label{swarm_methods}
+    In this section we will describe the model for the collective behavior, the integration of the neuronal model for the startle response initiation, the behavioral measurements and give an overview of the implementation.
+	The model describes the individual motion of an agent by a stochastic differential equation that includes Brownian motion as described in \cite{Romanczuk2012a} and a continuous version of social interaction as described in \cite{Couzin2002}.
+	We assume a set of $N$ interacting agents ($i= 1,\dots, N$).
+	The dynamics of each agent in 2D is described by the following equations of motion:
+
+	\begin{equation}
+		\frac{d \vec{r}_i}{dt}=\vec{v}_i(t)
+		\label{eq:r_diff}
+	\end{equation}
+	
+	\begin{equation}
+		\vec{v}_i(t) = {s_i\cos(\varphi_i(t)) \choose s_i\sin(\varphi_i(t)) }
+		\label{eq:v_def}
+	\end{equation}
+	
+	\begin{equation}
+		\frac{d s_i}{dt} = \alpha\left( \mu_{s} - s_i\right) + F_{i, s} + \eta_{i, s}
+		\label{eq:s_diff}
+	\end{equation}
+	
+	\begin{equation}
+		\frac{d \varphi_i}{dt} = \frac{1}{s_i + c_{s}}\left( F_{i,\varphi} + \eta_{i,\varphi} \right)
+		\label{eq:phi_diff}
+	\end{equation}
+	
+	Here $\vec{r}_i$ is the Cartesian position vector and $\vec{v}_i$ is the velocity vector, both of the focal agent.
+	In the absence of social forces the speed $s_i$ of agent $i$ is relaxing towards the mean value $\mu_{s}$, which is the same for all agents, while we add the Gaussian white noise term $\eta_{i, s}$ and the relaxation time is determined by $\alpha$.
+	The influence of the total effective social force is calculated by the projection onto the normalized velocity vector:
+	
+	\begin{equation}
+		F_{i, s}=\vec{F}_i \cdot \vec{u}_{v, i} = \vec{F}_i { \cos\varphi_i \choose \sin\varphi_i }
+		\label{eq:s_force}
+	\end{equation}
+	
+	The change of direction $\varphi$ is mostly determined by $\vec{F}_{i,\varphi}$, the projection of the total effective social force onto the orthogonal of the normalized velocity vector and added Gaussian white noise represented by $\eta_{i,\varphi}$.
+	
+	\begin{equation}
+		F_{i,\varphi}=\vec{F}_i \cdot \vec{u}_{\varphi,i} = \vec{F}_i {-\sin\varphi_i \choose \cos\varphi_i }
+		\label{eq:phi_force}
+	\end{equation}
+	
+	Additionally, we introduce the term $1/(s_i + c_s)$ to decrease the amount of direction change for high speeds where $c_s$ is meant to prevent numerical instabilities for very small $s_i$ values.
+	The stochastic differential equations for the direction of motion of individual agents can be solved by a simple Euler-Maruyama method:
+	
+	\begin{equation}
+		\varphi_i(t+1) = \varphi_i(t) + \frac{1}{s_i}\left( F_{i,\varphi}(t)\Delta t + \sqrt{2 \sigma_{\varphi}\Delta t} \text{ GRN(t)}\right)
+		\label{eq:phi_update}
+	\end{equation}
+	
+	\begin{equation}
+		s_i(t+1) = s_i(t) + (\alpha (\mu_s - s_i(t)) + F_{i, s}(t))\Delta t + \sqrt{2 \sigma_{s} \Delta t} \text{ GRN(t)}
+		\label{eq:s_update}
+	\end{equation}
+	
+	\begin{equation}
+		\vec{r}(t+1) = \vec{r}(t) + {s_i\cos(\varphi_i(t)) \choose s_i\sin(\varphi_i(t)) }
+		\label{eq:r_update}
+	\end{equation}
+	Here "GRN(t)" is a Gaussian Random Number drawn from the standard normal distribution and $\sigma_\varphi$ and $\sigma_s$ are the standard deviations of direction and speed noise respectively.
+	The total effective social force is a sum of three components:
+	\begin{equation}
+		\vec{F}_i=\vec{F}_{i,rep}+\vec{F}_{i,alg}+\vec{F}_{i,att}
+		\label{eq:forces}
+	\end{equation}
+	Attraction:
+	\begin{equation}
+		\vec{F}_{i,att}= \frac{1}{n_{i,att}}\sum_{j \in Neigh} \mu_{att}S_{att}({r}_{ji}) \hat{r}_{ji}
+		\label{eq:att}
+	\end{equation}
+	Repulsion:
+	\begin{equation}
+		\vec{F}_{i,rep}=\frac{1}{n_{i,rep}}\sum_{j \in Neigh} -\mu_{rep}S_{rep}({r}_{ji}) \hat{r}_{ji}
+		\label{eq:rep}
+	\end{equation}
+	Alignment:
+	\begin{equation}
+		\vec{F}_{i,alg}=\frac{1}{n_{i,alg}}\sum_{j \in Neigh} \mu_{alg}S_{alg}({r}_{ji}) (\vec{v}_j-\vec{v}_i)
+		\label{eq:alg}
+	\end{equation}
+	with $\vec{r}_{ji} = \vec{r}_j - \vec{r}_i$, $r_{ji} = |\vec{r}_{ji}|$ and $\hat r = \vec{r}/|r|$.
+	Each component is computed by the normalized sum over the forces of the single interaction pairs with all agents of the neighborhood of the focal agent.
+	For the metric interaction the neighborhood consists of all other agents and for the topological interaction the neighborhood consists of the Voronoi neighbors (for explanation, see Introduction).
+	Note that the interaction range of the metric interaction is implemented by the weighting functions $S_X(r)$ that are sigmoid functions of distance, which go from 1 to 0, with the transition point at $r_{X,0}$ and steepness $a_{X}$:
+	\begin{equation}
+	S_X(r)=\frac{1}{2}\left(\tanh(-a_{X}(r-r_{X,0})+1\right)
+	\label{eq:sigm}
+	\end{equation}
+	The strength of the different interactions is set by a constant $\mu_X$.
+	For the normalization we use the number of effective neighbors $n_{i,X}$ which we define as the number of neighbors for topological interaction and for metric interaction we take the sum of the values of $S_X(r)$ so that $n_{i,X}$ will be approximately the number of agents within the interaction range:
+	\begin{equation}
+	n_{i,X} = \left\{\begin{array}{lc}
+	|\{j, j \in Neigh\}|, & \text{for topological interaction}\\
+	\sum_{j \in Neigh} S_X(r_{ji}), & \text{for metric interaction}
+	\end{array}\right.
+	\label{eq:neigh}
+	\end{equation}\\
+	Note, that due to numerical precision the numerical value returned by $S_X(r)$ is equal to zero for analytical values that are smaller than double precision which is in the order of $10^{-16}$.
+	To avoid division by zero, we apply the normalization only for agents whose numerical value of $n_{i,X}$ is not zero.
+	This also means that the ranges for the social forces are effectively longer since the normalization will rescale all non-zero values returned by $S_X(r)$ to the order of one.
+	For the simulation of the fish school we define the basic time unit as seconds and the basic distance unit as one body length (BL) of a fish.
+	We use a square arena of size $L$ with periodic boundaries so that the effective topology of the arena is a torus.
+	\subsection{Coupling with neuronal model}
+	For each agent we use the full neuronal model as described by equations \ref{eq:inhib} to \ref{eq:thrs} to initiate startle responses during the simulation.
+    The resting activity of the inhibitory population $\rho_{0}$ of each agent was set to the mode of the fitted log-normal distribution from the previous chapter which was approximately $20.6$ in our case.
+    For all other neuronal parameters we took the values that were either fixed or fitted in the previous chapter (see Table \ref{tab:neuroparams}).\\
+    The last part that we need to define for the coupling is the visual input.
+    In the previous chapter we had an abstract situation with only one stimulus but in the collective behavior simulations the agents are possibly surrounded by many neighbors.
+    We considered three different methods to determine the effective visual input: max, k-nearest neighbors (KNN) and k-nearest mean deviate (KMD).
+    For all methods we first computed the visual angle of each neighbor of the focal agent by assuming that the shape of an agent is a sphere with a diameter of one body length.
+    Then, for the max method we simply took the maximal visual angle, i.e. the visual angle of the nearest neighbor.
+    For the KNN method, we calculated the mean visual angle of the k nearest neighbors where k was fixed to the value 3.
+    Finally, the KMD method is a combination of the former two methods where we subtracted the mean of the k nearest neighbors from the maximal visual angle.\\
+    In the simulation these computations are performed at every time step to calculate the effective visual input for each agent.
+    If this leads to a firing of the model M-cell of an agent we initiate a stereotypical startle response by replacing the total social force with a preset startle force:
+	\begin{equation}
+		\vec{F}_i =  {\mu_{st} \cos(\varphi_{st}) \choose \mu_{st} \sin(\varphi_{st})}.
+		\label{eq:startle_force}
+	\end{equation}
+    Here, the amplitude $\mu_{st}$ was chosen to resemble experimentally measured accelerations and the escape direction $\varphi_{st}$ was drawn from the uniform distribution of the half circle that is pointing away from the direction of the mean distance vector to all agents, i.e. away from the group.
+	\subsection{Behavioral Measurements}
+	In order to analyze the behavior of the simulated fish school we measure 1) polarization, the degree to which the swimming directions are ordered, 2) cohesion, the degree to which the group stays together and 3) startling frequency, the average frequency of startles in the group.
+	Other possible measurements that were not used due to limited scope of the project are the number and size of startle cascades where one startle response triggers a wave of subsequent startles and the mobility of the group, measured by the average traveled distance of the group.
+	The group polarization is defined as the mean of the normalized velocity vectors for a given point in time:
+	\begin{equation}
+		p_{group}(t) = \frac{1}{N} \left| \sum_{i=1}^{N} \vec{v}_i(t) \right|
+		\label{eq:pol}
+	\end{equation}
+	We define the cohesion in three different ways:
+	\begin{equation}
+		coh_{group}(t) = \left\{\begin{array}{lc}
+		\frac{1}{N} \sum\limits_{i=1}^{N} \min\limits_{j \in Neigh} r_{ji}(t) , & \text{mean nearest neighbour distance}\\[12pt]
+		\frac{1}{N} \sum\limits_{i=1}^{N}\frac{1}{N-1} \sum\limits_{j=1, j\neq i}^{N} r_{ji}(t), & \text{mean inter-individuell distance}\\[12pt]
+		A(Conv(\{\vec{r}_i(t), i \in N \})), & \text{area of convex hull}
+		\end{array}\right.
+		\label{eq:coh}
+	\end{equation}
+	Here $A(Conv())$ denotes the area of the Convex Hull of the given set of points, i.e. the Cartesian positions of the agents at time $t$.
+	If not noted otherwise, we used the mean nearest neighbor distance as the cohesion measure.
+	The startling frequency is calculated for a full simulation run and simply the average number of startles per second.
+	\subsection{Implementation}
+	This project is based on an already existing implementation for the collective behavior with a different mechanism for the startle response initiation.
+	The model was implemented in Python 3.6 with the three main classes AgentData, BaseParams and AgentParams.
+	An instance of AgentData contains all of the information about the agents that can change during the simulation or that can be different between individual agents and is thus the main data structure.
+	The classes BaseParams and AgentParams contain fixed parameters of the simulated environment and global properties of the agents.\\
+	In the main simulation function, for each time step, we first reset the social forces of each agent to zero, then we calculate the new social forces according to equations \ref{eq:att} to \ref{eq:alg}.
+	Next, we update the inhibitory population activity and the membrane potential of all agents.
+	For agents whose membrane potential reached the threshold we set the total force to the startle force as described by equation \ref{eq:startle_force} and for all others it is the sum of the three social forces as described by equation \ref{eq:forces}.
+	Using the updated force the coordinates of the agents are finally updated according to equations \ref{eq:phi_update} to \ref{eq:r_update}.
+    \section{Numerical experiments}
+    In order to analyze the collective behavior model and its coupling with the neuronal model we chose most of the parameters such that the group behavior is comparable to the experiments mentioned earlier in this chapter.
+    We fixed the number of agents to 40 and used a square arena with a side length of 40 BLs as in the experiments by Matt Grobis (Couzin Lab, private communication).
+    Group behavior was simulated for a simulation time of 500 seconds.
+    Most of the parameters of the collective model were fixed to values that are known to produce schooling behavior.
+    Two parameters that we varied systematically were the mean speed of the agents $\mu_{s}$ and the noise on the direction change $\sigma_{\varphi}$ (referred to as "direction noise" in the following) as they allowed us to look at fish schools in different states in terms of polarization and cohesion.\\
+    Our first measure of interest was the startling frequency.
+    In Figure \ref{fig:swarm_heatmaps}, we see that except for the smallest mean speed, the startling frequency increases with increasing direction noise.
+    There are also small increases in startling frequency for higher mean speed values but they are relatively low if compared to the effect of direction noise.
+    The average nearest-neighbor distance shows the same pattern as the startling frequency with the highest values, i.e. the least cohesion, for highest speed as well as direction noise.
+    In contrast, the mean polarization of the school over time is generally close to the possible maximal value and goes below $0.2$ only for the smallest speed and higher direction noise.
+    Hence, it seems that a higher startling frequency leads to higher average nearest-neighbor distances.
+    This is not true for the polarization where we find similar startling frequencies in the right-most columns of the heatmaps in Figure \ref{fig:swarm_heatmaps} but the mean polarization values range from 0.5 to 0.93.\\
+    \begin{figure}[H]
+    \begin{center}
+    \includegraphics[width=\textwidth]{looming_swarm_fixed_rhonull_int_type_matrix_vis_method_knn_mean_deviate_new.pdf}
+    \end{center}
+    \caption{\textbf{Startle frequency dependency on collective properties.} Collective behavior results for metric interaction and with KNN-Mean-Deviate as visual integration method (see Section \ref{swarm_methods} for explanation). \textbf{A} Above a mean speed of 0.5 $BL/s$ the startle frequency only depends on the noise on the swimming direction of the individuals. It goes from no startles for very low noise to two startles per second for the highest noise that we analyzed here. \textbf{B} The average Nearest-Neighbor distance increases with noise on the swimming direction similar to the startle frequency but also increases with the mean speed in the range of higher noise values. \textbf{C} The polarization of the collective increases with the mean speed and decreases for higher noise on the swimming direction.}
+    \label{fig:swarm_heatmaps}
+    \end{figure}
+    While we only looked at the mean values over time in Figure \ref{fig:swarm_heatmaps}, in Figure \ref{fig:swarm_over_time} we show how the different measures develop over time.
+    For the case with medium direction noise level (left column in Figure \ref{fig:swarm_over_time}) we can clearly see how short periods with many startles affect the polarization as well as cohesion (see e.g. the time point at about 130 s).
+    In the right column in Figure \ref{fig:swarm_over_time}, the high direction noise leads to fluctuations of higher amplitude for the polarization and cohesion.
+    Additionally, the signals seem to undergo low-frequency oscillations with period lengths of around 60 s to 80 s which we also see for the lower direction noise but less pronounced.\\
+    Next, we were interested in the spatial characteristics of single startle events.
+    We restricted this analysis to simulations with a mean speed of 1.125 BL/s which is the second row from the bottom in the heatmaps in Figure \ref{fig:swarm_heatmaps}, also indicated by the orange box.
+    Unfortunately, the simulations for a direction noise of 0.06 did not result in enough startle events so that we cannot properly analyze the results for this direction noise level.\\
+    In the left column of Figure \ref{fig:swarm_startle_stats} we show the position of an agent at the time it startled.
+    The coordinate system is build so that the center of mass of the school is at the origin and the mean movement direction of the school points upwards along the y-axis.
+    At first glance, the startle positions are distributed similar to the positions of agents that did not startle although the startle positions tend to be more at the center of the school.
+    This can be seen more clearly in the right column of Figure \ref{fig:swarm_startle_stats} where we show a histogram of the distance to the center of mass for startles and non-startles.
+    Both histograms largely overlap but the startle distances are shifted by a small amount towards the center.
+    The direction noise level does not change this pattern.\\
+    In the last step of the spatial analysis, we measured the "frontness" of the startling agent by computing the mean movement direction of the group and projecting the position of the startling agent on the vector that originates from the center of mass of the group and points to the mean movement direction.
+    The distribution of the frontness values for agents that do not startle (middle column in Figure \ref{fig:swarm_startle_stats}) is symmetric and Gaussian-shaped with the mean value at zero.
+    The frontness values of the startling agents have a similar shaped distribution for a direction noise level of 0.1 but the distribution is more narrow which again indicates that the startle positions are closer to the center of the group.
+    With increasing direction noise the distribution of startle frontness values becomes more skewed towards positive values, meaning that at high direction noise agents are more likely to startle when they are slightly more in the front than the average agent.\\
+    We continue with a comparison of the different methods to determine the visual input of an agent.
+    We focused so far on the KMD method where the visual input consists of the difference between the maximal visual angle and the mean of visual angles of the three nearest neighbors (as we fixed k=3).
+    If we instead use the mean visual angle of the three nearest neighbors (KMEAN method) as the visual input the most salient difference is an increase of the startling frequency of about one order of magnitude (Figure \ref{fig:swarm_comparison}, left column, first row vs. second row. Note, that we used different colorbar scales in order to make the structure within the heatmaps visible).
+    For the KMEAN method we also have startle activity for all combinations of the two parameters mean speed and direction noise which is not the case for the lowest direction noise in the KMD method.
+    The effect of the direction noise is here dependent on the mean speed.
+    While at higher speeds the startling frequency increases with higher direction noise as we observe it for KMD, at the lowest speed the startling frequency decreases for higher direction noise.
+    The overall higher startling frequency is accompanied by nearest-neighbor distances that are up to twice as much as for the KMD method.
+    Interestingly, the relationship between startling frequency and average nearest-neighbor distance is reversed for KMEAN because we find the highest nearest-neighbor distance for the lowest startling frequency.
+    The polarization follows the same pattern as for KMD with a decrease of polarization for lower speed and for higher direction noise although the polarization does not decrease as much as in the KMD method.\\
+    The differences between the MAX and KMD methods are in general similar to those just described for KMEAN.
+    The startling frequencies are again much higher and even two to three times as high as for KMEAN.
+    In contrast to KMEAN, the startling frequency always increases with increasing mean speed and increasing direction noise.
+    Similar to KMEAN, the lowest startling frequency corresponds to the highest mean nearest-neighbor distance but in the case of MAX this point lies at the lowest mean speed and lowest direction noise.
+    Finally, the polarization shows the same pattern as for KMD and KMEAN but it does not decrease as much so that the lowest value is at 0.56.    
+    \begin{figure}[H]
+    \begin{center}
+    \includegraphics[width=\textwidth]{looming_swarm_over_time.pdf}
+    \end{center}
+    \caption{\textbf{Collective behavior properties over time for two examples.} Collective behavior results for metric interaction and with KNN-Mean-Deviate as visual integration method (see Section \ref{swarm_methods} for explanation). \textbf{A} \textbf{B} }
+    \label{fig:swarm_over_time}
+    \end{figure}
+    
+    \begin{figure}[H]
+    \begin{center}
+    \includegraphics[width=\textwidth]{looming_swarm_startle_stats.pdf}
+    \end{center}
+    \caption{\textbf{School position at startle events.} Collective behavior results for metric interaction and with KNN-Mean-Deviate as visual integration method (see Section \ref{swarm_methods} for explanation). \textbf{A} \textbf{B} }
+    \label{fig:swarm_startle_stats}
+    \end{figure}
+    
+    \begin{figure}[H]
+    \begin{center}
+    \includegraphics[width=\textwidth]{looming_swarm_fixed_rhonull_int_type_matrix_comparison_new.pdf}
+    \end{center}
+    \caption{\textbf{Comparison of different visual input methods.} Collective behavior results for metric interaction and with KNN-Mean-Deviate as visual integration method (see Section \ref{swarm_methods} for explanation). \textbf{A} \textbf{B} }
+    \label{fig:swarm_comparison}
+    \end{figure}
 	\chapter{Discussion}
+    In the previous chapter, we presented a model for collective behavior that we coupled with the neuronal model that we fitted in chapter 3.
+    We characterized the simulated behavior of the fish school by the startling frequency, cohesion and polarization and how these properties changed with differences in the mean speed of the agents and the noise on the swimming direction.
+    This was followed by an analysis of the spatial position within the group that startling agents had at the time of startle initiation and finally we compared the results of different methods for the computation of visual input.\\
+    The first effect that we found was that the direction noise strongly increases the startling frequency (Figures \ref{fig:swarm_heatmaps} and \ref{fig:swarm_comparison}).
+    We expected this because higher noise makes it more likely that two agents get onto a collision course which resembles the looming stimulus situation and where the visual angle increases quickly enough to elicit the startle response in either or both agents.
+    There was one exception, in the case of the KMEAN method and at the lowest speed the startling frequency is highest when the direction noise is lowest (Figure \ref{fig:swarm_comparison} B, bottom row of the heatmap).
+    One reason for this exception might be that the agents are not very mobile in this parameter regime, meaning that they change their direction so often that they are mostly staying in one place and thus do not encounter many other agents.
+    This is supported by the low polarization and the high nearest-neighbor distance.
+    Now the question is why this is not the case for the MAX method and here, the explanation might be that because in the MAX method on close neighbor is enough to evoke the startle response while the KMEAN method requires three close neighbors at the same time.
+    Further analysis is needed to answer this question.\\
+    Next, we also saw an increase of the startling frequency at higher speeds which is again plausible because more collisions can happen and the social forces might be too slow to change the trajectories of two agents on a collision course which would not be the case at slower speeds.
+    This effect hold for all visual input methods that we tested here.\\
+    If we look at the relationship between the startling frequency and the two order measures cohesion and polarization it appears that 
 	\begin{itemize}
-		\item we focus here on the experimental results from 
-		\cite{Bhattacharyya2017} but one should keep in mind that their results 
-		might be specific to properties of experiment such as fish handling, 
-		fish age, species, arena, environment, stimulus setup (projection on 
-		screen)
-		\item we took the fitted parameters from \cite{Koyama2016} but those are fitted for their 
-		specific context which might vary in other experimental conditions and certainly in other 
-		species
-		\item furthermore the LIF model makes strong assumptions about the processing power of the 
-		neuron which are likely not true. see for example \cite{Koch2000}, and specifically for 
-		%the 
-		M-cell \cite{Medan2017}
-		\item in locusts, neurons have been found that specifically code looming stimuli 
-		\cite{Hatsopoulos1995} (?)
-		\item we should keep in mind that the optic tectum is still developing at larval stage 
-		\cite{Avitan2017}
-		\item considering the amount of differences of previous studies that looked into visual 
-		looming stimuli, a more systematic analysis of visually evoked startle responses in 
-		zebrafish is clearly missing
-		\item test citations: \cite{Severi2014}, \cite{Sarvestani2013}, \cite{Romano2015}, 
-		\cite{Parrish2002}, \cite{Moeller1989}, \cite{Howe2013}, \cite{DelBene2010}
+		\item further work
+        \begin{itemize}
+        	\item analyze cascades
+            \item see if local clustering coefficient correlates with cascade size as \cite{Rosenthal2015} found
+            \item analyze periodicity in simulations
+            \item analyze effect of neighbor behavior at startle time (e.g. different orientation?)
+            \item possible influence of other collective parameters?
+            \item possible influence of change in neuronal model?
+            \item consider body shape of fish (important for subtended visual angle of neighbor in the front versus a neighbor on the side)
+            \item do we also see a decrease of startle frequency for more agents?
+            \item decision: on what level should we implement the variability of rho null? over 
+            time or across fish? we chose across fish here, assuming they are in different internal 
+            states, maybe also with different characters (cite paper about dominance 
+            \cite{Khan2017}, \cite{Miller2017}, \cite{Neumeister2010}, \cite{Park2018})
+        \end{itemize}
 	\end{itemize}
 	\newpage
 	%\bibliographystyle{abbrvnat}
 	%\bibliography{masterthesisbib}
 	\printbibliography[heading=bibintoc]
 	
-	\newpage
-	\appendix
+	%\newpage
+	%\appendix
 	%\appendixheaderon
 		% next line tells latex to not list sections in the Table of Contents, \protect is needed because \setcounter apparantly
 		% is a fragile command (see http://www.tex.ac.uk/FAQ-protect.html)
-	\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
-	\section{Appendix}
+	%\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+	%\section{Appendix}
 
 	
 \end{document}          

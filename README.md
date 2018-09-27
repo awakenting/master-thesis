@@ -6,7 +6,7 @@ This repository contains everything related to my master thesis.
     - How should the input that arrives at the Mauthner cell look like to create experimentally observed escape responses ?
     - How is this input related to the visual scene that the fish observes ?
 2. What happens if we present two simultaneous looming stimuli to a model that can reproduce results for one stimulus ?
-3. What happens if we use a model that can reproduce results for one stimulus for fish that move in school ?
+3. What happens if we use a model that can reproduce results for one stimulus for fish that move in a school ?
     - Would this induce spontaneous startles in fish ? How many startles would we see in a certain time window ?
 
 
@@ -16,17 +16,12 @@ This repository contains everything related to my master thesis.
 - defense_presentation: slides for the master defense
 - figures: figures for the manuscript and the slides
 - manuscript: the thesis manuscript
-- poster: the poster I presented at the DPG Tagung 2018 in Berlin ([link](http://berlin18.dpg-tagungen.de/))
+- poster: the posters I presented at the DPG Tagung 2018 ([link](http://berlin18.dpg-tagungen.de/)) and the Bernstein Conference ([link](https://abstracts.g-node.org/conference/BC18/abstracts#/uuid/1037e53d-bea4-40b1-8ee9-9444d3b8f92d)) in Berlin
 
 # Reproducibility
 
 ### Requirements:
-- python 3.6
-- numpy
-- scipy
-- matplotlib
-- pandas
-- seaborn
+See [requirements.txt file](https://github.com/awakenting/master-thesis/blob/master/requirements.txt).
 
 If you use [Anaconda](https://docs.anaconda.com/anaconda/install/), you can just use the enviroment file to create an environment with all necessary packages. To do so ... (coming soon)
 
